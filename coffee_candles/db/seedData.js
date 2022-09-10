@@ -5,11 +5,12 @@ const client = require("./client")
   
 async function dropTables() {
     try {
-        console.log("Starting to drop all tables...");
+      console.log("Starting to drop all tables...");
         
-    // below: DROP TABLE IF EXISTS name-of-table;
       await client.query(`
-        
+        DROP TABLE IF EXISTS orders;
+        DROP TABLE IF EXISTS users;
+        DROP TABLE IF EXISTS products;
       `);
   
       console.log("Finished dropping all tables!");
@@ -32,20 +33,18 @@ async function createTables() {
       await client.query(`
         CREATE TABLE products (
             id SERIAL PRIMARY KEY,
-            title VARCHAR(255) UNIQUE NOT NUL,
+            title VARCHAR(255) UNIQUE NOT NULL,
             description TEXT NOT NULL,
             price NUMERIC(7, 2),
             inventory_quantity INTEGER
         );
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
-            email VARCHAR(255) UNIQUE NOT NUL
+            email VARCHAR(255) UNIQUE NOT NULL
         );
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
-            product  VARCHAR(255) REFERENCES products(title),
-            "productId" INTEGER REFERENCES products(id),
-            price NUMERIC(7, 2) REFERENCES products(price)
+            "ordersId" INTEGER REFERENCES products(id),
             quantity INTEGER
         );
       `);
