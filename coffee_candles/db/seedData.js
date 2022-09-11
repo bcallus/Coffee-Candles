@@ -1,7 +1,8 @@
 //importdb functions
 const {
   createUser,
-  createProduct
+  createProduct,
+  createOrder
    } = require('./');
 const client = require("./client")
   
@@ -48,8 +49,9 @@ async function createTables() {
         );
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
-            "ordersId" INTEGER REFERENCES products(id),
-            quantity INTEGER
+            "orderId" INTEGER REFERENCES products(id),
+            quantity INTEGER,
+            authenticated BOOLEAN DEFAULT false
         );
       `);
   
@@ -140,6 +142,44 @@ async function createInitialProducts() {
   }
 }
 
+async function createInitialOrders() {
+  try {
+    console.log("Starting to create orders...")
+
+    const ordersToCreate = [
+      {
+        orderId: 2,
+        quantity: 1,
+        authenticated: false
+      },
+      {
+        orderId: 5,
+        quantity: 2,
+        authenticated: true
+      },
+      {
+        orderId: 1,
+        quantity: 1,
+        authenticated: true
+      },
+      {
+        orderId: 4,
+        quantity: 3,
+        authenticated: false
+      }
+    ]
+    const orders = await Promise.all(ordersToCreate.map(createOrder))
+
+    console.log("orders created:")
+    console.log(orders)
+
+    console.log("Finished creating products!")
+  } catch (error) {
+    console.error("Error creating products!")
+    throw error
+  }
+}
+
 
 async function rebuildDB() {
     try {
@@ -148,6 +188,7 @@ async function rebuildDB() {
       //await createInitial functions here if used
       await createInitialUsers()
       await createInitialProducts()
+      await createInitialOrders()
     } catch (error) {
       console.log("Error during rebuildDB")
       throw error
