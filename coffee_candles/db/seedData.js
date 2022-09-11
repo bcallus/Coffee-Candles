@@ -1,6 +1,7 @@
-// const {
-//     //importdb functions
-//    } = require('./');
+//importdb functions
+const {
+  createUser
+   } = require('./');
 const client = require("./client")
   
 async function dropTables() {
