@@ -10,27 +10,50 @@ const Navbar = () => {
   const handleClick = () => setNav(!nav);
 
   return (
-    <div className='w-screen h-[70px] z-10 bg-zinc-200 fixed drop-shadow-lg'>
-      <div className='px-2 flex space-between items-center w-full h-full bg-gradient-to-l from bg-[#2E4030] imgShoppingCartIcon'>
-        <div className='md:show' onClick={handleClick}>
+    <div className='w-screen h-[80px] z-10 bg-zinc-200 fixed drop-shadow-lg'>
+      <div className='px-2 flex justify-between items-center w-full h-full bg-[#2E4030]'>
+        <div className='md:hidden' onClick={handleClick}>
           {!nav ? (
             <Bars3Icon className='w-5 text-white' />
           ) : (
             <XMarkIcon className='w-5 text-white' />
           )}
         </div>
-        <div className='text-left'>
-          <h1 className='text-3xl  ml-4 sm:text-4xl text-zinc-100'>
-            BCKK's Cafe.
+        <div className='flex items-center'>
+          <h1 className='text-2xl  ml-10 sm:text-4xl text-zinc-100'>
+            BBCK's Cafe.
           </h1>
+        </div>
+        <div className='hidden md:flex'>
+          <button className='border-none bg-transparent text-white mr-20'>
+            Home
+          </button>
+          <button className='border-none bg-transparent text-white mr-20'>
+            Products
+          </button>
+          <button className='border-none bg-transparent text-white mr-20'>
+            About
+          </button>
+          <button className='border-none bg-transparent text-white mr-20'>
+            Sign In
+          </button>
+          <button className='border-none bg-transparent text-white mr-20'>
+            Sign Up
+          </button>
+          <ShoppingCartIcon className='w-7 mr-4 text-white' />
         </div>
       </div>
 
-      <ul className={!nav ? 'hidden' : 'absolute bg-[#2E4030] w-full px-8'}>
+      <ul
+        className={
+          !nav ? 'hidden' : 'absolute bg-[#2E4030] w-full px-8 opacity-95'
+        }
+      >
         <li className='border-b-2 border-zinc-300 w-full text-white'>Home</li>
         <li className='border-b-2 border-zinc-300 w-full text-white'>
           Products
         </li>
+        <li className='border-b-2 border-zinc-300 w-full text-white'>Cart</li>
         <li className='border-b-2 border-zinc-300 w-full text-white'>About</li>
 
         <div className='flex flex-col my-4'>

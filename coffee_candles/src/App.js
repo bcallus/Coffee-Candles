@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero.jsx';
-import Login from './components/Login';
+
+import Home from './components/Home.jsx';
+
 
 function App() {
   const [token, setToken] = useState("");
@@ -15,12 +16,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-      <Route path="/login" element={<Login setToken={setToken} />} />
-      
-      <Hero />
-      
-      </Routes>
+
+      <Home />
+
     </>
   );
 }
