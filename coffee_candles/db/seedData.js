@@ -12,8 +12,8 @@ async function dropTables() {
         
       await client.query(`
         DROP TABLE IF EXISTS orders;
-        DROP TABLE IF EXISTS users;
         DROP TABLE IF EXISTS products;
+        DROP TABLE IF EXISTS users;
       `);
   
       console.log("Finished dropping all tables!");
@@ -34,6 +34,12 @@ async function createTables() {
         //check on orders table
         //handle origional price of orders(products)
       await client.query(`
+        CREATE TABLE users (
+          id SERIAL PRIMARY KEY,
+          email VARCHAR(255) UNIQUE NOT NULL,
+          password VARCHAR(255) NOT NULL,
+          "isAdmin" BOOLEAN DEFAULT false
+        );
         CREATE TABLE products (
             id SERIAL PRIMARY KEY,
             name VARCHAR(255) UNIQUE NOT NULL,
@@ -41,11 +47,6 @@ async function createTables() {
             price NUMERIC(4, 2),
             stock INTEGER,
             category VARCHAR(255) NOT NULL
-        );
-        CREATE TABLE users (
-            id SERIAL PRIMARY KEY,
-            email VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL
         );
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
@@ -68,9 +69,26 @@ async function createInitialUsers() {
   console.log("Starting to create users...")
   try {
     const usersToCreate = [
-      { email: "coffeelover@aol.com", password: "cafelatte" },
-      { email: "candlelady123@gmail.com", password: "shescrafty" },
-      { email: "ibuystuff@yahoo.com", password: "takemymoney" },
+      {
+        email: "coffeelover@aol.com",
+        password: "cafelatte",
+        isAdmin: false
+      },
+      {
+        email: "candlelady123@gmail.com",
+        password: "shescrafty",
+        isAdmin: false
+      },
+      {
+        email: "ibuystuff@yahoo.com",
+        password: "takemymoney",
+        isAdmin: false
+      },
+      {
+        email: "myemail@gmail.com",
+        password: "mypassword",
+        isAdmin: true
+      },
     ]
     const users = await Promise.all(usersToCreate.map(createUser))
 
