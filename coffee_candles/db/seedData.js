@@ -30,12 +30,11 @@ async function createTables() {
     try {
       console.log("Starting to create tables...");
   
-        
-        //products table: category and photo required?
-        //check if category is correct
         //check on orders table
         //handle origional price of orders(products)
         //use INTEGER for price if it causes issues
+        //create a cart table
+        //reference/link orders table to cart table
       await client.query(`
         CREATE TABLE users (
           id SERIAL PRIMARY KEY,
@@ -58,9 +57,10 @@ async function createTables() {
         );
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
-            "orderId" INTEGER REFERENCES products(id),
+            "productId" INTEGER REFERENCES products(id),
             quantity INTEGER,
-            authenticated BOOLEAN DEFAULT false
+            authenticated BOOLEAN DEFAULT false,
+            price NUMERIC(4, 2)
         );
       `);
   
@@ -136,7 +136,7 @@ async function createInitialProducts() {
       {
         name: "French Vanilla Candle",
         description: "warm vanilla scent",
-        price: 25.00,
+        price: 25,
         inStock: true,
         categoryId: 2,
         image_url: "https://ibb.co/Lzc9VLQ"
@@ -200,24 +200,28 @@ async function createInitialOrders() {
 
     const ordersToCreate = [
       {
-        orderId: 2,
+        productId: 2,
         quantity: 1,
-        authenticated: false
+        authenticated: false,
+        price: 25.00
       },
       {
-        orderId: 5,
+        productId: 5,
         quantity: 2,
-        authenticated: true
+        authenticated: true,
+        price: 14.95
       },
       {
-        orderId: 1,
+        productId: 1,
         quantity: 1,
-        authenticated: true
+        authenticated: true,
+        price: 25.00
       },
       {
-        orderId: 4,
+        productId: 4,
         quantity: 3,
-        authenticated: false
+        authenticated: false,
+        price: 14.95
       }
     ]
     const orders = await Promise.all(ordersToCreate.map(createOrder))
