@@ -59,7 +59,7 @@ export default function Login({ setToken }) {
           </label>
         </div>
 
-        <div className='position-relative top-5% left-5%'>
+        <div className='relative top-5 left-5'>
           <button type='login'>Log In</button>
           <div>
             <Link to='/register' style={{}}>
