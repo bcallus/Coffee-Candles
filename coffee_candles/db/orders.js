@@ -1,16 +1,17 @@
 const client = require("./client");
 
 async function createOrder({
-    orderId,
+    productId,
     quantity,
-    authenticated
+    authenticated,
+    price
     }) {
     try {
       const { rows: [order] } = await client.query(`
-      INSERT INTO orders ("orderId", quantity, authenticated)
-      VALUES ($1, $2, $3)
+      INSERT INTO orders ("productId", quantity, authenticated, price)
+      VALUES ($1, $2, $3, $4)
       RETURNING *;
-    `, [orderId, quantity, authenticated]);
+    `, [productId, quantity, authenticated, price]);
   
       return order;
     }
