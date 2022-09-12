@@ -10,8 +10,8 @@ const Navbar = () => {
   const handleClick = () => setNav(!nav);
 
   return (
-    <div className='w-screen h-[80px] z-10 bg-zinc-200 fixed drop-shadow-lg'>
-      <div className='px-2 flex justify-between items-center w-full h-full bg-[#2E4030]'>
+    <div className='w-screen h-[80px] z-10 fixed drop-shadow-lg bg-[#2E4030]'>
+      <div className='px-2 flex justify-between items-center w-full h-full git'>
         <div className='md:hidden' onClick={handleClick}>
           {!nav ? (
             <Bars3Icon className='w-5 text-white' />

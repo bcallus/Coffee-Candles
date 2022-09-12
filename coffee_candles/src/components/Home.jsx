@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className='w-full'>
       <div className='w-full h-full bg-no-repeat'>
-        <img src={bgImg} className='w-full h-full object-cover absolute' />
+        <img src={bgImg} className='w-full h-full object-cover absolute 'alt='/' />
       </div>
       <div
         className='absolute flex flex-col py-8 md:min-w-[760px] top-[30%] mx-1 
