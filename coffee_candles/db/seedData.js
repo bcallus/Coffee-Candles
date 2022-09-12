@@ -2,7 +2,8 @@
 const {
   createUser,
   createProduct,
-  createOrder
+  createOrder,
+  createCategory
    } = require('./');
 const client = require("./client")
   
@@ -13,6 +14,7 @@ async function dropTables() {
       await client.query(`
         DROP TABLE IF EXISTS orders;
         DROP TABLE IF EXISTS products;
+        DROP TABLE IF EXISTS categories;
         DROP TABLE IF EXISTS users;
       `);
   
@@ -39,6 +41,10 @@ async function createTables() {
           email VARCHAR(255) UNIQUE NOT NULL,
           password VARCHAR(255) NOT NULL,
           "isAdmin" BOOLEAN DEFAULT false
+        );
+        CREATE TABLE categories (
+          id SERIAL PRIMARY KEY,
+          name VARCHAR(255) UNIQUE NOT NULL
         );
         CREATE TABLE products (
             id SERIAL PRIMARY KEY,
@@ -97,6 +103,25 @@ async function createInitialUsers() {
     console.log("Finished creating users!")
   } catch (error) {
     console.error("Error creating users!")
+    throw error
+  }
+}
+
+async function createInitialCategories() {
+  console.log("Starting to create categories...")
+  try {
+    const categoriesToCreate = [
+      { name: "coffee" },
+      { name: "candle" },
+      { name: "seasonal"},
+    ]
+    const category = await Promise.all(categoriesToCreate.map(createCategory))
+
+    console.log("Category created:")
+    console.log(category)
+    console.log("Finished creating categories!")
+  } catch (error) {
+    console.error("Error creating categories!")
     throw error
   }
 }
@@ -205,6 +230,7 @@ async function rebuildDB() {
       await createTables()
       //await createInitial functions here if used
       await createInitialUsers()
+      await createInitialCategories()
       await createInitialProducts()
       await createInitialOrders()
     } catch (error) {

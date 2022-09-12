@@ -3,6 +3,7 @@ module.exports = {
     ...require('./users'),
     ...require('./products'),
     ...require('./orders'),
+    ...require('./categories'),
     // ...require('./name-of-db-file'), 
     // ...require('./name-of-db-file'), 
     // ...require('./name-of-db-file') 
