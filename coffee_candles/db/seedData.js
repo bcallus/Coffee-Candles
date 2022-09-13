@@ -2,7 +2,8 @@
 const {
   createUser,
   createProduct,
-  createOrder
+  createOrder,
+  createCategory
    } = require('./');
 const client = require("./client")
   
@@ -12,8 +13,9 @@ async function dropTables() {
         
       await client.query(`
         DROP TABLE IF EXISTS orders;
-        DROP TABLE IF EXISTS users;
         DROP TABLE IF EXISTS products;
+        DROP TABLE IF EXISTS categories;
+        DROP TABLE IF EXISTS users;
       `);
   
       console.log("Finished dropping all tables!");
@@ -28,30 +30,37 @@ async function createTables() {
     try {
       console.log("Starting to create tables...");
   
-        
-        //products table: category and photo required?
-        //check if category is correct
         //check on orders table
         //handle origional price of orders(products)
+        //use INTEGER for price if it causes issues
+        //create a cart table
+        //reference/link orders table to cart table
       await client.query(`
+        CREATE TABLE users (
+          id SERIAL PRIMARY KEY,
+          email VARCHAR(255) UNIQUE NOT NULL,
+          password VARCHAR(255) NOT NULL,
+          "isAdmin" BOOLEAN DEFAULT false
+        );
+        CREATE TABLE categories (
+          id SERIAL PRIMARY KEY,
+          name VARCHAR(255) UNIQUE NOT NULL
+        );
         CREATE TABLE products (
             id SERIAL PRIMARY KEY,
             name VARCHAR(255) UNIQUE NOT NULL,
             description TEXT NOT NULL,
             price NUMERIC(4, 2),
-            stock INTEGER,
-            category VARCHAR(255) NOT NULL
-        );
-        CREATE TABLE users (
-            id SERIAL PRIMARY KEY,
-            email VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL
+            "inStock" BOOLEAN DEFAULT true,
+            "categoryId" INTEGER REFERENCES categories(id),
+            image_url TEXT
         );
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
-            "orderId" INTEGER REFERENCES products(id),
+            "productId" INTEGER REFERENCES products(id),
             quantity INTEGER,
-            authenticated BOOLEAN DEFAULT false
+            authenticated BOOLEAN DEFAULT false,
+            price NUMERIC(4, 2)
         );
       `);
   
@@ -68,9 +77,26 @@ async function createInitialUsers() {
   console.log("Starting to create users...")
   try {
     const usersToCreate = [
-      { email: "coffeelover@aol.com", password: "cafelatte" },
-      { email: "candlelady123@gmail.com", password: "shescrafty" },
-      { email: "ibuystuff@yahoo.com", password: "takemymoney" },
+      {
+        email: "coffeelover@aol.com",
+        password: "cafelatte",
+        isAdmin: false
+      },
+      {
+        email: "candlelady123@gmail.com",
+        password: "shescrafty",
+        isAdmin: false
+      },
+      {
+        email: "ibuystuff@yahoo.com",
+        password: "takemymoney",
+        isAdmin: false
+      },
+      {
+        email: "myemail@gmail.com",
+        password: "mypassword",
+        isAdmin: true
+      },
     ]
     const users = await Promise.all(usersToCreate.map(createUser))
 
@@ -83,6 +109,25 @@ async function createInitialUsers() {
   }
 }
 
+async function createInitialCategories() {
+  console.log("Starting to create categories...")
+  try {
+    const categoriesToCreate = [
+      { name: "coffee" },
+      { name: "candle" },
+      { name: "seasonal"},
+    ]
+    const category = await Promise.all(categoriesToCreate.map(createCategory))
+
+    console.log("Category created:")
+    console.log(category)
+    console.log("Finished creating categories!")
+  } catch (error) {
+    console.error("Error creating categories!")
+    throw error
+  }
+}
+
 async function createInitialProducts() {
   try {
     console.log("Starting to create products...")
@@ -91,43 +136,50 @@ async function createInitialProducts() {
       {
         name: "French Vanilla Candle",
         description: "warm vanilla scent",
-        price: 25.00,
-        stock: 100,
-        category: "candle",
+        price: 25,
+        inStock: true,
+        categoryId: 2,
+        image_url: "https://ibb.co/Lzc9VLQ"
       },
       {
         name: "Hazlenut Candle",
         description: "delicious hazlenut scent",
         price: 25.00,
-        stock: 100,
-        category: "candle",
+        inStock: true,
+        categoryId: 2,
+        image_url: "https://ibb.co/VVRng2S"
       },
       {
         name: "Pumpkin Spice Candle",
         description: "seasonal item", //can this be a category?
         price: 35.00,
-        stock: 100,
-        category: "candle",
+        inStock: false,
+        categoryId: 3,
+        image_url: "https://ibb.co/QNj167S"
       },
       {
         name: "Dark Roast Coffee",
         description: "bold and dark",
         price: 14.95,
-        stock: 150,
-        category: "coffee",
+        inStock: true,
+        categoryId: 1,
+        image_url: "https://ibb.co/0Gx77W1"
       },
       {
         name: "French Roast Coffee",
         description: "smooth medium roast",
         price: 14.95,
-        stock: 150,
-        category: "coffee", },
+        inStock: false,
+        categoryId: 1,
+        image_url: "https://ibb.co/y4xFJ3r"
+      },
       {
         name: "Blond Roast Coffee",
         description: "light and bold",
         price: 14.95,
-        stock: 150,
-        category: "coffee",
+        inStock: true,
+        categoryId: 1,
+        image_url: "https://ibb.co/KhvWN7J"
       }
     ]
     const products = await Promise.all(productsToCreate.map(createProduct))
@@ -148,24 +200,28 @@ async function createInitialOrders() {
 
     const ordersToCreate = [
       {
-        orderId: 2,
+        productId: 2,
         quantity: 1,
-        authenticated: false
+        authenticated: false,
+        price: 25.00
       },
       {
-        orderId: 5,
+        productId: 5,
         quantity: 2,
-        authenticated: true
+        authenticated: true,
+        price: 14.95
       },
       {
-        orderId: 1,
+        productId: 1,
         quantity: 1,
-        authenticated: true
+        authenticated: true,
+        price: 25.00
       },
       {
-        orderId: 4,
+        productId: 4,
         quantity: 3,
-        authenticated: false
+        authenticated: false,
+        price: 14.95
       }
     ]
     const orders = await Promise.all(ordersToCreate.map(createOrder))
@@ -187,6 +243,7 @@ async function rebuildDB() {
       await createTables()
       //await createInitial functions here if used
       await createInitialUsers()
+      await createInitialCategories()
       await createInitialProducts()
       await createInitialOrders()
     } catch (error) {
