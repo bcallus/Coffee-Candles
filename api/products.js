@@ -10,6 +10,7 @@ const {
 productsRouter.get("/", async (req, res, next) => {
     try {
       const products = await getAllProducts();
+      console.log("PRODUCTSSSS-->", products)
       res.send(products);
     } catch (error) {
       next(error);
