@@ -8,6 +8,7 @@ const {
 
 //products related api endpoints below
   
+//get all products for when user visits /products page
 productsRouter.get("/", async (req, res, next) => {
     try {
       const products = await getAllProducts();
@@ -19,6 +20,7 @@ productsRouter.get("/", async (req, res, next) => {
 });
 
 // /:productsId endpoints here
+//getting product by Id for when a user clicks on a specific product, rerouting them to /products/:productId
 productsRouter.get("/:productId", async (req, res, next) => {
   try {
     const { productId } = req.params

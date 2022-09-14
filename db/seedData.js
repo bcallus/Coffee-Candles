@@ -3,7 +3,8 @@ const {
   createUser,
   createProduct,
   createOrder,
-  createCategory
+  createCategory,
+  createCart
    } = require('./');
 const client = require("./client")
   
@@ -13,6 +14,7 @@ async function dropTables() {
         
       await client.query(`
         DROP TABLE IF EXISTS orders;
+        DROP TABLE IF EXISTS carts;
         DROP TABLE IF EXISTS products;
         DROP TABLE IF EXISTS categories;
         DROP TABLE IF EXISTS users;
@@ -54,6 +56,11 @@ async function createTables() {
             "inStock" BOOLEAN DEFAULT true,
             "categoryId" INTEGER REFERENCES categories(id),
             image_url TEXT
+        );
+        CREATE TABLE carts (
+          id SERIAL PRIMARY KEY,
+          "userId" INTEGER REFERENCES users(id),
+          "isPurchased" BOOLEAN DEFAULT FALSE
         );
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
@@ -194,6 +201,41 @@ async function createInitialProducts() {
   }
 }
 
+async function createInitalCarts() {
+  try {
+    console.log("Starting to create carts!")
+    const cartToCreate = [
+      {
+        userId: 3,
+        isPurchased: true,
+      },
+      {
+        userId: 1,
+        isPurchased: false,
+      },
+      {
+        userId: 2,
+        isPurchased: false,
+      },
+      {
+        userId: 4,
+        isPurchased: true,
+      }
+    ]
+
+    const cart = await Promise.all(cartToCreate.map(createCart))
+
+    console.log("Cart created:")
+    console.log(cart)
+
+    console.log("Finished creating carts!")
+  }
+  catch (error) {
+    console.error("Error creating carts!")
+    throw error
+  }
+}
+
 async function createInitialOrders() {
   try {
     console.log("Starting to create orders...")
@@ -245,6 +287,7 @@ async function rebuildDB() {
       await createInitialUsers()
       await createInitialCategories()
       await createInitialProducts()
+      await createInitalCarts()
       await createInitialOrders()
     } catch (error) {
       console.log("Error during rebuildDB")

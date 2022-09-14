@@ -1,5 +1,6 @@
 const client = require("./client");
 
+//admin can add a product
 async function createProduct({
     name,
     description,
@@ -49,6 +50,10 @@ async function getProductById(id) {
     throw error;
   }
 }
+
+//admin can update a product
+
+//admin can delete a product
 
 module.exports = {
     createProduct,
