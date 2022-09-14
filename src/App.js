@@ -5,25 +5,22 @@ import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import Navbar from './components/Navbar';
 
-
-
 function App() {
-  const [token, setToken] = useState("");
-  
+  const [token, setToken] = useState('');
 
-   useEffect(()=>{
-    const myToken = localStorage.getItem("token")
-    setToken(myToken)
-  },[])
+  useEffect(() => {
+    const myToken = localStorage.getItem('token');
+    setToken(myToken);
+  }, []);
   return (
     <Router>
       <Navbar />
       <Routes>
-      <Route path='/home' exact elements={<Home/>}/>
+        <Route path='/home' exact elements={<Home />} />
         {/* <Route path='/products' exact elements={<Products/>}/> */}
         {/* <Route path='/about' exact elements={<About/>}/> */}
         {/* <Route path='/login' exact elements={<Login/>}/> */}
-        <Route path='/sign-up' exact elements={<SignUp/>}/>
+        <Route path='/sign-up' exact elements={<SignUp />} />
       </Routes>
     </Router>
   );

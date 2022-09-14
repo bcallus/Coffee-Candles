@@ -10,7 +10,7 @@ export const Nav = styled.nav`
   justify-content: space-between;
   padding: 0.5rem calc((100vw - 1000px) / 2);
   z-index: 10;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: Montserrat-thin;
   letter-spacing: 6px;
 `;
@@ -47,7 +47,7 @@ export const Bars = styled(FaBars)`
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 24px; 
+  margin-right: 24px;
 
   @media screen and (max-width: 768px) {
     display: none;
