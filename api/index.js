@@ -11,6 +11,9 @@ apiRouter.use("/products", productsRouter);
 const usersRouter = require('./users');
 apiRouter.use("/users", usersRouter);
 
+const cartsRouter = require('./carts');
+apiRouter.use("/carts", cartsRouter);
+
 //add error handlers below:
 apiRouter.use("*", (req, res) => {
     res.status(404);

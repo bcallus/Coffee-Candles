@@ -14,7 +14,9 @@ async function createCart({ userId, isPurchased }) {
       console.error("Failed to create cart!");
       throw error;
     }
-  }
+}
+  
+//other cart related functions below
 
 module.exports = {
 	createCart
