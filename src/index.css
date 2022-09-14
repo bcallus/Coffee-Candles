@@ -1,24 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,300;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps:wght@400;700&display=swap');
 
-@layer base {
-  html {
-    font-family: Montserrat-thin;
-  }
-
-  h1 {
-    font-family:Oleo Script Swash Caps;
-  }
-
-  li {
-    @apply p-4;
-  }
-
-  button {
-    @apply text-white border bg-stone-600 border-black
-    hover:bg-transparent hover:text-zinc-800 rounded-md;
-  }
-}
