@@ -23,7 +23,7 @@ function App() {
         {/* <Route path='/products' exact elements={<Products/>}/> */}
         {/* <Route path='/about' exact elements={<About/>}/> */}
         {/* <Route path='/login' exact elements={<Login/>}/> */}
-        <Route path='/register' exact elements={<Register/>}/>
+        <Route path='/sign-up' exact elements={<SignUp/>}/>
       </Routes>
     </Router>
   );
