@@ -16,7 +16,7 @@ const Navbar = () => {
       <h1>Coffee "N" Tea</h1>
         <Bars />
         <NavMenu>
-          <NavLink to='/home' activeStyle>
+          <NavLink to='/' activeStyle>
             Home
           </NavLink>
           <NavLink to='/products' activeStyle>

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Navbar from './components/Navbar';
+import About from './pages/About';
 
 
 
@@ -19,11 +20,11 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-      <Route path='/' exact elements={<Home/>}/>
-        {/* <Route path='/products' exact elements={<Products/>}/> */}
-        {/* <Route path='/about' exact elements={<About/>}/> */}
-        {/* <Route path='/login' exact elements={<Login/>}/> */}
-        <Route path='/register' exact elements={<Register/>}/>
+      <Route path='/' exact element={<Home/>}/>
+        {/* <Route path='/products' exact element={<Products/>}/> */}
+        <Route path='/about' exact element={<About/>}/>
+        {/* <Route path='/login' exact element={<Login/>}/> */}
+        <Route path='/register' exact element={<Register/>}/>
       </Routes>
     </Router>
   );
