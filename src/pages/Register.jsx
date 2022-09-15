@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const APIURL = ``;
+const APIURL = `http://localhost:3001/api`;
 
 async function registerUser({ username, password }) {
-  return fetch(APIURL + '/users/register', {
+  return fetch(APIURL + '/users/sign-up', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export default function Register({ setToken }) {
       username,
       password,
     });
-    const token = data.data.token;
+    const token = data.token;
     console.log('data', data);
     console.log('Token in Register', token);
     console.log('setToken in Register', setToken);

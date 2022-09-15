@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const APIURL = ``;
+const APIURL = `http://localhost:3001/api`;
 
 async function loginUser({ username, password }) {
   return fetch(APIURL + '/users/login', {
@@ -10,10 +10,8 @@ async function loginUser({ username, password }) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      user: {
         username: username,
         password: password,
-      },
     }),
   })
     .then((response) => response.json())
