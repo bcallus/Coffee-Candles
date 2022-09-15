@@ -12,7 +12,7 @@ export const Nav = styled.nav`
   z-index: 10;
   color: #ffffff;
   font-family: Montserrat-thin;
-  letter-spacing: 6px;
+  letter-spacing: 5px;
 `;
 
 export const NavLink = styled(Link)`
@@ -25,7 +25,7 @@ export const NavLink = styled(Link)`
   cursor: pointer;
 
   &.active {
-    color: #90baad;
+    color: #394148;
   }
 `;
 
