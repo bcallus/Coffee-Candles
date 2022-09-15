@@ -12,8 +12,11 @@ import {
 const Navbar = () => {
   return (
     <>
+    <h1 style={{
+      display: 'flex',
+      justifyContent: 'center',
+    }}>Coffee "N" Tea</h1>
       <Nav>
-      <h1>Coffee "N" Tea</h1>
         <Bars />
         <NavMenu>
           <NavLink to='/' activeStyle>
