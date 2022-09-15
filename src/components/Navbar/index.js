@@ -15,7 +15,7 @@ const Navbar = () => {
         <h1>Coffee "N" Tea</h1>
         <Bars />
         <NavMenu>
-          <NavLink to='/home' activeStyle>
+          <NavLink to='/' activeStyle>
             Home
           </NavLink>
           <NavLink to='/products' activeStyle>
@@ -29,7 +29,7 @@ const Navbar = () => {
           </NavLink>
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to='/sign-in'>Sign In</NavBtnLink>
+          <NavBtnLink to='/login' >Sign In</NavBtnLink>
         </NavBtn>
       </Nav>
     </>
