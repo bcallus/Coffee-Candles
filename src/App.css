@@ -2,8 +2,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps:wght@400;700&display=swap');
 
 body {
-  background-image: url("./assets/cappucino.jpg");
-  background-color: #cccccc;
-  background-size: 1000px;
-  background-repeat: no-repeat;
+  background-color: #ffffff;
 }

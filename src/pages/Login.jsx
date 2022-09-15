@@ -40,7 +40,11 @@ export default function Login({ setToken }) {
   };
 
   return (
-    <div className='flex justify-center fixed top-25 left-50'>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      height: '90vh'
+    }}>
       <form onSubmit={handleSubmit}>
         <h1> Log in</h1>
         <label>
