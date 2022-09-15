@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,300;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps:wght@400;700&display=swap');
 
+body {
+  background-image: url("./assets/cappucino.jpg");
+  background-color: #cccccc;
+  background-size: 1000px;
+  background-repeat: no-repeat
 
-h1 {
-  font-family: Oleo Script Swash Caps;
-  font-size: xx-large;
-  letter-spacing: 5px;
+  ;
 }
