@@ -1,6 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,300;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,100;1,200&display=swap');
+
+* {
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 5px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+  --primary: #9c9c9c;
+  --blue: #48656f;
+  --green: #688993;
+}
 
 body {
   background-color: #ffffff;
+  line-height: 1.5;
+}
+
+.primary-color {
+  color: var(--primary);
 }

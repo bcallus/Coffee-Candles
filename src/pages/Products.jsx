@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Home = () => {
+const Products = () => {
   return (
     <div style={{
       display: 'flex',
@@ -8,9 +8,9 @@ const Home = () => {
       height: '90vh'
     }}
     >
-      <h1>Homepage</h1>
+      <h1>Products page</h1>
     </div>
   );
 };
 
-export default Home;
+export default Products;

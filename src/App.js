@@ -5,7 +5,9 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
-
+import Products from './pages/Products';
+import About from './pages/About';
+// import Sidebar from './components/Sidebar';
 
 
 function App() {
@@ -19,13 +21,14 @@ function App() {
   return (
     
     <Router>
+      {/* <Sidebar /> */}
       <Navbar />
       <Routes>
       <Route path='/' element={<Home />}></Route>
-        {/* <Route path='/products' exact elements={<Products/>}/> */}
-        {/* <Route path='/about' exact elements={<About/>}/> */}
+        <Route path='/products' element={<Products />}></Route>
+        <Route path='/about' element={<About />}></Route>
         <Route path='/login' element={<Login />}></Route>
-        <Route path='/sign-up' element={<Register setToken={setToken}/>}></Route>
+        <Route path='/register' element={<Register setToken={setToken}/>}></Route>
       </Routes>
     </Router>
    

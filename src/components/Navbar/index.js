@@ -8,34 +8,36 @@ import {
   NavBtnLink
 } from './NavbarElements';
 
-
 const Navbar = () => {
   return (
     <>
     <h1 style={{
       display: 'flex',
       justifyContent: 'center',
+      height: '10vh',
+      margin: '10px'
     }}>Coffee "N" Tea</h1>
       <Nav>
         <Bars />
         <NavMenu>
           <NavLink to='/' activeStyle>
-            Home
+            HOME
           </NavLink>
           <NavLink to='/products' activeStyle>
-            Products
+            PRODUCTS
           </NavLink>
           <NavLink to='/about' activeStyle>
-           About
+           ABOUT
           </NavLink>
-          <NavLink to='/sign-up' activeStyle>
-            Sign Up
+          <NavLink to='/register' activeStyle>
+            SIGN UP
           </NavLink>
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to='/login' >Sign In</NavBtnLink>
+          <NavBtnLink to='/login' >SIGN IN</NavBtnLink>
         </NavBtn>
       </Nav>
+      <div style={{borderBottom: '1px solid'}}></div>
     </>
   );
 };
