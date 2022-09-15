@@ -5,14 +5,15 @@ import {
   Bars,
   NavMenu,
   NavBtn,
-  NavBtnLink,
+  NavBtnLink
 } from './NavbarElements';
+
 
 const Navbar = () => {
   return (
     <>
       <Nav>
-        <h1>Coffee "N" Tea</h1>
+      <h1>Coffee "N" Tea</h1>
         <Bars />
         <NavMenu>
           <NavLink to='/' activeStyle>
@@ -22,7 +23,7 @@ const Navbar = () => {
             Products
           </NavLink>
           <NavLink to='/about' activeStyle>
-            About
+           About
           </NavLink>
           <NavLink to='/sign-up' activeStyle>
             Sign Up
