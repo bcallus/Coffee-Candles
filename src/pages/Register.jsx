@@ -43,7 +43,8 @@ export default function Register({ setToken }) {
     <div style={{
       display: 'flex',
       justifyContent: 'center',
-      height: '90vh'
+      height: '90vh',
+      paddingTop: '15vh'
     }}
     >
        <form onSubmit={handleSubmit}>
