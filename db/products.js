@@ -1,5 +1,6 @@
 const client = require("./client");
 
+//admin can add a product
 async function createProduct({
     name,
     description,
@@ -36,7 +37,26 @@ async function getAllProducts() {
     }
 }
 
+async function getProductById(id) {
+  try {
+    const { rows: [product] } = await client.query(`
+      SELECT * FROM products
+      WHERE id = ${id}
+    `)
+
+    return product;
+  }
+  catch (error) {
+    throw error;
+  }
+}
+
+//admin can update a product
+
+//admin can delete a product
+
 module.exports = {
     createProduct,
-    getAllProducts
+    getAllProducts,
+    getProductById
 };
