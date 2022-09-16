@@ -7,7 +7,6 @@ import Navbar from './components/Navbar';
 import About from './pages/About';
 import Login from './pages/Login';
 import Products from './pages/Products';
-import About from './pages/About';
 // import Sidebar from './components/Sidebar';
 
 
