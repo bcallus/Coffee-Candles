@@ -17,10 +17,13 @@
 }
 
 body {
-  background-color: #ffffff;
-  line-height: 1.5;
+  background-image: url("./assets/cappucino.jpg");
+  background-color: #cccccc;
+  background-size: 1000px;
+  background-repeat: no-repeat;
 }
-
-.primary-color {
-  color: var(--primary);
+ h1 {
+  font-family: Oleo Script Swash Caps;
+  font-size: xx-large;
+  letter-spacing: 5px;
 }
