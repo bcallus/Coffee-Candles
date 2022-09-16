@@ -19,9 +19,33 @@ async function createUser({ email, password }) {
 	} catch (error) {
 		throw error;
 	}
+}
 
+//getUser
+
+//getUserById
+
+//getUserByEmail
+async function getUserByEmail(email) {
+	
+	try {
+		const user = await client.query(
+			`
+      SELECT id, email, password
+      FROM users
+	  WHERE email = $1
+    `,
+			[email]
+		);
+		const returnedUser = user.rows[0];
+		
+		return returnedUser;
+	} catch (error) {
+		throw error;
+	}
 }
 
 module.exports = {
-	createUser
+	createUser,
+	getUserByEmail
 };
