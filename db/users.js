@@ -21,9 +21,23 @@ async function createUser({ email, password }) {
 	}
 }
 
-//getUser
+//getUser ?? do we need this
 
 //getUserById
+async function getUserById(userId) {
+	try {
+		const user = await client.query(`
+      SELECT id, email
+      FROM users
+      WHERE id=${userId}
+    `);
+		
+		const returnedUser = user.rows[0];
+		return returnedUser;
+	} catch (error) {
+		throw error;
+	}
+}
 
 //getUserByEmail
 async function getUserByEmail(email) {
@@ -47,5 +61,6 @@ async function getUserByEmail(email) {
 
 module.exports = {
 	createUser,
-	getUserByEmail
+	getUserByEmail,
+	getUserById
 };
