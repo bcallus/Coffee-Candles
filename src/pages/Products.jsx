@@ -1,16 +1,31 @@
-import React from 'react';
+// import React from 'react';
+// import { Card, CardMedia, CardContent, CardActions, Typography, IconButton} from '@material-ui/core';
+// import { AddShoppingCart } from '@material-ui/icons';
 
-const Products = () => {
-  return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      height: '90vh'
-    }}
-    >
-      <h1>Products page</h1>
-    </div>
-  );
-};
+// const Products = ({product}) => {
+//   return (
+//     <Card className={classes.root}>
+//         <CardMedia className={classes.media} image='' title={product.name}/>
+//         <CardContent>
+//             <div className={classes.CardContent}>
+//                 <Typography variant="h5" gutterBottom>
+//                     {product.name}
+//                 </Typography>
+//                 <Typography variant="h5">
+//                     {product.price}
+//                 </Typography>
+//             </div>
+//             <Typography variant="body2" color="textSecondary">{product.description}</Typography>
+//         </CardContent>
+//         <CardActions disableSpacing className={classes.cardActions}>
+//             <IconButton aria-label="Add to Cart">
+//                 <AddShoppingCart/>
+//             </IconButton>
 
-export default Products;
+//         </CardActions>
+
+//     </Card>
+//   )
+// }
+
+// export default Products
