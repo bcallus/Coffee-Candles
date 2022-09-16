@@ -5,10 +5,11 @@ const Products = () => {
     <div style={{
       display: 'flex',
       justifyContent: 'center',
-      height: '90vh'
+      height: '90vh',
+      paddingTop: '15vh'
     }}
     >
-      <h1>Products page</h1>
+      <h2>Products page</h2>
     </div>
   );
 };

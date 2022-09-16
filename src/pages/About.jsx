@@ -5,10 +5,11 @@ const About = () => {
     <div style={{
       display: 'flex',
       justifyContent: 'center',
-      height: '90vh'
+      height: '90vh',
+      paddingTop: '15vh'
     }}
     >
-      <h1>About page</h1>
+      <h2>About page</h2>
     </div>
   );
 };

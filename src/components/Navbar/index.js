@@ -16,7 +16,7 @@ const Navbar = () => {
       justifyContent: 'center',
       height: '10vh',
       margin: '10px'
-    }}>Coffee "N" Tea</h1>
+    }}>Coffee + Tea</h1>
       <Nav>
         <Bars />
         <NavMenu>

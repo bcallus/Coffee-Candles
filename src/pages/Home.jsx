@@ -5,10 +5,11 @@ const Home = () => {
     <div style={{
       display: 'flex',
       justifyContent: 'center',
-      height: '90vh'
+      height: '90vh',
+      paddingTop: '15vh'
     }}
     >
-      <h1>Homepage</h1>
+      <h2>Coffee for Every Body.</h2>
     </div>
   );
 };

@@ -43,10 +43,11 @@ export default function Login({ setToken }) {
     <div style={{
       display: 'flex',
       justifyContent: 'center',
-      height: '90vh'
+      height: '90vh',
+      paddingTop: '15vh'
     }}>
       <form onSubmit={handleSubmit}>
-        <h1> Log in</h1>
+        <h2> Log in</h2>
         <label>
           <p>Username</p>
           <input type='text' onChange={(e) => setUserName(e.target.value)} />
@@ -65,7 +66,7 @@ export default function Login({ setToken }) {
           <button type='login'>Log In</button>
           <div>
             <Link to='/register' style={{}}>
-              Dont have an account?
+              Don't have an account?
             </Link>
           </div>
         </div>
