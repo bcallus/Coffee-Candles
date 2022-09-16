@@ -24,7 +24,7 @@ export const NavLink = styled(Link)`
   cursor: pointer;
 
   &.active {
-    color: #8aa2a9;
+    color: #749246;
   }
 `;
 
@@ -81,3 +81,6 @@ export const NavBtnLink = styled(Link)`
     color: #010606;
   }
 `;
+
+
+/*D1E5EB footer color*/

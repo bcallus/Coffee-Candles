@@ -6,7 +6,7 @@ import Register from './pages/Register';
 import Navbar from './components/Navbar';
 import About from './pages/About';
 import Login from './pages/Login';
-import Products from './pages/Products';
+// import Products from './pages/Products';
 // import Sidebar from './components/Sidebar';
 
 
@@ -25,7 +25,7 @@ function App() {
       <Navbar />
       <Routes>
       <Route path='/' element={<Home />}></Route>
-        <Route path='/products' element={<Products />}></Route>
+        {/* <Route path='/products' element={<Products />}></Route> */}
         <Route path='/about' element={<About />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register setToken={setToken}/>}></Route>
