@@ -5,6 +5,7 @@ import {
   AiOutlineClose,
   AiOutlineSearch,
   AiOutlineUser,
+  AiOutlineShoppingCart
 } from 'react-icons/ai';
 import Logo from '../../assets/CoffeeTeaLogoHome.png';
 
@@ -12,24 +13,32 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
 
   return (
-    <header className={styles.navbar}>
-      <img src={Logo} className={styles.logo} alt='Logo' />
-      <nav>
+    <>
+    <header className={styles.logo}>
+      <img src={Logo} alt='Logo' />
+    </header>
+      <nav className={styles.navbar}>
         <ul className={nav ? [styles.menu, styles.active].join('') : [styles.menu]}>
           <li>
-            <a href='/'>Home</a>
+            <a href='/'>HOME</a>
           </li>
           <li>
-            <a href='/products'>Products</a>
+            <a href='/products'>PRODUCTS</a>
           </li>
           <li>
-            <a href='/about'>About</a>
+            <a href='/about'>ABOUT</a>
+          </li>
+          <li>
+            <a href='/login'>SIGN IN</a>
+          </li>
+          <li>
+            <AiOutlineSearch size={25} style={{marginTop: '6px'}} />
           </li>
           <li>
             <AiOutlineUser size={25} style={{marginTop: '6px'}} />
           </li>
           <li>
-            <AiOutlineSearch size={25} style={{marginTop: '6px'}} />
+            <AiOutlineShoppingCart size={25} style={{marginTop: '6px'}} />
           </li>
         </ul>
       </nav>
@@ -37,7 +46,7 @@ const Navbar = () => {
         {nav ? <AiOutlineClose size={25} /> : <AiOutlineMenu size={25} />}
 
       </div>
-    </header>
+    </>
   );
 };
 
