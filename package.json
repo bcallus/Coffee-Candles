@@ -2,12 +2,14 @@
   "name": "coffee_candles",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "dependencies": {
     "@heroicons/react": "^2.0.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bcrypt": "^5.0.1",
+    "concurrently": "^7.4.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
@@ -22,14 +24,15 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "seed:dev": "nodemon ./db/seed.js",
-    "seed": "node ./db/seed.js",
-    "start:dev": "nodemon server.js",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "postinstall": "npm run client:build",
+    "client:dev": "react-scripts start",
+    "client:build": "react-scripts build",
+    "server:dev": "nodemon server.js",
+    "db:build": "node ./db/seedData",
+    "start:dev": "concurrently \"npm run client:build\" \"npm run client:dev\" \"npm run server:dev\"",
+    "start": "node server.js"
   },
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": [
       "react-app",

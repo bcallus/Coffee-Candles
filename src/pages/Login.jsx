@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const APIURL = `http://localhost:3001/api`;
+const APIURL = `/api`;
 
 async function loginUser({ username, password }) {
   return fetch(APIURL + '/users/login', {
