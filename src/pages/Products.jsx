@@ -1,31 +1,29 @@
+// import React from 'react'
 
-// import React from 'react';
-// import { Card, CardMedia, CardContent, CardActions, Typography, IconButton} from '@material-ui/core';
-// import { AddShoppingCart } from '@material-ui/icons';
 
-// const Products = ({product}) => {
+// const Products = ({productItems}) => {
 //   return (
-//     <Card className={classes.root}>
-//         <CardMedia className={classes.media} image='' title={product.name}/>
-//         <CardContent>
-//             <div className={classes.CardContent}>
-//                 <Typography variant="h5" gutterBottom>
-//                     {product.name}
-//                 </Typography>
-//                 <Typography variant="h5">
-//                     {product.price}
-//                 </Typography>
+//     <div className='products'>
+//         {productItems.map((productItem) => (
+//             <div className='card'>
+//                 <div>
+//                 <img className='product-image'
+//                 src={productItem.image_url}
+//                  alt={productItem.name}
+//                  />
+//               </div>
+//               <div>
+//                 <h2 className='product.name'>{productItems.name} </h2>
 //             </div>
-//             <Typography variant="body2" color="textSecondary">{product.description}</Typography>
-//         </CardContent>
-//         <CardActions disableSpacing className={classes.cardActions}>
-//             <IconButton aria-label="Add to Cart">
-//                 <AddShoppingCart/>
-//             </IconButton>
+//             <div className='product-price'> ${productItems.price}</div>
+//             <div> <h3 className='product-description'> {productItems.description} </h3></div>  
+//             <div>
+//                  <button className="product-add-to-cart-button">Add to Cart</button>
+//                 </div>
 
-//         </CardActions>
-
-//     </Card>
+//             </div>))}
+            
+//     </div>
 //   )
 // }
 

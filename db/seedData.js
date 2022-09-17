@@ -143,7 +143,7 @@ async function createInitialProducts() {
       {
         name: "French Vanilla Candle",
         description: "warm vanilla scent",
-        price: 25,
+        price: 25.00,
         inStock: true,
         categoryId: 2,
         image_url: "https://ibb.co/Lzc9VLQ"
