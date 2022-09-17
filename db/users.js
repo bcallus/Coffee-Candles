@@ -19,9 +19,48 @@ async function createUser({ email, password }) {
 	} catch (error) {
 		throw error;
 	}
+}
 
+//getUser ?? do we need this
+
+//getUserById
+async function getUserById(userId) {
+	try {
+		const user = await client.query(`
+      SELECT id, email
+      FROM users
+      WHERE id=${userId}
+    `);
+		
+		const returnedUser = user.rows[0];
+		return returnedUser;
+	} catch (error) {
+		throw error;
+	}
+}
+
+//getUserByEmail
+async function getUserByEmail(email) {
+	
+	try {
+		const user = await client.query(
+			`
+      SELECT id, email, password
+      FROM users
+	  WHERE email = $1
+    `,
+			[email]
+		);
+		const returnedUser = user.rows[0];
+		
+		return returnedUser;
+	} catch (error) {
+		throw error;
+	}
 }
 
 module.exports = {
-	createUser
+	createUser,
+	getUserByEmail,
+	getUserById
 };
