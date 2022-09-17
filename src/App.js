@@ -6,13 +6,12 @@ import Register from './pages/Register';
 import Navbar from './components/Navbar/Navbar.jsx';
 import About from './pages/About/About';
 import Login from './pages/Login';
-import data from './back/Data';
-import Products from './pages/Products';
+import Hero from "./components/Hero/Hero.jsx";
+//import data from './back/Data';
+//import Products from './pages/Products';
 
 
-
-
-const{productItems} = data;
+//const{productItems} = data;
 
 
 function App() {
@@ -27,6 +26,7 @@ function App() {
     
     <Router>
       <Navbar />
+      <Hero />
       <Routes>
       <Route path='/' element={<Home />}></Route>
         <Route path='/products' element={<Products />}></Route>
