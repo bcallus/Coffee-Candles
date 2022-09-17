@@ -40,12 +40,14 @@ export default function Login({ setToken }) {
   };
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      height: '90vh',
-      paddingTop: '15vh'
-    }}>
+    <div 
+    // style={{
+    //   display: 'flex',
+    //   justifyContent: 'center',
+    //   height: '90vh',
+    //   paddingTop: '15vh'
+    // }}
+    >
       <form onSubmit={handleSubmit}>
         <h2> Log in</h2>
         <label>
@@ -62,7 +64,9 @@ export default function Login({ setToken }) {
           </label>
         </div>
 
-        <div className='relative top-5 left-5'>
+        <div 
+        // className='relative top-5 left-5'
+        >
           <button type='login'>Log In</button>
           <div>
             <Link to='/register' style={{}}>
