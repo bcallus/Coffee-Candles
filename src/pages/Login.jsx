@@ -4,22 +4,26 @@ import { Link, useNavigate } from 'react-router-dom';
 const APIURL = `/api`;
 
 async function loginUser({ username, password }) {
-  return fetch(APIURL + '/users/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        username: username,
-        password: password,
-    }),
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      console.log(result);
-      return result;
+  try {
+    return fetch(APIURL + '/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          username: username,
+          password: password,
+      }),
     })
-    .catch(console.error);
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        return result;
+      })
+  }
+  catch(error) {
+    console.error(error)
+  };
 }
 export default function Login({ setToken }) {
   const [username, setUserName] = useState('');
@@ -28,12 +32,15 @@ export default function Login({ setToken }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("username-->", username)
+    console.log("password-->", password)
     const data = await loginUser({
       username,
       password,
     });
-    console.log(data);
+    console.log("data in Login component-->", data);
     const token = data.data.token;
+    console.log("token in Login component-->", token)
     localStorage.setItem('token', token);
     setToken(token);
     navigate('/', { replace: true });
