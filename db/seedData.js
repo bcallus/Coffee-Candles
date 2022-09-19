@@ -35,8 +35,7 @@ async function createTables() {
         //check on orders table
         //handle origional price of orders(products)
         //use INTEGER for price if it causes issues
-        //create a cart table
-        //reference/link orders table to cart table
+        //orders table needs to have cartstId reference
       await client.query(`
         CREATE TABLE users (
           id SERIAL PRIMARY KEY,
@@ -65,6 +64,7 @@ async function createTables() {
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
             "productId" INTEGER REFERENCES products(id),
+            "cartsId" INTEGER REFERENCES carts(id),
             quantity INTEGER,
             authenticated BOOLEAN DEFAULT false,
             price NUMERIC(4, 2)
@@ -243,24 +243,28 @@ async function createInitialOrders() {
     const ordersToCreate = [
       {
         productId: 2,
+        cartsId: 2,
         quantity: 1,
         authenticated: false,
         price: 25.00
       },
       {
         productId: 5,
+        cartsId: 4,
         quantity: 2,
         authenticated: true,
         price: 14.95
       },
       {
         productId: 1,
+        cartsId: 1,
         quantity: 1,
         authenticated: true,
         price: 25.00
       },
       {
         productId: 4,
+        cartsId: 3,
         quantity: 3,
         authenticated: false,
         price: 14.95
