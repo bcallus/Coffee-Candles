@@ -6,7 +6,7 @@ const Product = ({product}) => {
         <div>
             <p><b>Product #{product.id}</b></p>
             <p>Name: {product.name}</p>
-            <p>Description: {product.descripton}</p>
+            <p>Description: {product.description}</p>
             <p>Price: {product.price}</p>
         </div>
     )
