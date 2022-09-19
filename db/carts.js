@@ -16,7 +16,13 @@ async function createCart({ userId, isPurchased }) {
     }
 }
   
-//other cart related functions below
+//getCartById by cartId to access a particular cart
+
+//getCartByUserId to get a users cart?
+
+//updateIsPurchased by cartId ? for once items in cart are officially purchased
+
+//what other cart functions do we need?
 
 module.exports = {
 	createCart

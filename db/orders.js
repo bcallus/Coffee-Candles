@@ -21,13 +21,15 @@ async function createOrder({
     }
   }
 
-  //getAllOrders function
+  //getOrderById
 
-  //getOrdersByUserId function
+  //getOrderByCartId ?? do we need this
 
-  //getOrderByOrderId function
+  //addProductToCart insert into orders?
 
-  // updateOrder function
+  //updateOrder
+
+  //deleteOrder
 
 module.exports = {
 	createOrder
