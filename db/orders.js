@@ -21,6 +21,16 @@ async function createOrder({
     }
   }
 
+  //getOrderById
+
+  //getOrderByCartId ?? do we need this
+
+  //addProductToCart insert into orders?
+
+  //updateOrder
+
+  //deleteOrder
+
 module.exports = {
 	createOrder
 };
