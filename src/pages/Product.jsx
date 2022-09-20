@@ -4,10 +4,11 @@ const Product = ({product}) => {
 
     return (
         <div>
-            <p><b>Product #{product.id}</b></p>
-            <p>Name: {product.name}</p>
+            <p><b>{product.name}</b></p>
             <p>Description: {product.description}</p>
             <p>Price: {product.price}</p>
+            
+            {product.inStock ? null : <p>Sold Out</p>}
         </div>
     )
 }
