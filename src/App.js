@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Hero from "./components/Hero/Hero.jsx";
 //import data from './back/Data';
 import Products from './pages/Products';
+import ProductById from './pages/ProductById';
 
 
 //const{productItems} = data;
@@ -17,7 +18,7 @@ import Products from './pages/Products';
 
 function App() {
   const [token, setToken] = useState("");
-  const [productsList, setProductsList] = useState([{}]);
+  const [productsList, setProductsList] = useState([{}]);  
   
 
   useEffect(() => {
@@ -37,6 +38,7 @@ function App() {
       <Routes>
       <Route path='/' element={<Home />}></Route>
         <Route path='/products' element={<Products productsList={productsList} />}></Route>
+        <Route path='/products/:productId' element={<ProductById />}></Route>
         <Route path='/about' element={<About />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
