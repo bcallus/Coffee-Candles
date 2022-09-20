@@ -14,7 +14,8 @@ async function createUser({ email, password }) {
             RETURNING *;
         `, [email, hashedPassword]
 		);
-		delete user.password;
+		delete user.password; 
+		// add in createCart(user)?
 		return user;
 	} catch (error) {
 		throw error;

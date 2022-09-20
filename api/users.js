@@ -1,5 +1,6 @@
 const express = require("express");
 const usersRouter = express.Router();
+const { requireUser, requireAdmin } = require("./utils");
 //require db functions here:
 const {
     createUser,
@@ -86,7 +87,7 @@ usersRouter.post("/login", async (req, res, next) => {
 		if (user && isValid) {
 			const token = jwt.sign(
 				{
-                    email: email,
+          email: email,
 					id: user.id,
 				},
 				process.env.JWT_SECRET
@@ -145,5 +146,10 @@ usersRouter.get("/me", async (req, res, next) => {
 //are there any other endpoints specific to a user?
 //maybe usersRouter.get("/:userId/mycart" or "/:userId/orderhistory" something like this 
 //will figure this part out
+
+
+//usersRouter.patch for /me/:userId for profile
+//usersRouter.get "/all" for admin profile
+//usersRouter.get /:userId/profile
 
 module.exports = usersRouter;

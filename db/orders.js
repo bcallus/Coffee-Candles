@@ -20,6 +20,14 @@ async function createOrder({
     }
   }
 
+  //getAllOrders function
+
+  //getOrdersByUserId function
+
+  //getOrderByOrderId function
+
+  // updateOrder function
+
 module.exports = {
 	createOrder
 };
