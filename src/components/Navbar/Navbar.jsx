@@ -3,7 +3,6 @@ import styles from './navbar.module.css';
 import {
   AiOutlineMenu,
   AiOutlineClose,
-  AiOutlineSearch,
   AiOutlineUser,
   AiOutlineShoppingCart,
 } from 'react-icons/ai';
@@ -34,9 +33,6 @@ const Navbar = () => {
           </li>
           <li>
             <a href='/login'>SIGN IN</a>
-          </li>
-          <li>
-            <AiOutlineSearch size={25} style={{ marginTop: '6px' }} />
           </li>
           <li>
             <AiOutlineUser size={25} style={{ marginTop: '6px' }} />
