@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 
-const APIURL = `http://localhost:3001/api`;
+const APIURL = `/api`;
 
-async function registerUser({ username, password }) {
-  return fetch(APIURL + '/users/sign-up', {
+async function registerUser({ email, password }) {
+  return fetch(APIURL + '/users/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      user: {
-        username: username,
+        email: email,
         password: password,
-      },
     }),
   })
     .then((response) => response.json())
@@ -20,15 +18,18 @@ async function registerUser({ username, password }) {
       return result;
     })
     .catch(console.error);
-}
+    
+  }
+  
+
 export default function Register({ setToken }) {
-  const [username, setUserName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await registerUser({
-      username,
+      email,
       password,
     });
     const token = data.token;
@@ -52,8 +53,8 @@ export default function Register({ setToken }) {
         <h2> Please Register</h2>
         <div>
           <label>
-            <p>Username</p>
-            <input type='text' onChange={(e) => setUserName(e.target.value)} />
+            <p>Email</p>
+            <input type='text' onChange={(e) => setEmail(e.target.value)} />
           </label>
         </div>
         <div>

@@ -17,7 +17,6 @@ import Hero from "./components/Hero/Hero.jsx";
 function App() {
   const [token, setToken] = useState("");
   
-
    useEffect(()=>{
     const myToken = localStorage.getItem("token")
     setToken(myToken)
