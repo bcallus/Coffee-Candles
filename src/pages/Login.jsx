@@ -52,7 +52,9 @@ export default function Login({ setToken }) {
         <h2> Log in</h2>
         <label>
           <p>Username</p>
-          <input type='text' onChange={(e) => setUserName(e.target.value)} />
+          <input 
+          type='text' 
+          onChange={(e) => setUserName(e.target.value)} />
         </label>
         <div>
           <label>
@@ -64,9 +66,7 @@ export default function Login({ setToken }) {
           </label>
         </div>
 
-        <div 
-        // className='relative top-5 left-5'
-        >
+        <div>
           <button type='login'>Log In</button>
           <div>
             <Link to='/register' style={{}}>

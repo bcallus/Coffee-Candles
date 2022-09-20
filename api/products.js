@@ -5,6 +5,7 @@ const {
   getProductById
     //add other functions here
 } = require("../db");
+const { requireAdmin } = require("./utils")
 
 //products related api endpoints below
   
@@ -30,6 +31,24 @@ productsRouter.get("/:productId", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+
+// POST /api/products
+productsRouter.post("/", requireAdmin, async (req, res, next) => {
+  const { name, description, price, inStock } = req.body;
+  
+  try {
+    const newProduct = await createProduct({
+      name,
+      description,
+      price,
+      inStock,
+  });
+  res.send(newProduct);
+} catch ({ name, message }) {
+  next({ name, message, status:401 });
+}
 });
 
 module.exports = productsRouter;
