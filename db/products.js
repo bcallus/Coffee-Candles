@@ -55,6 +55,8 @@ async function getProductById(id) {
 
 //admin can delete a product
 
+// function to assignCategory
+
 module.exports = {
     createProduct,
     getAllProducts,
