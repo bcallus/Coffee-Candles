@@ -51,8 +51,10 @@ export default function Login({ setToken }) {
       <form onSubmit={handleSubmit}>
         <h2> Log in</h2>
         <label>
+
           <p>Email</p>
           <input type='text' onChange={(e) => setEmail(e.target.value)} />
+
         </label>
         <div>
           <label>
