@@ -1,6 +1,8 @@
 const client = require("./client");
+//CARTS ARE SIMILAR TO ROUTINES ON FITNESS TRACKER
 
-async function createCart({ userId, isPurchased }) {
+//default for isPurchased is false, has to be updated to change cart to purchsed cart?
+async function createCart({ userId, isPurchased = false }) {
     try {
         const { rows: [carts] } = await client.query(`
             INSERT INTO carts("userId", "isPurchased")
@@ -8,7 +10,8 @@ async function createCart({ userId, isPurchased }) {
             RETURNING *;
             `, [userId, isPurchased]
         );
-  
+        
+        // console.log("CARTS from createcart-->", carts)
         return carts;
     } catch (error) {
       console.error("Failed to create cart!");
@@ -16,8 +19,72 @@ async function createCart({ userId, isPurchased }) {
     }
 }
   
-//other cart related functions below
+//getCartById by cartId to access a particular cart | like  getRoutineById(id)
+//used in API: cartsRouter.patch('/:cartId', to update cart
+//and used in API: cartsRouter.delete('/:cartId', to delete cart
+async function getCartById(id) {
+    try {
+      const { rows: [cart] } = await client.query(`
+        SELECT * FROM carts
+        WHERE id = ${id}
+      `)
+    
+      console.log("cart from getCartById-->}", cart)
+      return cart;
+    }
+    catch (error) {
+      throw error;
+    }
+  }
+
+//getCartWithoutProducts | like getRoutinesWithoutActivities()
+async function getCartsWithoutProducts() {
+    try {
+      const { rows } = await client.query(`
+        SELECT * FROM carts
+        `);
+        
+      console.log("rows from getCartsWithoutProducts-->", rows)
+      return rows;
+    }
+    catch (error) {
+      throw error;
+    }
+  }
+
+//getAllCartsByUser to get a users carts | like getAllRoutinesByUser({ username }) (OR break up into two, not yet purchased and already purchased?)
+async function getAllCartsByUser({ email }) {
+    try {
+  
+      const { rows } = await client.query(`
+        SELECT carts.id, carts."userId", carts."isPurchased", users.email
+        FROM carts
+        JOIN users ON carts."userId" = users.id
+        WHERE users.email = $1
+      `, [email])
+  
+      const cartsByUserWithProducts = await attachProductsToCarts(rows)
+        
+      console.log("cartsByUserWithProducts from getAllCartsByUser -->", cartsByUserWithProducts)
+      return cartsByUserWithProducts;
+  
+    }
+    catch (error) {
+      throw error;
+    }
+  }
+
+//getCurrentCartByUser to get a users cart | like getAllRoutinesByUser({ username }) but maybe set WHERE isPurchased = false
+
+//getAllPurchasedCartsByUser to get all already purchased carts by user (aka past orders) | similar to getPublicRoutinesByUser({ username }) variation
+
+//updateIsPurchased by cartId ? for once items in cart are officially purchased | like  updateRoutine({id, ...fields})
+
+//what other cart functions do we need? ( getPublicRoutinesByActivity({id}) was there but i dont think we need that here)
 
 module.exports = {
-	createCart
+    createCart,
+    getCartById,
+    getCartsWithoutProducts,
+    getAllCartsByUser
 };

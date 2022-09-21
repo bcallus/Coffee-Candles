@@ -2,9 +2,11 @@
 const {
   createUser,
   createProduct,
-  createOrder,
   createCategory,
-  createCart
+  createCart,
+  getCartsWithoutProducts,
+  getAllProducts,
+  addProductToCart
    } = require('./');
 const client = require("./client")
   
@@ -32,17 +34,15 @@ async function createTables() {
     try {
       console.log("Starting to create tables...");
   
-        //check on orders table
         //handle original price of orders(products)
         //use INTEGER for price if it causes issues
-        //create a cart table
-        //reference/link orders table to cart table
+        //orders table IS THE SAME AS cart items
       await client.query(`
         CREATE TABLE users (
           id SERIAL PRIMARY KEY,
           email VARCHAR(255) UNIQUE NOT NULL,
           password VARCHAR(255) UNIQUE NOT NULL,
-          "isAdmin" BOOLEAN NOT NULL DEFAULT false
+          "isAdmin" BOOLEAN DEFAULT false
         );
         CREATE TABLE categories (
           id SERIAL PRIMARY KEY,
@@ -62,11 +62,12 @@ async function createTables() {
           "userId" INTEGER REFERENCES users(id),
           "isPurchased" BOOLEAN DEFAULT FALSE
         );
+      
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
             "productId" INTEGER REFERENCES products(id),
+            "cartId" INTEGER REFERENCES carts(id),
             quantity INTEGER,
-            authenticated BOOLEAN DEFAULT false,
             price NUMERIC(4, 2)
         );
       `);
@@ -239,34 +240,68 @@ async function createInitalCarts() {
 async function createInitialOrders() {
   try {
     console.log("Starting to create orders...")
+    const [cart1, cart2, cart3, cart4] =
+    await getCartsWithoutProducts()
+  const [candle1, candle2, candle3, coffee1, coffee2, coffee3] =
+    await getAllProducts()
 
     const ordersToCreate = [
       {
-        productId: 2,
+        productId: candle1.id,
+        cartId: cart2.id,
         quantity: 1,
-        authenticated: false,
         price: 25.00
       },
       {
-        productId: 5,
+        productId: coffee1.id,
+        cartId: cart3.id,
         quantity: 2,
-        authenticated: true,
         price: 14.95
       },
       {
-        productId: 1,
+        productId: coffee3.id,
+        cartId: cart4.id,
         quantity: 1,
-        authenticated: true,
         price: 25.00
       },
       {
-        productId: 4,
+        productId: candle2.id,
+        cartId: cart1.id,
         quantity: 3,
-        authenticated: false,
+        price: 14.95
+      },
+      {
+        productId: candle1.id,
+        cartId: cart4.id,
+        quantity: 1,
+        price: 25.00
+      },
+      {
+        productId: coffee2.id,
+        cartId: cart3.id,
+        quantity: 2,
+        price: 14.95
+      },
+      {
+        productId: candle2.id,
+        cartId: cart2.id,
+        quantity: 1,
+        price: 25.00
+      },
+      {
+        productId: candle3.id,
+        cartId: cart2.id,
+        quantity: 3,
+        price: 14.95
+      },
+      {
+        productId: candle3.id,
+        cartId: cart1.id,
+        quantity: 3,
         price: 14.95
       }
     ]
-    const orders = await Promise.all(ordersToCreate.map(createOrder))
+    const orders = await Promise.all(ordersToCreate.map(addProductToCart))
 
     console.log("orders created:")
     console.log(orders)
