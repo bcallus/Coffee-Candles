@@ -123,7 +123,7 @@ async function createInitialCategories() {
   try {
     const categoriesToCreate = [
       { name: "coffee" },
-      { name: "candle" },
+      { name: "tea" },
       { name: "seasonal"},
     ]
     const category = await Promise.all(categoriesToCreate.map(createCategory))
@@ -143,23 +143,23 @@ async function createInitialProducts() {
 
     const productsToCreate = [
       {
-        name: "French Vanilla Candle",
-        description: "warm vanilla scent",
+        name: "Breakfast Blend Tea",
+        description: "morning time tea",
         price: 25.00,
         inStock: true,
         categoryId: 2,
         image_url: "https://ibb.co/Lzc9VLQ"
       },
       {
-        name: "Hazlenut Candle",
-        description: "delicious hazlenut scent",
+        name: "Lemon Ginger Tea",
+        description: "lemon and ginger paired together",
         price: 25.00,
         inStock: true,
         categoryId: 2,
         image_url: "https://ibb.co/VVRng2S"
       },
       {
-        name: "Pumpkin Spice Candle",
+        name: "Chai Tea",
         description: "seasonal item", //can this be a category?
         price: 35.00,
         inStock: false,

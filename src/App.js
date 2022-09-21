@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { fetchAllProducts } from "./api";
 import './App.css';
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
@@ -8,7 +9,8 @@ import About from './pages/About/About';
 import Login from './pages/Login';
 import Hero from "./components/Hero/Hero.jsx";
 //import data from './back/Data';
-//import Products from './pages/Products';
+import Products from './pages/Products';
+import ProductById from './pages/ProductById';
 
 
 //const{productItems} = data;
@@ -16,11 +18,17 @@ import Hero from "./components/Hero/Hero.jsx";
 
 function App() {
   const [token, setToken] = useState("");
-  
-   useEffect(()=>{
+  const [productsList, setProductsList] = useState([{}]);  
+
+  useEffect(() => {
+    fetchAllProducts().then((results) => {
+      setProductsList(results);
+    });
+    
     const myToken = localStorage.getItem("token")
     setToken(myToken)
-  },[])
+   }, [])
+  
   return (
     
     <Router>
@@ -28,7 +36,8 @@ function App() {
       <Hero />
       <Routes>
       <Route path='/' element={<Home />}></Route>
-        {/* <Route path='/products' element={<Products />}></Route> */}
+        <Route path='/products' element={<Products productsList={productsList} />}></Route>
+        <Route path='/products/:productId' element={<ProductById />}></Route>
         <Route path='/about' element={<About />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
