@@ -29,7 +29,7 @@ async function getCartById(id) {
         WHERE id = ${id}
       `)
     
-      console.log("cart from getCartById-->}", cart)
+      console.log("cart from getCartById-->}", cart) //where does this CL show up?
       return cart;
     }
     catch (error) {

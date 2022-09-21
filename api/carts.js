@@ -9,9 +9,11 @@ const {
 
 //cartsRouter.post("/:userId", to createCart for a specific userId /carts/:userId
 
-//cartsRouter.patch('/:cartId', for a user to update their cart
+//cartsRouter.post('/', to create a cart for a user (registered?), uses createCart
 
-//cartsRouter.delete('/:cartId',
+//cartsRouter.patch('/:cartId', for a user to update their cart, uses getCartById
+
+//cartsRouter.delete('/:cartId', for a user to delete their cart,  uses getCartById
 
 //what other cartRouter requests do we need?
 
