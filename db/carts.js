@@ -37,7 +37,7 @@ async function getCartById(id) {
     }
   }
 
-//getCartWithoutOrders | like getRoutinesWithoutActivities() do we need this?
+//getCartWithoutProducts | like getRoutinesWithoutActivities()
 async function getCartsWithoutProducts() {
     try {
       const { rows } = await client.query(`
@@ -53,6 +53,26 @@ async function getCartsWithoutProducts() {
   }
 
 //getAllCartsByUser to get a users carts | like getAllRoutinesByUser({ username }) (OR break up into two, not yet purchased and already purchased?)
+async function getAllCartsByUser({ email }) {
+    try {
+  
+      const { rows } = await client.query(`
+        SELECT carts.id, carts."userId", carts."isPurchased", users.email
+        FROM carts
+        JOIN users ON carts."userId" = users.id
+        WHERE users.email = $1
+      `, [email])
+  
+      const cartsByUserWithProducts = await attachProductsToCarts(rows)
+        
+      console.log("cartsByUserWithProducts from getAllCartsByUser -->", cartsByUserWithProducts)
+      return cartsByUserWithProducts;
+  
+    }
+    catch (error) {
+      throw error;
+    }
+  }
 
 //getCurrentCartByUser to get a users cart | like getAllRoutinesByUser({ username }) but maybe set WHERE isPurchased = false
 
@@ -65,5 +85,6 @@ async function getCartsWithoutProducts() {
 module.exports = {
     createCart,
     getCartById,
-    getCartsWithoutProducts
+    getCartsWithoutProducts,
+    getAllCartsByUser
 };

@@ -5,7 +5,8 @@ const { requireUser, requireAdmin } = require("./utils");
 const {
     createUser,
     getUserByEmail,
-    getUserById
+	getUserById,
+	getAllCartsByUser
 } = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -140,6 +141,27 @@ usersRouter.get("/me", async (req, res, next) => {
 				message: "You must be logged in to perform this action",
 			});
 		}
+	} catch (error) {
+		next(error);
+	}
+});
+
+//look at usersRouter.get("/:username/routines", in fitness tracker
+//right now req.params only contains email...
+//this needs work
+usersRouter.get("/:email/carts", async (req, res, next) => {
+	try {
+		const email = req.params;
+		// console.log("req.user", req.user)
+		console.log("req.params", req.params)
+		console.log("email.email", email.email)
+	
+	//if isPurchased is false, return their current cart
+		const response = await getAllCartsByUser(email.email);
+		res.send(response);
+		
+	//if is Purchased is true, maybe it can return their order history
+		
 	} catch (error) {
 		next(error);
 	}
