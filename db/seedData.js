@@ -2,11 +2,11 @@
 const {
   createUser,
   createProduct,
-  createOrder,
   createCategory,
   createCart,
   getCartsWithoutProducts,
-  getAllProducts
+  getAllProducts,
+  addProductToCart
    } = require('./');
 const client = require("./client")
   
@@ -66,7 +66,7 @@ async function createTables() {
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
             "productId" INTEGER REFERENCES products(id),
-            "cartsId" INTEGER REFERENCES carts(id),
+            "cartId" INTEGER REFERENCES carts(id),
             quantity INTEGER,
             price NUMERIC(4, 2)
         );
@@ -248,60 +248,60 @@ async function createInitialOrders() {
     const ordersToCreate = [
       {
         productId: candle1.id,
-        cartsId: cart2.id,
+        cartId: cart2.id,
         quantity: 1,
         price: 25.00
       },
       {
         productId: coffee1.id,
-        cartsId: cart3.id,
+        cartId: cart3.id,
         quantity: 2,
         price: 14.95
       },
       {
         productId: coffee3.id,
-        cartsId: cart4.id,
+        cartId: cart4.id,
         quantity: 1,
         price: 25.00
       },
       {
         productId: candle2.id,
-        cartsId: cart1.id,
+        cartId: cart1.id,
         quantity: 3,
         price: 14.95
       },
       {
         productId: candle1.id,
-        cartsId: cart4.id,
+        cartId: cart4.id,
         quantity: 1,
         price: 25.00
       },
       {
         productId: coffee2.id,
-        cartsId: cart3.id,
+        cartId: cart3.id,
         quantity: 2,
         price: 14.95
       },
       {
         productId: candle2.id,
-        cartsId: cart2.id,
+        cartId: cart2.id,
         quantity: 1,
         price: 25.00
       },
       {
         productId: candle3.id,
-        cartsId: cart2.id,
+        cartId: cart2.id,
         quantity: 3,
         price: 14.95
       },
       {
         productId: candle3.id,
-        cartsId: cart1.id,
+        cartId: cart1.id,
         quantity: 3,
         price: 14.95
       }
     ]
-    const orders = await Promise.all(ordersToCreate.map(createOrder))
+    const orders = await Promise.all(ordersToCreate.map(addProductToCart))
 
     console.log("orders created:")
     console.log(orders)
