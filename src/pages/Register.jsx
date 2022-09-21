@@ -15,6 +15,7 @@ async function registerUser({ email, password }) {
   })
     .then((response) => response.json())
     .then((result) => {
+      console.log({result, line: 18});
       return result;
     })
     .catch(console.error);
@@ -35,7 +36,6 @@ export default function Register({ setToken }) {
     const token = data.token;
     console.log('data', data);
     console.log('Token in Register', token);
-    console.log('setToken in Register', setToken);
     localStorage.setItem('token', JSON.stringify(token));
     setToken(token);
   };
