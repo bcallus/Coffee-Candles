@@ -1,4 +1,5 @@
 const client = require("./client");
+//PRODUCTS ARE SIMILAR TO ACTIVITIES ON FITNESS TRACKER
 
 //admin can add a product
 async function createProduct({
@@ -51,11 +52,15 @@ async function getProductById(id) {
   }
 }
 
-//admin can update a product
+//getProductByName | like getActivityByName(name), not sure we need this
 
-//admin can delete a product
+//attachProductstoCarts(carts) | like  attachActivitiesToRoutines(routines) 
 
-// function to assignCategory
+//updateProduct | like  updateActivity({ id, ...fields }), admin can update a product
+
+//admin can delete a product?
+
+//do we need to do something for product category?
 
 module.exports = {
     createProduct,

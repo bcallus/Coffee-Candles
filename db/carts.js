@@ -1,4 +1,5 @@
 const client = require("./client");
+//CARTS ARE SIMILAR TO ROUTINES ON FITNESS TRACKER
 
 //default for isPurchased is false, has to be updated to change cart to purchsed cart?
 async function createCart({ userId, isPurchased = false }) {

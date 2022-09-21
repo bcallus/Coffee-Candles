@@ -1,4 +1,5 @@
 const client = require("./client");
+//ORDERS ARE SIMILER TO ROUTINE_ACTIVITES ON FITNESS TRACKER (also they are like "cart items", or carts with products in them)
 
 async function createOrder({
     productId,
@@ -20,15 +21,17 @@ async function createOrder({
     }
   }
 
-  //getOrderById
+  //getOrderById | like getRoutineActivityById(id)
 
-  //getOrderByCartId ?? do we need this
+  //addProductToCart | like addActivityToRoutine({routineId,activityId,count,duration}), actually inserting into orders table
 
-  //addProductToCart insert into orders?
+ //getOrdersByCart | like getRoutineActivitiesByRoutine({id})
 
-  //updateOrder
+  //updateOrders | like updateRoutineActivity ({id, count, duration}), aka editing items in cart
 
-  //deleteOrder
+  //deleteOrders | like  destroyRoutineActivity(id), aka deleting items in cart
+
+  //canEditOrders | like  canEditRoutineActivity(routineActivityId, userId), maybe this verifys that a user/guest can edit their own cart?
 
 module.exports = {
 	createOrder
