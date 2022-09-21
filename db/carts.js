@@ -29,7 +29,7 @@ async function getCartById(id) {
         WHERE id = ${id}
       `)
     
-      console.log("cart from getCartById-->}", cart) //where does this CL show up?
+      console.log("cart from getCartById-->}", cart)
       return cart;
     }
     catch (error) {
@@ -38,6 +38,19 @@ async function getCartById(id) {
   }
 
 //getCartWithoutOrders | like getRoutinesWithoutActivities() do we need this?
+async function getCartsWithoutProducts() {
+    try {
+      const { rows } = await client.query(`
+        SELECT * FROM carts
+        `);
+        
+      console.log("rows from getCartsWithoutProducts-->", rows)
+      return rows;
+    }
+    catch (error) {
+      throw error;
+    }
+  }
 
 //getAllCartsByUser to get a users carts | like getAllRoutinesByUser({ username }) (OR break up into two, not yet purchased and already purchased?)
 
@@ -51,5 +64,6 @@ async function getCartById(id) {
 
 module.exports = {
     createCart,
-    getCartById
+    getCartById,
+    getCartsWithoutProducts
 };

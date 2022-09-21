@@ -4,7 +4,9 @@ const {
   createProduct,
   createOrder,
   createCategory,
-  createCart
+  createCart,
+  getCartsWithoutProducts,
+  getAllProducts
    } = require('./');
 const client = require("./client")
   
@@ -238,29 +240,63 @@ async function createInitalCarts() {
 async function createInitialOrders() {
   try {
     console.log("Starting to create orders...")
+    const [cart1, cart2, cart3, cart4] =
+    await getCartsWithoutProducts()
+  const [candle1, candle2, candle3, coffee1, coffee2, coffee3] =
+    await getAllProducts()
 
     const ordersToCreate = [
       {
-        productId: 2,
-        cartsId: 2,
+        productId: candle1.id,
+        cartsId: cart2.id,
         quantity: 1,
         price: 25.00
       },
       {
-        productId: 5,
-        cartsId: 4,
+        productId: coffee1.id,
+        cartsId: cart3.id,
         quantity: 2,
         price: 14.95
       },
       {
-        productId: 1,
-        cartsId: 1,
+        productId: coffee3.id,
+        cartsId: cart4.id,
         quantity: 1,
         price: 25.00
       },
       {
-        productId: 4,
-        cartsId: 3,
+        productId: candle2.id,
+        cartsId: cart1.id,
+        quantity: 3,
+        price: 14.95
+      },
+      {
+        productId: candle1.id,
+        cartsId: cart4.id,
+        quantity: 1,
+        price: 25.00
+      },
+      {
+        productId: coffee2.id,
+        cartsId: cart3.id,
+        quantity: 2,
+        price: 14.95
+      },
+      {
+        productId: candle2.id,
+        cartsId: cart2.id,
+        quantity: 1,
+        price: 25.00
+      },
+      {
+        productId: candle3.id,
+        cartsId: cart2.id,
+        quantity: 3,
+        price: 14.95
+      },
+      {
+        productId: candle3.id,
+        cartsId: cart1.id,
         quantity: 3,
         price: 14.95
       }
