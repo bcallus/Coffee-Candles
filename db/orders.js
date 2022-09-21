@@ -4,15 +4,14 @@ async function createOrder({
     productId,
     cartsId,
     quantity,
-    authenticated,
     price
   }) {
     try {
       const { rows: [order] } = await client.query(`
-      INSERT INTO orders ("productId", "cartsId", quantity, authenticated, price)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO orders ("productId", "cartsId", quantity, price)
+      VALUES ($1, $2, $3, $4)
       RETURNING *;
-    `, [productId, cartsId, quantity, authenticated, price]);
+    `, [productId, cartsId, quantity, price]);
   
       return order;
     }

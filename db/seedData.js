@@ -32,16 +32,15 @@ async function createTables() {
     try {
       console.log("Starting to create tables...");
   
-        //check on orders table
         //handle original price of orders(products)
         //use INTEGER for price if it causes issues
-        //orders table needs to have cartstId reference
+        //orders table IS THE SAME AS cart items
       await client.query(`
         CREATE TABLE users (
           id SERIAL PRIMARY KEY,
           email VARCHAR(255) UNIQUE NOT NULL,
           password VARCHAR(255) UNIQUE NOT NULL,
-          "isAdmin" BOOLEAN NOT NULL DEFAULT false
+          "isAdmin" BOOLEAN DEFAULT false
         );
         CREATE TABLE categories (
           id SERIAL PRIMARY KEY,
@@ -61,12 +60,12 @@ async function createTables() {
           "userId" INTEGER REFERENCES users(id),
           "isPurchased" BOOLEAN DEFAULT FALSE
         );
+      
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
             "productId" INTEGER REFERENCES products(id),
             "cartsId" INTEGER REFERENCES carts(id),
             quantity INTEGER,
-            authenticated BOOLEAN DEFAULT false,
             price NUMERIC(4, 2)
         );
       `);
@@ -245,28 +244,24 @@ async function createInitialOrders() {
         productId: 2,
         cartsId: 2,
         quantity: 1,
-        authenticated: false,
         price: 25.00
       },
       {
         productId: 5,
         cartsId: 4,
         quantity: 2,
-        authenticated: true,
         price: 14.95
       },
       {
         productId: 1,
         cartsId: 1,
         quantity: 1,
-        authenticated: true,
         price: 25.00
       },
       {
         productId: 4,
         cartsId: 3,
         quantity: 3,
-        authenticated: false,
         price: 14.95
       }
     ]
