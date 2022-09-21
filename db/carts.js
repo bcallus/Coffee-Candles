@@ -20,6 +20,22 @@ async function createCart({ userId, isPurchased = false }) {
 }
   
 //getCartById by cartId to access a particular cart | like  getRoutineById(id)
+//used in API: cartsRouter.patch('/:cartId', to update cart
+//and used in API: cartsRouter.delete('/:cartId', to delete cart
+async function getCartById(id) {
+    try {
+      const { rows: [cart] } = await client.query(`
+        SELECT * FROM carts
+        WHERE id = ${id}
+      `)
+    
+      console.log("cart from getCartById-->}", cart)
+      return cart;
+    }
+    catch (error) {
+      throw error;
+    }
+  }
 
 //getCartWithoutOrders | like getRoutinesWithoutActivities() do we need this?
 
@@ -34,5 +50,6 @@ async function createCart({ userId, isPurchased = false }) {
 //what other cart functions do we need? ( getPublicRoutinesByActivity({id}) was there but i dont think we need that here)
 
 module.exports = {
-    createCart
+    createCart,
+    getCartById
 };

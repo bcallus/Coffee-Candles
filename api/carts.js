@@ -9,7 +9,9 @@ const {
 
 //cartsRouter.post("/:userId", to createCart for a specific userId /carts/:userId
 
-//router.patch("/:cartId", to updateIsPurchased by cartId, toggle isPurchased to true for this particular cart
+//cartsRouter.patch('/:cartId', for a user to update their cart
+
+//cartsRouter.delete('/:cartId',
 
 //what other cartRouter requests do we need?
 
