@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from "./hero.module.css"
-import { AiOutlineSearch } from 'react-icons/ai'
 
 const Hero = () => {
   return (

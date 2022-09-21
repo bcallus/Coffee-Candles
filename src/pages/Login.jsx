@@ -3,14 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const APIURL = `/api`;
 
-async function loginUser({ username, password }) {
+async function loginUser({ email, password }) {
   return fetch(APIURL + '/users/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-        username: username,
+        email: email,
         password: password,
     }),
   })
@@ -22,18 +22,18 @@ async function loginUser({ username, password }) {
     .catch(console.error);
 }
 export default function Login({ setToken }) {
-  const [username, setUserName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await loginUser({
-      username,
+      email,
       password,
     });
     console.log(data);
-    const token = data.data.token;
+    const token = data.token;
     localStorage.setItem('token', token);
     setToken(token);
     navigate('/', { replace: true });
@@ -51,8 +51,10 @@ export default function Login({ setToken }) {
       <form onSubmit={handleSubmit}>
         <h2> Log in</h2>
         <label>
-          <p>Username</p>
-          <input type='text' onChange={(e) => setUserName(e.target.value)} />
+
+          <p>Email</p>
+          <input type='text' onChange={(e) => setEmail(e.target.value)} />
+
         </label>
         <div>
           <label>
@@ -64,9 +66,7 @@ export default function Login({ setToken }) {
           </label>
         </div>
 
-        <div 
-        // className='relative top-5 left-5'
-        >
+        <div>
           <button type='login'>Log In</button>
           <div>
             <Link to='/register' style={{}}>

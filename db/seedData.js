@@ -33,16 +33,18 @@ async function createTables() {
       console.log("Starting to create tables...");
   
         //check on orders table
-        //handle origional price of orders(products)
+        //handle original price of orders(products)
         //use INTEGER for price if it causes issues
         //create a cart table
         //reference/link orders table to cart table
       await client.query(`
         CREATE TABLE users (
           id SERIAL PRIMARY KEY,
+          "firstName" VARCHAR(255) NOT NULL,
+          "lastName" VARCHAR(255) NOT NULL,
           email VARCHAR(255) UNIQUE NOT NULL,
-          password VARCHAR(255) NOT NULL,
-          "isAdmin" BOOLEAN DEFAULT false
+          password VARCHAR(255) UNIQUE NOT NULL,
+          "isAdmin" BOOLEAN NOT NULL DEFAULT false
         );
         CREATE TABLE categories (
           id SERIAL PRIMARY KEY,
@@ -52,7 +54,7 @@ async function createTables() {
             id SERIAL PRIMARY KEY,
             name VARCHAR(255) UNIQUE NOT NULL,
             description TEXT NOT NULL,
-            price NUMERIC(4, 2),
+            price NUMERIC(4, 2) NOT NULL,
             "inStock" BOOLEAN DEFAULT true,
             "categoryId" INTEGER REFERENCES categories(id),
             image_url TEXT

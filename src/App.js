@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchAllProducts } from "./api";
 import './App.css';
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/Home/Home.jsx';
 import Register from './pages/Register';
 import Navbar from './components/Navbar/Navbar.jsx';
 import About from './pages/About/About';
@@ -19,7 +19,6 @@ import ProductById from './pages/ProductById';
 function App() {
   const [token, setToken] = useState("");
   const [productsList, setProductsList] = useState([{}]);  
-  
 
   useEffect(() => {
     fetchAllProducts().then((results) => {
