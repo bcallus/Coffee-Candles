@@ -18,14 +18,19 @@ async function createCart({ userId, isPurchased = false }) {
     }
 }
   
-//getCartById by cartId to access a particular cart
+//getCartById by cartId to access a particular cart | like  getRoutineById(id)
 
-//getCartByUserId to get a users cart?
+//getCartWithoutOrders | like getRoutinesWithoutActivities() do we need this?
 
+//getAllCartsByUser to get a users carts | like getAllRoutinesByUser({ username }) (OR break up into two, not yet purchased and already purchased?)
 
-//updateIsPurchased by cartId ? for once items in cart are officially purchased
+//getCurrentCartByUser to get a users cart | like getAllRoutinesByUser({ username }) but maybe set WHERE isPurchased = false
 
-//what other cart functions do we need?
+//getAllPurchasedCartsByUser to get all already purchased carts by user (aka past orders) | similar to getPublicRoutinesByUser({ username }) variation
+
+//updateIsPurchased by cartId ? for once items in cart are officially purchased | like  updateRoutine({id, ...fields})
+
+//what other cart functions do we need? ( getPublicRoutinesByActivity({id}) was there but i dont think we need that here)
 
 module.exports = {
     createCart
