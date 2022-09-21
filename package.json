@@ -29,7 +29,7 @@
     "client:dev": "react-scripts start",
     "client:build": "react-scripts build",
     "server:dev": "nodemon server.js",
-    "db:build": "node ./db/seedData",
+    "db:build": "node ./db/seed",
     "start:dev": "concurrently \"npm run client:build\" \"npm run client:dev\" \"npm run server:dev\"",
     "start": "node server.js"
   },

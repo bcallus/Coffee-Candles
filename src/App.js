@@ -39,7 +39,7 @@ function App() {
         <Route path='/products' element={<Products productsList={productsList} />}></Route>
         <Route path='/products/:productId' element={<ProductById />}></Route>
         <Route path='/about' element={<About />}></Route>
-        <Route path='/login' element={<Login />}></Route>
+        <Route path='/login' element={<Login token={token} setToken={setToken} />}></Route>
         <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
       </Routes>
     </Router>

@@ -16,7 +16,7 @@ async function loginUser({ email, password }) {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
+      console.log({result, line:19});
       return result;
     })
     .catch(console.error);
@@ -32,7 +32,7 @@ export default function Login({ setToken }) {
       email,
       password,
     });
-    console.log(data);
+    console.log({data, line:35});
     const token = data.token;
     localStorage.setItem('token', token);
     setToken(token);
