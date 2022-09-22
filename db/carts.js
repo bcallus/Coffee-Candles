@@ -78,7 +78,7 @@ async function getAllCartsByUser({ email }) {
 
 //getAllPurchasedCartsByUser to get all already purchased carts by user (aka past orders) | similar to getPublicRoutinesByUser({ username }) variation
 
-//updateIsPurchased by cartId ? for once items in cart are officially purchased | like  updateRoutine({id, ...fields})
+//do we need a function here to updateIsPurchased on a cart, if not where does that happen?
 
 //what other cart functions do we need? ( getPublicRoutinesByActivity({id}) was there but i dont think we need that here)
 
