@@ -48,6 +48,33 @@ async function createOrder({
  //getOrdersByCart | like getRoutineActivitiesByRoutine({id})
 
   //updateOrders | like updateRoutineActivity ({id, count, duration}), aka editing items in cart
+  //updateCart by cartId ? for a user to edit their cart | like  updateRoutine({id, ...fields})
+async function updateOrder({id, ...fields}) {
+  const setString = Object.keys(fields).map((key, index)=>`"${key}"=$${index + 1}`).join(",");
+  try{
+  const {rows: [order]} = await client.query(`
+      UPDATE orders
+      SET ${setString}
+      WHERE id=${id}
+      RETURNING *;
+  `, Object.values(fields));
+      
+  console.log("order from updateOrder-->", order)
+  return order
+  }catch(error){console.error(error)}
+}
+  
+//deleteOrders | like  destroyRoutineActivity(id), aka deleting items in cart
+async function destroyOrder(id) {
+  await client.query(`
+    DELETE FROM orders
+    WHERE orders."cartId" = ${id}
+    `);
+  await client.query(`
+    DELETE FROM carts
+    WHERE id = ${id}
+    `);
+  }
 
   //deleteOrders | like  destroyRoutineActivity(id), aka deleting items in cart
 
@@ -55,5 +82,7 @@ async function createOrder({
 
 module.exports = {
   createOrder,
-  addProductToCart
+  addProductToCart,
+  updateOrder,
+  destroyOrder
 };
