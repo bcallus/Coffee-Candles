@@ -5,7 +5,7 @@ const {
     updateOrder,
     destroyOrder,
     getCartsWithoutProducts,
-    getCartsByUser,
+    getCartByUser,
     //add other functions here
 } = require("../db");
 const { getActiveElement } = require("@testing-library/user-event/dist/utils");

@@ -61,8 +61,10 @@ async function getCartByUser(userId) {
     try {
   
         const { rows } = await client.query(`
-        SELECT carts.id, carts."userId", carts."isPurchased", users.id
+        SELECT carts.id, carts."userId", carts."isPurchased", users.id, orders."productId", products.name, products.price, orders.quantity, products.image_url
         FROM carts
+        JOIN orders ON orders."cartId" = carts.id
+        JOIN products ON products.id = orders."productId"
         JOIN users ON carts."userId" = users.id
         WHERE users.id = $1
       `, [userId])
