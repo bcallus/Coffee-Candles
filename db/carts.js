@@ -55,20 +55,21 @@ async function getCartsWithoutProducts() {
     }
   }
 
-//getAllCartsByUser to get a users carts | like getAllRoutinesByUser({ username }) (OR break up into two, not yet purchased and already purchased?)
-async function getAllCartsByUser({ email }) {
+//getCartByUser to get a users carts | like getAllRoutinesByUser({ username }) (OR break up into two, not yet purchased and already purchased?)
+//need more joins, think of what you need to see in your cart carts/userId
+async function getCartByUser(userId) {
     try {
   
         const { rows } = await client.query(`
-        SELECT carts.id, carts."userId", carts."isPurchased", users.email
+        SELECT carts.id, carts."userId", carts."isPurchased", users.id
         FROM carts
         JOIN users ON carts."userId" = users.id
-        WHERE users.email = $1
-      `, [email])
+        WHERE users.id = $1
+      `, [userId])
   
         const cartsByUserWithProducts = await attachProductsToCarts(rows)
         
-        console.log("cartsByUserWithProducts from getAllCartsByUser -->", cartsByUserWithProducts)
+        console.log("cartsByUserWithProducts from getCartByUser -->", cartsByUserWithProducts)
         return cartsByUserWithProducts;
   
     }
@@ -88,5 +89,5 @@ module.exports = {
     createCart,
     getCartById,
     getCartsWithoutProducts,
-    getAllCartsByUser
+    getCartByUser
 };
