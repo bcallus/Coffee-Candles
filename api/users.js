@@ -76,7 +76,7 @@ usersRouter.post("/login", async (req, res, next) => {
 	const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
 	const isValid = await bcrypt.compare(password, hashedPassword);
 	
-	if (! email|| !password) {
+	if (!email|| !password) {
 		next({
 			name: "MissingCredentialsError",
 			message: "Please provide both an email and a password",
@@ -85,7 +85,6 @@ usersRouter.post("/login", async (req, res, next) => {
 
 	try {
 		const user = await getUserByEmail(email);
-		console.log({user, line:86});
 
 		if (user && isValid) {
 			const token = jwt.sign(
