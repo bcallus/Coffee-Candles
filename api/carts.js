@@ -8,7 +8,6 @@ const {
     getCartByUser,
     //add other functions here
 } = require("../db");
-const { getActiveElement } = require("@testing-library/user-event/dist/utils");
 
 //cartsRouter.get("/", to get all carts just for testing purposes so I can see what im doing here
 cartsRouter.get("/", async (req, res, next) => {
