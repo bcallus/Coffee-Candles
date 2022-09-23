@@ -4,8 +4,22 @@ const { requireUser } = require("./utils")
 const {
     updateOrder,
     destroyOrder,
+    getCartsWithoutProducts,
+    getAllCartsByUser,
     //add other functions here
 } = require("../db");
+const { getActiveElement } = require("@testing-library/user-event/dist/utils");
+
+//cartsRouter.get("/", to get all carts just for testing purposes so I can see what im doing here
+cartsRouter.get("/", async (req, res, next) => {
+    try {
+      const carts = await getCartsWithoutProducts();
+      console.log("carts from cartsRouter.get-->", carts)
+      res.send(carts);
+    } catch (error) {
+      next(error);
+    }
+});
 
 //cartsRouter.get("/:userId", to getCartById for specific userId /carts/:userId
 
@@ -16,10 +30,11 @@ const {
 //cartsRouter.patch('/:cartId', for a user to update their cart, uses getCartById
 cartsRouter.patch('/:cartId', requireUser, async (req, res, next) => {
 //this needs to be editited, half of this is still from fitness traxker
+    await getAllCartsByUser({email})
 
-    const updateObj = {};
-    const { cartId } = req.params;
-    const { productId, quantity, price } = req.body;
+    // const updateObj = {};
+    // const { cartId } = req.params;
+    // const { productId, quantity, price } = req.body;
     // const { creatorId, name: originalName } = await getCartById(cartId);
     // try {
     //   updateObj.isPublic = isPublic;

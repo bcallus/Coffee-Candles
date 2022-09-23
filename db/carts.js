@@ -1,4 +1,7 @@
 const client = require("./client");
+const {
+     attachProductsToCarts //add other functions here
+  } = require("./products");
 //CARTS ARE SIMILAR TO ROUTINES ON FITNESS TRACKER
 
 //default for isPurchased is false, has to be updated to change cart to purchsed cart?
@@ -56,24 +59,23 @@ async function getCartsWithoutProducts() {
 async function getAllCartsByUser({ email }) {
     try {
   
-      const { rows } = await client.query(`
+        const { rows } = await client.query(`
         SELECT carts.id, carts."userId", carts."isPurchased", users.email
         FROM carts
         JOIN users ON carts."userId" = users.id
         WHERE users.email = $1
       `, [email])
   
-      const cartsByUserWithProducts = await attachProductsToCarts(rows)
+        const cartsByUserWithProducts = await attachProductsToCarts(rows)
         
-      console.log("cartsByUserWithProducts from getAllCartsByUser -->", cartsByUserWithProducts)
-      return cartsByUserWithProducts;
+        console.log("cartsByUserWithProducts from getAllCartsByUser -->", cartsByUserWithProducts)
+        return cartsByUserWithProducts;
   
     }
     catch (error) {
-      throw error;
+        throw error;
     }
-  }
-
+}
 //getCurrentCartByUser to get a users cart | like getAllRoutinesByUser({ username }) but maybe set WHERE isPurchased = false
 
 //getAllPurchasedCartsByUser to get all already purchased carts by user (aka past orders) | similar to getPublicRoutinesByUser({ username }) variation

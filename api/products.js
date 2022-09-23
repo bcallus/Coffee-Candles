@@ -13,7 +13,7 @@ const { requireAdmin } = require("./utils")
 productsRouter.get("/", async (req, res, next) => {
     try {
       const products = await getAllProducts();
-      console.log("PRODUCTSSSS-->", products)
+      console.log("PRODUCTS from productsRouter.get-->", products)
       res.send(products);
     } catch (error) {
       next(error);
