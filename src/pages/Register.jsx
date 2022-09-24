@@ -15,7 +15,6 @@ async function registerUser({ email, password }) {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log({result, line: 18});
       return result;
     })
     .catch(console.error);
