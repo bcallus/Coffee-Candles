@@ -8,8 +8,9 @@ import Navbar from './components/Navbar/Navbar.jsx';
 import About from './pages/About/About.jsx';
 import Login from './pages/Login';
 import Hero from "./components/Hero/Hero.jsx";
-import Products from './pages/Products';
-import ProductById from './pages/ProductById';
+import Footer from "./components/Footer/Footer.jsx";
+import Products from './pages/Product/Products.jsx';
+import ProductById from './pages/Product/ProductById.jsx';
 
 
 function App() {
@@ -25,10 +26,11 @@ function App() {
     setToken(myToken)
    }, [])
   
-  return (
+   return (
     
     <Router>
       <Navbar />
+      <Hero />
       <Routes>
       <Route path='/' element={<Home />}></Route>
         <Route path='/products' element={<Products productsList={productsList} />}></Route>
@@ -37,6 +39,7 @@ function App() {
         <Route path='/login' element={<Login token={token} setToken={setToken} />}></Route>
         <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
       </Routes>
+      <Footer />
     </Router>
    
   );
