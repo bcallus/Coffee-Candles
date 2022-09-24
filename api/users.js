@@ -76,7 +76,7 @@ usersRouter.post("/login", async (req, res, next) => {
 	const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
 	const isValid = await bcrypt.compare(password, hashedPassword);
 	
-	if (!email|| !password) {
+	if (!email || !password) {
 		next({
 			name: "MissingCredentialsError",
 			message: "Please provide both an email and a password",
@@ -108,7 +108,7 @@ usersRouter.post("/login", async (req, res, next) => {
 			});
 		}
 	} catch (error) {
-		next(error);
+		res.status(401).send(error);
 	}
 });
 
