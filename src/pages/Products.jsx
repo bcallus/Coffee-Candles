@@ -8,13 +8,12 @@ const Products = ({ productsList }) => {
             <h1>All Products</h1>
 
             <div >
-                {productsList ? productsList.map(product => (
+                {productsList.length && productsList.map(product => (
                     <Product
                         key={product.id}
                         product={product}
                     />
-            ))
-                : null}
+            ))}
             </div>
         </div>
     );

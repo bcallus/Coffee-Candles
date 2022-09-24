@@ -16,7 +16,7 @@ const Product = ({ product }) => {
             <p>Description: {product.description}</p>
             <p>Price: {product.price}</p>
             {product.inStock ? null : <p>Sold Out</p>}
-            <img src={product.image_url} />
+            <img src={product.image_url} alt={product.name}/>
             <br />
             <button onClick={handleClick}>View Product</button>
         </div>
