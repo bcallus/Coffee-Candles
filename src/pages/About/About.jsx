@@ -1,10 +1,10 @@
 import React from 'react';
-import  styles from './about.css';
+import '../About/about.css'
 
 const About = () => {
   return (
-      <div className={styles.about}>
-      <h2 className={styles.h2about}>About Our Brand</h2>
+      <div className='about'>
+      <h2 className='h2about'>About Our Brand</h2>
 
         <p>
           Hello from Coffee "n" Tea, It takes many hands to craft the perfect
