@@ -1,4 +1,7 @@
 const client = require("./client");
+const {
+     attachProductsToCarts //add other functions here
+  } = require("./products");
 //CARTS ARE SIMILAR TO ROUTINES ON FITNESS TRACKER
 
 //default for isPurchased is false, has to be updated to change cart to purchsed cart?
@@ -52,28 +55,30 @@ async function getCartsWithoutProducts() {
     }
   }
 
-//getAllCartsByUser to get a users carts | like getAllRoutinesByUser({ username }) (OR break up into two, not yet purchased and already purchased?)
-async function getAllCartsByUser({ email }) {
+//getCartByUser to get a users carts | like getAllRoutinesByUser({ username }) (OR break up into two, not yet purchased and already purchased?)
+//need more joins, think of what you need to see in your cart carts/userId
+async function getCartByUser(userId) {
     try {
   
-      const { rows } = await client.query(`
-        SELECT carts.id, carts."userId", carts."isPurchased", users.email
+        const { rows } = await client.query(`
+        SELECT carts.id, carts."userId", carts."isPurchased", users.id, orders."productId", products.name, products.price, orders.quantity, products.image_url
         FROM carts
+        JOIN orders ON orders."cartId" = carts.id
+        JOIN products ON products.id = orders."productId"
         JOIN users ON carts."userId" = users.id
-        WHERE users.email = $1
-      `, [email])
+        WHERE users.id = $1
+      `, [userId])
   
-      const cartsByUserWithProducts = await attachProductsToCarts(rows)
+        const cartsByUserWithProducts = await attachProductsToCarts(rows)
         
-      console.log("cartsByUserWithProducts from getAllCartsByUser -->", cartsByUserWithProducts)
-      return cartsByUserWithProducts;
+        console.log("cartsByUserWithProducts from getCartByUser -->", cartsByUserWithProducts)
+        return cartsByUserWithProducts;
   
     }
     catch (error) {
-      throw error;
+        throw error;
     }
-  }
-
+}
 //getCurrentCartByUser to get a users cart | like getAllRoutinesByUser({ username }) but maybe set WHERE isPurchased = false
 
 //getAllPurchasedCartsByUser to get all already purchased carts by user (aka past orders) | similar to getPublicRoutinesByUser({ username }) variation
@@ -86,5 +91,5 @@ module.exports = {
     createCart,
     getCartById,
     getCartsWithoutProducts,
-    getAllCartsByUser
+    getCartByUser
 };

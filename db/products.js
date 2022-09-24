@@ -54,7 +54,35 @@ async function getProductById(id) {
 
 //getProductByName | like getActivityByName(name), not sure we need this
 
-//attachProductstoCarts(carts) | like  attachActivitiesToRoutines(routines) 
+//attachProductsToCarts(carts) | like  attachActivitiesToRoutines(routines) 
+//probably have to fix what this is selecting?
+async function attachProductsToCarts(carts) {
+  try {
+    const cartId = carts.map(cart => cart.id)
+
+    if (!cartId?.length) return
+
+    const {rows} = await client.query(`
+      SELECT products.*, orders.quantity, orders."cartId", orders.price, orders.id AS "orderId"
+      FROM products
+      JOIN orders ON products.id = orders."productId"
+      WHERE orders."cartId" IN (${cartId.join(",")})
+    `);
+
+    const data = carts.map(cart => {
+      orders = rows.filter(row => {
+        return row.cartId === cart.id;
+      })
+      return cart;
+    })
+
+    return data;
+  }
+  catch (error) {
+    console.error(error)
+    throw error;
+  }
+}
 
 //updateProduct | like  updateActivity({ id, ...fields }), admin can update a product
 
@@ -65,5 +93,6 @@ async function getProductById(id) {
 module.exports = {
     createProduct,
     getAllProducts,
-    getProductById
+    getProductById,
+    attachProductsToCarts
 };

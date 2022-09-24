@@ -6,7 +6,7 @@ const {
     createUser,
     getUserByEmail,
 	getUserById,
-	getAllCartsByUser
+	getCartByUser
 } = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -147,7 +147,7 @@ usersRouter.get("/me", async (req, res, next) => {
 //look at usersRouter.get("/:username/routines", in fitness tracker
 //right now req.params only contains email...
 //this needs work
-usersRouter.get("/:email/carts", async (req, res, next) => {
+usersRouter.get("/:id/carts", async (req, res, next) => {
 	try {
 		const email = req.params;
 		// console.log("req.user", req.user)
@@ -155,7 +155,7 @@ usersRouter.get("/:email/carts", async (req, res, next) => {
 		console.log("email.email", email.email)
 	
 	//if isPurchased is false, return their current cart
-		const response = await getAllCartsByUser(email.email);
+		const response = await getCartByUser(email.email);
 		res.send(response);
 		
 	//if is Purchased is true, maybe it can return their order history
