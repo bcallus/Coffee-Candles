@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const APIURL = `/api`;
 
@@ -25,9 +26,15 @@ async function registerUser({ email, password }) {
 export default function Register({ setToken }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [registerError, setRegisterError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!email || !password){
+      setRegisterError("Please fill out the form completely");
+      return
+    }
     const data = await registerUser({
       email,
       password,
@@ -37,6 +44,11 @@ export default function Register({ setToken }) {
     console.log('Token in Register', token);
     localStorage.setItem('token', JSON.stringify(token));
     setToken(token);
+    if (!token){
+      setRegisterError(data.message);
+      return
+    }
+    navigate('/', { replace: true });
   };
 
   return (
@@ -74,6 +86,7 @@ export default function Register({ setToken }) {
             />
           </label>
         </div>
+        {registerError && <p>{registerError}</p>}
         <div>
           <button type='submit'>Submit</button>
         </div>
