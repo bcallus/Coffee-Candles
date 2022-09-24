@@ -23,10 +23,15 @@ async function loginUser({ email, password }) {
 export default function Login({ setToken }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!email || !password){
+      setLoginError("Please fill out the form completely");
+      return
+    }
     const data = await loginUser({
       email,
       password,
@@ -34,17 +39,21 @@ export default function Login({ setToken }) {
     const token = data.token;
     localStorage.setItem('token', token);
     setToken(token);
+    if (!token){
+      setLoginError(data.message);
+      return
+    }
     navigate('/', { replace: true });
   };
 
   return (
     <div 
-    // style={{
-    //   display: 'flex',
-    //   justifyContent: 'center',
-    //   height: '90vh',
-    //   paddingTop: '15vh'
-    // }}
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      height: '90vh',
+      paddingTop: '15vh'
+    }}
     >
       <form onSubmit={handleSubmit}>
         <h2> Log in</h2>
@@ -63,6 +72,7 @@ export default function Login({ setToken }) {
             />
           </label>
         </div>
+        {loginError && <p>{loginError}</p>}
 
         <div>
           <button type='login'>Log In</button>

@@ -41,12 +41,12 @@ export default function Register({ setToken }) {
 
   return (
     <div
-    //  style={{
-    //   display: 'flex',
-    //   justifyContent: 'center',
-    //   height: '90vh',
-    //   paddingTop: '15vh'
-    // }}
+     style={{
+      display: 'flex',
+      justifyContent: 'center',
+      height: '90vh',
+      paddingTop: '15vh'
+    }}
     >
        <form onSubmit={handleSubmit}>
         <h2> Please Register</h2>

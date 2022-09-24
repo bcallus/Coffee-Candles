@@ -23,7 +23,7 @@ usersRouter.post("/register", async (req, res, next) => {
 		const _user = await getUserByEmail(email);
 
 		if (_user) {
-			next({
+			res.status(401).send({
 				error: "error",
 				name: "UserExistsError",
 				message: `User ${email} is already taken.`,
@@ -31,7 +31,7 @@ usersRouter.post("/register", async (req, res, next) => {
 		}
 
 		if (password.length < 8) {
-			next({
+			res.status(401).send({
 				error: "error",
 				name: "PasswordLengthError",
 				message: "Password Too Short!",
@@ -62,7 +62,7 @@ usersRouter.post("/register", async (req, res, next) => {
 			user: user,
 		});
 	} catch (error) {
-		next(error);
+		res.status(401).send(error);
 	}
 });
 
@@ -77,7 +77,7 @@ usersRouter.post("/login", async (req, res, next) => {
 	const isValid = await bcrypt.compare(password, hashedPassword);
 	
 	if (!email || !password) {
-		next({
+		res.status(401).send({
 			name: "MissingCredentialsError",
 			message: "Please provide both an email and a password",
 		});
@@ -102,7 +102,7 @@ usersRouter.post("/login", async (req, res, next) => {
 
 			return token;
 		} else {
-			next({
+			res.status(401).send({
 				name: "IncorrectCredentialsError",
 				message: "Email or password is incorrect",
 			});
@@ -130,18 +130,17 @@ usersRouter.get("/me", async (req, res, next) => {
 					res.send(user);
 				}
 			} catch (error) {
-				next(error);
+				res.status(401).send(error);
 			}
 		} else {
-			res.status(401);
-			next({
+			res.status(401).send({
 				error: "Error",
 				name: "NoToken",
 				message: "You must be logged in to perform this action",
 			});
 		}
 	} catch (error) {
-		next(error);
+		res.status(401).send(error);
 	}
 });
 
@@ -162,9 +161,10 @@ usersRouter.get("/:email/carts", async (req, res, next) => {
 	//if is Purchased is true, maybe it can return their order history
 		
 	} catch (error) {
-		next(error);
+		res.status(401).send(error);
 	}
 });
+
 
 //are there any other endpoints specific to a user?
 //maybe usersRouter.get("/:userId/mycart" or "/:userId/orderhistory" something like this 
