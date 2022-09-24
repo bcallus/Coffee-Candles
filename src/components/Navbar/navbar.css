@@ -49,7 +49,7 @@
     right: -100%;
     height: 100%;
     width: 100%;
-    background: rgba(162, 185, 144, 0.82);
+    background: rgba(162, 185, 144, 0.942);
     transition: 0.4s ease-in-out;
     z-index: 10;
   }

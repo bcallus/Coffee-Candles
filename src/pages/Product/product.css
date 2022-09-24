@@ -1,0 +1,19 @@
+.product {
+  margin-top: 5rem;
+}
+
+.product .product-text {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.product .container {
+  align-items: center;
+}
+
+.products-container {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  margin: 1rem;
+}
