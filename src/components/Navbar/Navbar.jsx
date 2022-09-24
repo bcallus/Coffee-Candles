@@ -8,7 +8,6 @@ import {
 } from 'react-icons/ai';
 
 import { GiCoffeeBeans } from 'react-icons/gi'
-import Logo from '../../assets/CoffeeTeaLogoHome.png';
 
 const Navbar = () => {
     const [click, setClick] = useState(false)

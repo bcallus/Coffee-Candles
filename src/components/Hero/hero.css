@@ -73,7 +73,7 @@
 }
 
 .search button {
-  background-image: linear-gradient(45deg, rgb(23, 103, 102) 0%, rgb(209, 245, 195) 100%);
+  background-image: linear-gradient(45deg, rgb(103, 116, 115) 0%, rgb(6, 6, 6) 100%);
   border: 1px solid;
   color: #fff;
   padding: 10px;
