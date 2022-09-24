@@ -149,13 +149,13 @@ usersRouter.get("/me", async (req, res, next) => {
 //this needs work
 usersRouter.get("/:id/carts", async (req, res, next) => {
 	try {
-		const email = req.params;
+		const{ id } = req.params;
 		// console.log("req.user", req.user)
 		console.log("req.params", req.params)
-		console.log("email.email", email.email)
+		console.log("id", id)
 	
 	//if isPurchased is false, return their current cart
-		const response = await getCartByUser(email.email);
+		const response = await getCartByUser(id);
 		res.send(response);
 		
 	//if is Purchased is true, maybe it can return their order history
