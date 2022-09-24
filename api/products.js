@@ -13,7 +13,6 @@ const { requireAdmin } = require("./utils")
 productsRouter.get("/", async (req, res, next) => {
     try {
       const products = await getAllProducts();
-      console.log("PRODUCTS from productsRouter.get-->", products)
       res.send(products);
     } catch (error) {
       next(error);
@@ -25,8 +24,8 @@ productsRouter.get("/", async (req, res, next) => {
 productsRouter.get("/:productId", async (req, res, next) => {
   try {
     const { productId } = req.params
+    console.log({productId,line:27})
     const product = await getProductById(productId);
-    // console.log("product-->", product)
     res.send(product);
   } catch (error) {
     next(error);

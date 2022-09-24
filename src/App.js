@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     fetchAllProducts().then((results) => {
       setProductsList(results);
-    });
+    }).catch(console.error)
     
     const myToken = localStorage.getItem("token")
     setToken(myToken)
@@ -37,7 +37,7 @@ function App() {
       <Routes>
       <Route path='/' element={<Home />}></Route>
         <Route path='/products' element={<Products productsList={productsList} />}></Route>
-        <Route path='/products/:productId' element={<ProductById />}></Route>
+        <Route path='/products/:productId' element={<ProductById productsList={productsList}/>}></Route>
         <Route path='/about' element={<About />}></Route>
         <Route path='/login' element={<Login token={token} setToken={setToken} />}></Route>
         <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>

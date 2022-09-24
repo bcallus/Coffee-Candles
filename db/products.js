@@ -39,16 +39,17 @@ async function getAllProducts() {
 }
 
 async function getProductById(id) {
+  console.log({id, line:42})
   try {
     const { rows: [product] } = await client.query(`
       SELECT * FROM products
-      WHERE id = ${id}
-    `)
-
+      WHERE id = $1
+    `,[id])
+    
     return product;
   }
   catch (error) {
-    throw error;
+   
   }
 }
 
