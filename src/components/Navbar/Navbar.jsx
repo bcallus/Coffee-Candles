@@ -1,51 +1,37 @@
 import React, { useState } from 'react';
-import styles from './navbar.module.css';
+import './navbar.css';
 import {
   AiOutlineMenu,
   AiOutlineClose,
   AiOutlineUser,
   AiOutlineShoppingCart,
 } from 'react-icons/ai';
+
+import { GiCoffeeBeans } from 'react-icons/gi'
 import Logo from '../../assets/CoffeeTeaLogoHome.png';
 
 const Navbar = () => {
-  const [nav, setNav] = useState(false);
+    const [click, setClick] = useState(false)
+    const handleClick = () => { setClick(!click) }
+
 
   return (
-    <>
-      <header className={styles.logo}>
-        <img src={Logo} alt='Logo' />
-      </header>
-      <nav className={styles.navbar}>
-        <ul
-          className={
-            nav ? [styles.menu, styles.active].join('') : [styles.menu]
-          }
-        >
-          <li>
-            <a href='/'>HOME</a>
-          </li>
-          <li>
-            <a href='/products'>PRODUCTS</a>
-          </li>
-          <li>
-            <a href='/about'>ABOUT</a>
-          </li>
-          <li>
-            <a href='/login'>SIGN IN</a>
-          </li>
-          <li>
-            <AiOutlineUser size={25} style={{ marginTop: '6px' }} />
-          </li>
-          <li>
-            <AiOutlineShoppingCart size={25} style={{ marginTop: '6px' }} />
-          </li>
+    <div className='navbar'>
+      <div className="container">
+        <h1><span><GiCoffeeBeans /> Coffee </span>+ Tea</h1>
+        <button className='btn' a href='/login'>Sign In</button>
+        <ul className={click ? 'nav-menu active' : 'nav-menu'} >
+            <li><a href='/'>Home</a></li>
+            <li><a href='/products'>Products</a></li>
+            <li><a href='/about'>About</a></li>
+            <li><a href='/cart'><AiOutlineShoppingCart /></a></li>
         </ul>
-      </nav>
-      <div onClick={() => setNav(!nav)} className={styles.mobile_btn}>
-        {nav ? <AiOutlineClose size={25} /> : <AiOutlineMenu size={25} />}
+        <div className="ham" onClick={handleClick}>
+          {click ? (<AiOutlineClose className='icon' />) : (<AiOutlineMenu className='icon' />)} 
+
+        </div>      
       </div>
-    </>
+    </div>
   );
 };
 

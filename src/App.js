@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { fetchAllProducts } from "./api";
-import './App.css';
+import './index.css';
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
 import Register from './pages/Register';
 import Navbar from './components/Navbar/Navbar.jsx';
-import About from './pages/About/About';
+import About from './pages/About/About.jsx';
 import Login from './pages/Login';
 import Hero from "./components/Hero/Hero.jsx";
-//import data from './back/Data';
 import Products from './pages/Products';
 import ProductById from './pages/ProductById';
-
-
-//const{productItems} = data;
 
 
 function App() {
@@ -33,7 +29,6 @@ function App() {
     
     <Router>
       <Navbar />
-      <Hero />
       <Routes>
       <Route path='/' element={<Home />}></Route>
         <Route path='/products' element={<Products productsList={productsList} />}></Route>
