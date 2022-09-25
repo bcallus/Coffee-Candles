@@ -11,11 +11,12 @@ import Hero from "./components/Hero/Hero.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Products from './pages/Product/Products.jsx';
 import ProductById from './pages/Product/ProductById.jsx';
-
+import Cart from './components/Cart/Cart.jsx';
 
 function App() {
   const [token, setToken] = useState("");
-  const [productsList, setProductsList] = useState([{}]);  
+  const [productsList, setProductsList] = useState([{}]);
+  const [cart, setCart] = useState([{}]);
 
   useEffect(() => {
     fetchAllProducts().then((results) => {
@@ -38,6 +39,7 @@ function App() {
         <Route path='/about' element={<About />}></Route>
         <Route path='/login' element={<Login token={token} setToken={setToken} />}></Route>
         <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
+        <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />}></Route>
       </Routes>
       <Footer />
     </Router>

@@ -17,3 +17,37 @@
   padding: 10px;
   margin: 1rem;
 }
+
+.small {
+  max-height: 8rem;
+}
+
+.btn {
+  background-image: linear-gradient(45deg, rgb(103, 116, 115) 0%, rgb(6, 6, 6) 100%);
+  border: 1px solid;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn.add {
+  background-color: purple;
+  width: 1.5rem;
+}
+
+.btn.remove {
+  background-color: pink;
+  width: 1.5rem;
+}
+
+.btn.badge {
+  background-color: red;
+  border: none;
+  color: white;
+  width: 1.5rem;
+}
+
+.text-right {
+  text-align: right;
+}
