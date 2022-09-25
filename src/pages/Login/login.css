@@ -1,0 +1,14 @@
+.login {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  padding-top: 15vh;
+}
+
+.login a {
+  color: black
+}
+
+.login a:hover {
+  color: white;
+}

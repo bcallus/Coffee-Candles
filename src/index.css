@@ -12,8 +12,8 @@ ul{
 }
 
 a {
-  color: black;
   text-decoration: none;
+  color: white
 }
 
 body {
@@ -22,25 +22,4 @@ body {
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.container {
-  max-width: 1240px;
-  margin: auto;
-}
-
-.btn {
-  color: rgb(26, 24, 25);
-  padding: 12px 24px;
-  background-image: linear-gradient(45deg, #3f734e 0%, #ddf2e6);
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: .4s;
-  cursor: pointer;
-}
-
-.btn:active {
-  transform: translate(4px);
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 2);
-  border-bottom: none;
-}
 

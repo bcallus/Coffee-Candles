@@ -8,15 +8,15 @@ const Featured = () => {
   return (
     <div className='featured'>
       <h1>Bestsellers</h1>
-      <div>
+      {/* <div>
         <p><span className='bold'>All</span></p>
         <p>Coffees</p>
         <p>Teas</p>
-      </div>
+      </div> */}
       <div className='container'>
-        <img src={feat1} alt='' />
-        <img src={feat2} alt='' />
-        <img src={feat3} alt='' />
+        <img src={feat1} alt='butterfly pea tea' />
+        <img src={feat2} alt='golden chai latte' />
+        <img src={feat3} alt='ceremonial matcha green tea' />
       </div>
     </div>
   )

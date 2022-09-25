@@ -2,7 +2,6 @@ import React from 'react';
 import Product from './Product'
 import "./product.css";
 import Featured from '../../components/Featured/Featured'
-import Cards from '../../components/card'
 
 const Products = ({ productsList }) => {
     
