@@ -12,7 +12,7 @@ const Product = ({ product }) => {
     }
 
     return (
-        <div className="product-text">
+        <div className="product-item">
             <div className="product-text">
             <p><b>{product.name}</b></p>
             <p>Description: {product.description}</p>
