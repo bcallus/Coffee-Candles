@@ -1,0 +1,14 @@
+.register {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  padding-top: 15vh;
+}
+
+.register a {
+  color: black
+}
+
+.register a:hover {
+  color: white;
+}

@@ -6,8 +6,8 @@ const Product = ({ product }) => {
     const navigate = useNavigate();
     
     const handleClick = () => {
-        console.log("CLICK")
         navigate(`/products/${product.id}`);
+//need an addToCart function and button
 
     }
 
@@ -18,12 +18,14 @@ const Product = ({ product }) => {
             <p>Description: {product.description}</p>
             <p>Price: {product.price}</p>
             {product.inStock ? null : <p>Sold Out</p>}
-            <img className="img" 
+            <img className="small" 
                 src={product.image_url} 
                 alt={product.name}/>
             <br />
             <button className="btn" 
                 onClick={handleClick}>View Product</button>
+            {/* <button className="btn" 
+                onClick={handleClick}>Add to cart</button> */}
             </div>
         </div>
     )

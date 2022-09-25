@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import "./register.css"
 
 const APIURL = `/api`;
 
@@ -52,14 +53,7 @@ export default function Register({ setToken }) {
   };
 
   return (
-    <div
-     style={{
-      display: 'flex',
-      justifyContent: 'center',
-      height: '90vh',
-      paddingTop: '15vh'
-    }}
-    >
+    <div className="register">
        <form onSubmit={handleSubmit}>
         <h2> Please Register</h2>
         <div>
@@ -90,6 +84,9 @@ export default function Register({ setToken }) {
         <div>
           <button type='submit'>Submit</button>
         </div>
+        <Link to='/login' style={{}}>
+              Go back to sign in.
+        </Link>
       </form>
     </div>
   );
