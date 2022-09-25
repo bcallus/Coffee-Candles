@@ -147,7 +147,7 @@ async function createInitialProducts() {
         price: 25.00,
         inStock: true,
         categoryId: 2,
-        image_url: "https://ibb.co/Lzc9VLQ"
+        image_url: "https://as2.ftcdn.net/v2/jpg/02/15/89/13/1000_F_215891358_2v6RDd3xPVBs9eeaN5TvQx3FgMSZKn4C.jpg"
       },
       {
         name: "Lemon Ginger Tea",
@@ -155,7 +155,7 @@ async function createInitialProducts() {
         price: 25.00,
         inStock: true,
         categoryId: 2,
-        image_url: "https://ibb.co/VVRng2S"
+        image_url: "https://as2.ftcdn.net/v2/jpg/02/82/51/35/1000_F_282513551_K28UNc2noPQmtcf7wU1gxw2ih8QYnR9y.jpg"
       },
       {
         name: "Chai Tea",
@@ -163,7 +163,7 @@ async function createInitialProducts() {
         price: 35.00,
         inStock: false,
         categoryId: 3,
-        image_url: "https://ibb.co/QNj167S"
+        image_url: "https://as1.ftcdn.net/v2/jpg/02/38/23/40/1000_F_238234081_eg6v3rGDVl0wRKOJNO5A82umOsTcf2KA.jpg"
       },
       {
         name: "Dark Roast Coffee",
@@ -171,7 +171,7 @@ async function createInitialProducts() {
         price: 14.95,
         inStock: true,
         categoryId: 1,
-        image_url: "https://ibb.co/0Gx77W1"
+        image_url: "https://as2.ftcdn.net/v2/jpg/01/05/90/77/1000_F_105907729_4RzHYsHJ2UFt5koUI19fc6VzyFPEjeXe.jpg"
       },
       {
         name: "French Roast Coffee",
@@ -179,7 +179,7 @@ async function createInitialProducts() {
         price: 14.95,
         inStock: false,
         categoryId: 1,
-        image_url: "https://ibb.co/y4xFJ3r"
+        image_url: "https://as1.ftcdn.net/v2/jpg/01/59/18/36/1000_F_159183621_0YTKAAqAA7GI7DlCBfYJ2wfKbC6Zf30V.jpg"
       },
       {
         name: "Blond Roast Coffee",
@@ -187,7 +187,7 @@ async function createInitialProducts() {
         price: 14.95,
         inStock: true,
         categoryId: 1,
-        image_url: "https://ibb.co/KhvWN7J"
+        image_url: "https://as2.ftcdn.net/v2/jpg/01/09/48/95/1000_F_109489577_rW8Ti6XR00nSEHmH9PONlRqXN0cffO7N.jpg"
       }
     ]
     const products = await Promise.all(productsToCreate.map(createProduct))
