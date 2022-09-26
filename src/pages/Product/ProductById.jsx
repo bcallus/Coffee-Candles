@@ -1,19 +1,21 @@
 import React, {useState} from "react";
 import { useParams } from 'react-router-dom'
+import { createNewOrder } from "../../api";
 
 
 
-const ProductById = ({productsList, cart}) => {
+const ProductById = ({productsList}) => {
     const {productId} = useParams();
     const id = parseInt(productId);
     const [product, setProduct] = useState();
     
     
-    const handleClick = (product) => {
+    //how do I pass the data i need for create new order
+    const handleClick = async (event) => {
         console.log("CLICK")
-        console.log({ productId, line: 14 })
-        setProduct(product)
-        console.log({product, line:16})
+        event.preventDefault();
+        const data = await createNewOrder(productId)
+        console.log({ data, line: 16 })
         
 
     }

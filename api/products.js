@@ -24,7 +24,6 @@ productsRouter.get("/", async (req, res, next) => {
 productsRouter.get("/:productId", async (req, res, next) => {
   try {
     const { productId } = req.params
-    console.log({productId,line:27})
     const product = await getProductById(productId);
     res.send(product);
   } catch (error) {
@@ -32,6 +31,22 @@ productsRouter.get("/:productId", async (req, res, next) => {
   }
 });
 
+//for when add to cart is clicked
+productsRouter.post("/:productId", async (req, res, next) => {
+  try {
+    const { productId, cartId, quantity, price } = req.params
+    console.log({cartId, line:39})
+    const newOrder = await addProductToCart({
+      productId,
+      cartId,
+      quantity,
+      price
+    });
+    res.send(newOrder);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // POST /api/products
 productsRouter.post("/", requireAdmin, async (req, res, next) => {
