@@ -1,29 +1,20 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { useParams } from 'react-router-dom'
 
 
 
-const ProductById = ({productsList}) => {
+const ProductById = ({productsList, cart}) => {
     const {productId} = useParams();
     const id = parseInt(productId);
-    console.log({productId, line:8})
-    // const [product, setProduct] = useState({});
+    const [product, setProduct] = useState();
     
-         
     
-    // useEffect(()=>{
-    //     fetch(`/api/products/${id}`)
-    //     .then(result => result.json())
-    //     .then(data => {
-    //         console.log({data, line:16})
-    //         setProduct(data)
-    //     })
-    //     .catch(console.error);
-        
-    // }, [])
-    
-    const handleClick = () => {
+    const handleClick = (product) => {
         console.log("CLICK")
+        console.log({ productId, line: 14 })
+        setProduct(product)
+        console.log({product, line:16})
+        
 
     }
 

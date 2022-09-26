@@ -16,7 +16,7 @@ import Cart from './components/Cart/Cart.jsx';
 function App() {
   const [token, setToken] = useState("");
   const [productsList, setProductsList] = useState([{}]);
-  const [cart, setCart] = useState([{}]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     fetchAllProducts().then((results) => {
@@ -33,7 +33,7 @@ function App() {
       <Navbar />
       <Hero />
       <Routes>
-      <Route path='/' element={<Home />}></Route>
+        <Route path='/' element={<Home />}></Route>
         <Route path='/products' element={<Products productsList={productsList} />}></Route>
         <Route path='/products/:productId' element={<ProductById productsList={productsList}/>}></Route>
         <Route path='/about' element={<About />}></Route>
