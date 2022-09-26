@@ -1,17 +1,19 @@
 const express = require("express");
 const usersRouter = express.Router();
 const { requireUser, requireAdmin } = require("./utils");
-//require db functions here:
 const {
-    createUser,
-    getUserByEmail,
+  createUser,
+	getUser,
+	getAllUsers,
+  getUserByEmail,
 	getUserById,
-	getCartByUser
+	getCartByUser,
+	updateUser
 } = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { JWT_SECRET } = process.env;
-console.log(jwt.sign);
+
 // users api endpoints here
 
 // /register endpoints

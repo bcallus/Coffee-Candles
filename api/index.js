@@ -1,6 +1,6 @@
 const express = require('express');
 const apiRouter = require("express").Router();
-// const { getUserById } = require("../db");
+const { getUserById } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
 
@@ -20,7 +20,7 @@ apiRouter.use(async (req, res, next) => {
         const token = auth.slice(prefix.length);
 
         try {
-            const { id } = await jwt.verify(token, JWT_SECRET);
+            const { id } = jwt.verify(token, JWT_SECRET);
 
             if (id) {
                 req.user = await getUserById(id);
@@ -48,7 +48,9 @@ apiRouter.use("/users", usersRouter);
 const cartsRouter = require('./carts');
 apiRouter.use("/carts", cartsRouter);
 
-//add error handlers below:
+const adminRouter = require('./admin');
+apiRouter.use("/admin", adminRouter);
+
 apiRouter.use("*", (req, res) => {
     res.status(404);
     res.send({ message: "route not found" });
