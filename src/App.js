@@ -12,19 +12,19 @@ import Footer from "./components/Footer/Footer.jsx";
 import Products from './pages/Product/Products.jsx';
 import ProductById from './pages/Product/ProductById.jsx';
 import Cart from './components/Cart/Cart.jsx';
-import { isElementType } from '@testing-library/user-event/dist/utils';
+
 
 function App() {
   const [token, setToken] = useState("");
   const [productsList, setProductsList] = useState([{}]);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]); //useLocalStorage?
 
   const onAdd = (product) => {
     const exist = cartItems.find(item => item.id === product.id);
     if (exist) {
       setCartItems(
         cartItems.map(item =>
-          item.id === product.id ? { ...exist, qty: isElementType.qty + 1 } : item
+          item.id === product.id ? { ...exist, qty: exist.qty + 1 } : item
         )
       );
     } else {
