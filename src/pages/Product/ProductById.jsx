@@ -17,26 +17,29 @@ const ProductById = ({ productsList }) => {
     console.log('CLICK');
   };
 
-  return (
+    return (
+    <div>
     <div className='product-container'>
       {productsList.length &&
         productsList
           .filter((product) => product.id === id)
           .map((product) => (
             <div key={product.id}>
-              <p>
-                <b>{product.name}</b>
-              </p>
-              <p>Description: {product.description}</p>
-              <p>Price: {product.price}</p>
-              {product.inStock ? null : <p>Sold Out</p>}
-              <button onClick={allProduct}>back to product</button>
-              <img src={product.image_url} alt={product.name} />
-              <br />
-              <button onClick={handleClick}>add to cart</button>
+                    <img className="product-image" src={product.image_url} alt={product.name} />
+                    <p className="product-name">
+                    <b>{product.name}</b>
+                    </p>
+                    <p className="product-price"><b>$ {product.price}</b></p>
+                    {product.inStock ? <p className="stock">In Stock</p> : <p className="stock">Sold Out</p>}
+                    <p className="product-description">{product.description}</p>
+                    <br />
+                    <button className="add-to-cart" onClick={handleClick}>add to cart</button>  
+                  
             </div>
           ))}
-    </div>
+        </div>
+            <button className="back-to-products" onClick={allProduct}>back to products</button>
+        </div>
   );
 };
 
