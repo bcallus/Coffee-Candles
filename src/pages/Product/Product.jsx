@@ -24,14 +24,9 @@ const Product = ({ product }) => {
             <br />
             <button className="btn" 
                 onClick={handleClick}>View Product</button>
-            {/* <button className="btn" 
-                onClick={handleClick}>Add to cart</button> */}
             </div>
         </div>
     )
 }
 
 export default Product;
-
-//fix product.image_url render
-//change the candle images to tea images in db

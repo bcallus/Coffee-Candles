@@ -1,51 +1,30 @@
-import React, { useState, useEffect } from "react";
-import "../Cart/cart.css";
-import product from "../../pages/Product/Product"
+import React from "react";
 
-const Cart = ({ cart, setCart, handleChange }) => {
-  const [price, setPrice] = useState(0);
+const Cart = ({ cartItems, onAdd, onRemove }) => {
 
-  const handleRemove = (id) => {
-    const arr = cart.filter((product) => product.id !== id);
-    setCart(arr);
-    handlePrice();
-  };
-
-  const handlePrice = () => {
-    let ans = 0;
-    cart.map((item) => (ans += product.amount * product.price));
-    setPrice(ans);
-  };
-
-  useEffect(() => {
-    handlePrice();
-  });
 
   return (
-    <article>
-      {cart.map((item) => (
-        <div className="cart_box" key={product.id}>
-          <div className="cart_img">
-            <img src={product.img} alt="" />
-            <p>{product.title}</p>
+    <div>
+      <h2>Shopping Cart</h2>
+      <div>
+        {cartItems.length === 0 && <div>Cart Is Empty</div>}
+      </div>
+      {cartItems.map(item => (
+        <div key={item.id}>
+          <div>{item.name}</div>
+          <div>
+            <button onClick={() => onAdd(item)}>+</button>
+            <button onClick={() => onRemove(item)}>-</button>
           </div>
           <div>
-            <button onClick={() => handleChange(item, 1)}>+</button>
-            <button>{product.amount}</button>
-            <button onClick={() => handleChange(item, -1)}>-</button>
+            {item.qty} x ${item.price.toFixed(2)}
           </div>
-          <div>
-            <span>{product.price}</span>
-            <button onClick={() => handleRemove(product.id)}>Remove</button>
-          </div>
+       
         </div>
       ))}
-      <div className="total">
-        <span>Total</span>
-        <span>Price: {price}</span>
-      </div>
-    </article>
-  );
-};
+    </div>
+    
+    )
+}
 
 export default Cart;

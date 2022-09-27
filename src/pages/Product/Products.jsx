@@ -3,7 +3,7 @@ import Product from './Product'
 import "./product.css";
 import Featured from '../../components/Featured/Featured'
 
-const Products = ({ productsList }) => {
+const Products = ({ productsList, onAdd }) => {
     
     return (
         <div>
@@ -13,7 +13,9 @@ const Products = ({ productsList }) => {
                 {productsList.length && productsList.map(product => (
                     <Product
                         key={product.id}
-                        product={product}/>
+                        product={product}
+                        onAdd={onAdd}
+                        />
             ))}
             </div>
         </div>

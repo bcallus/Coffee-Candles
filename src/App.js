@@ -12,11 +12,25 @@ import Footer from "./components/Footer/Footer.jsx";
 import Products from './pages/Product/Products.jsx';
 import ProductById from './pages/Product/ProductById.jsx';
 import Cart from './components/Cart/Cart.jsx';
+import { isElementType } from '@testing-library/user-event/dist/utils';
 
 function App() {
   const [token, setToken] = useState("");
   const [productsList, setProductsList] = useState([{}]);
-  const [cart, setCart] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+
+  const onAdd = (product) => {
+    const exist = cartItems.find(item => item.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map(item =>
+          item.id === product.id ? { ...exist, qty: isElementType.qty + 1 } : item
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+   }
 
   useEffect(() => {
     fetchAllProducts().then((results) => {
@@ -32,15 +46,53 @@ function App() {
     <Router>
       <Navbar />
       <Hero />
+       
       <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/products' element={<Products productsList={productsList} />}></Route>
-        <Route path='/products/:productId' element={<ProductById productsList={productsList}/>}></Route>
-        <Route path='/about' element={<About />}></Route>
-        <Route path='/login' element={<Login token={token} setToken={setToken} />}></Route>
-        <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
-        <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />}></Route>
+         <Route path='/' element={<Home />}></Route>
+         
+         <Route path='/products'
+           element={
+             <Products
+               productsList={productsList} 
+             />
+           }></Route>
+         
+         <Route path='/products/:productId'
+           element={
+             <ProductById
+               productsList={productsList} 
+               onAdd={onAdd}
+               cartItems={cartItems}
+             />
+           }></Route>
+         
+         <Route path='/about' element={<About />}></Route>
+         
+         <Route path='/login'
+           element={
+             <Login
+               token={token}
+               setToken={setToken}  
+             />
+           }></Route>
+         
+         <Route path='/register'
+           element={
+             <Register
+               token={token}
+               setToken={setToken} 
+             />
+           }></Route>
+         
+         <Route path='/cart'
+           element={
+             <Cart
+               cartItems={cartItems}
+               onAdd={onAdd}
+             />
+           }></Route>
       </Routes>
+       
       <Footer />
     </Router>
    
