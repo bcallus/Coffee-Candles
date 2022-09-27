@@ -55,11 +55,14 @@ export default function Register({ setToken }) {
   return (
     <div className="register">
        <form onSubmit={handleSubmit}>
-        <h2> Please Register</h2>
+        <h2>Sign Up for an Account</h2>
         <div>
           <label>
             <p>Email</p>
-            <input type='text' onChange={(e) => setEmail(e.target.value)} />
+            <input 
+            type='text' 
+            placeholder='Enter your email address'
+            onChange={(e) => setEmail(e.target.value)} />
           </label>
         </div>
         <div>
@@ -67,6 +70,7 @@ export default function Register({ setToken }) {
             <p>Password</p>
             <input
               type='password'
+              placeholder='8 characters minimum'
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
@@ -76,13 +80,14 @@ export default function Register({ setToken }) {
             <p>Confirm Password</p>
             <input
               type='password'
+              placeholder='Confirm your password'
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
         </div>
         {registerError && <p>{registerError}</p>}
         <div>
-          <button type='submit'>Submit</button>
+          <button className='regbtn' type='submit'>Submit</button>
         </div>
         <Link to='/login' style={{}}>
               Go back to sign in.

@@ -1,11 +1,12 @@
 const client = require("./client");
+const { createUser } = require("./users");
 const {
      attachProductsToCarts //add other functions here
   } = require("./products");
 //CARTS ARE SIMILAR TO ROUTINES ON FITNESS TRACKER
 
 //default for isPurchased is false, has to be updated to change cart to purchsed cart?
-async function createCart({ userId, isPurchased = false }) {
+async function createUserCart({ userId, isPurchased = false }) {
     try {
         const { rows: [carts] } = await client.query(`
             INSERT INTO carts("userId", "isPurchased")
@@ -13,15 +14,31 @@ async function createCart({ userId, isPurchased = false }) {
             RETURNING *;
             `, [userId, isPurchased]
         );
-        
-        // console.log("CARTS from createcart-->", carts)
+  
         return carts;
     } catch (error) {
       console.error("Failed to create cart!");
       throw error;
     }
 }
-  
+
+async function createGuestCart({ session_id, order_status }){
+  try {
+    const { rows: [ cart ]} = await client.query(`
+      INSERT INTO cart_orders(session_id, order_status)
+      VALUES ($1, $2)
+      RETURNING *;
+    `, [ session_id, order_status ])
+
+    return cart;
+  } catch (error) {
+    console.log("Error creating a guest cart");
+    throw error;
+  }
+}
+
+
+
 //getCartById by cartId to access a particular cart | like  getRoutineById(id)
 //used in API: cartsRouter.patch('/:cartId', to update cart
 //and used in API: cartsRouter.delete('/:cartId', to delete cart
@@ -29,13 +46,12 @@ async function getCartById(id) {
     try {
       const { rows: [cart] } = await client.query(`
         SELECT * FROM carts
-        WHERE id = ${id}
-      `)
-    
-      console.log("cart from getCartById-->}", cart)
+        WHERE id = $1;
+      `,
+       [id]
+      );
       return cart;
-    }
-    catch (error) {
+    } catch (error) {
       throw error;
     }
   }
@@ -88,7 +104,8 @@ async function getCartByUser(userId) {
 //what other cart functions do we need? ( getPublicRoutinesByActivity({id}) was there but i dont think we need that here)
 
 module.exports = {
-    createCart,
+    createUserCart,
+    createGuestCart,
     getCartById,
     getCartsWithoutProducts,
     getCartByUser

@@ -21,7 +21,28 @@ async function createOrder({
     }
   }
 
-  //getOrderById | like getRoutineActivityById(id)
+  //getOrderItemById | like getRoutineActivityById(id)
+  async function getOrderItemById(id) {
+    try {
+      const {
+        rows: [orderItems],
+      } = await client.query(
+        `
+      SELECT * 
+      FROM "orderItems"
+      WHERE id = $1;
+      `,
+        [id]
+      );
+      console.log("orderItemsById from getOrderItemById-->", orderItems)
+      return orderItems;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+
 
   //addProductToCart | like addActivityToRoutine({routineId,activityId,count,duration}), actually inserting into orders table
   async function addProductToCart({
@@ -39,13 +60,12 @@ async function createOrder({
   
       console.log("order from addProductToCart-->", order)
       return order;
-    }
-    catch (error) {
+    } catch (error) {
       throw error;
     }
   }
 
- //getOrdersByCart | like getRoutineActivitiesByRoutine({id})
+ //getOrdersByCartId | like getRoutineActivitiesByRoutine({id})
 
   //updateOrders | like updateRoutineActivity ({id, count, duration}), aka editing items in cart
   //updateCart by cartId ? for a user to edit their cart | like  updateRoutine({id, ...fields})

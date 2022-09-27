@@ -11,7 +11,7 @@ import Hero from "./components/Hero/Hero.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Products from './pages/Product/Products.jsx';
 import ProductById from './pages/Product/ProductById.jsx';
-import Cart from './components/Cart/Cart.jsx';
+import Cart from './pages/Cart/Cart.jsx';
 
 function App() {
   const [token, setToken] = useState("");

@@ -52,24 +52,25 @@ export default function Login({ setToken }) {
       <form onSubmit={handleSubmit}>
         <h2> Log in</h2>
         <label>
-
           <p>Email</p>
-          <input type='text' onChange={(e) => setEmail(e.target.value)} />
-
+          <input 
+          type='text' 
+          placeholder='Your Email Here'
+          onChange={(e) => setEmail(e.target.value)} />
         </label>
         <div>
           <label>
             <p>Password</p>
             <input
               type='password'
-              onChange={(e) => setPassword(e.target.value)}
-            />
+              placeholder='Your password here'
+              onChange={(e) => setPassword(e.target.value)}/>
           </label>
         </div>
         {loginError && <p>{loginError}</p>}
 
         <div>
-          <button type='login'>Log In</button>
+          <button className='loginbtn' type='login'>Log In</button>
           <div>
             <Link to='/register' style={{}}>
               Don't have an account?

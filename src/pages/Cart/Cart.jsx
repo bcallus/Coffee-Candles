@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../Cart/cart.css";
-import product from "../../pages/Product/Product"
+import "./cart.css";
+import product from "../Product/Product"
 
 const Cart = ({ cart, setCart, handleChange }) => {
   const [price, setPrice] = useState(0);
@@ -26,7 +26,7 @@ const Cart = ({ cart, setCart, handleChange }) => {
       {cart.map((item) => (
         <div className="cart_box" key={product.id}>
           <div className="cart_img">
-            <img src={product.img} alt="" />
+            <img src={product.img_url} alt="" />
             <p>{product.title}</p>
           </div>
           <div>
