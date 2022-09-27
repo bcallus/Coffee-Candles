@@ -28,7 +28,9 @@
 }
 
 .stock {
-    font-size: 14px;;
+    font-size: 14px;
+    color: rgb(90, 19, 19);
+    font-weight: bold;
 }
 
 .add-to-cart {
