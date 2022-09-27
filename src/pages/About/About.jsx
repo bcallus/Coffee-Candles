@@ -4,7 +4,7 @@ import '../About/about.css';
 const About = () => {
   return (
     <div className='about'>
-      <h2 className='h2about'>About Our Brand</h2>
+      <h2>About Our Brand</h2>
 
       <p>
         Hello from Coffee "n" Tea, It takes many hands to craft the perfect cup
