@@ -33,6 +33,8 @@
 
 .small {
   max-height: 8rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
 }
 
 .btn {
@@ -50,4 +52,18 @@
 
 .products-page-title {
   text-align: center;
+}
+
+.products-name {
+  font-size: 20px;
+}
+.products-description {
+  font-size: 16px;
+}
+.products-price {
+  font-size: 18px;
+}
+.products-stock {
+  color: rgb(90, 19, 19);
+  font-weight: bold;
 }

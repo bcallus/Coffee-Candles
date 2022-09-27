@@ -14,10 +14,10 @@ const Product = ({ product }) => {
     return (
         <div className="product-item">
             <div className="product-text">
-            <p><b>{product.name}</b></p>
-            <p>Description: {product.description}</p>
-            <p>Price: {product.price}</p>
-            {product.inStock ? null : <p>Sold Out</p>}
+            <p className="products-name"><b>{product.name}</b></p>
+            <p className="products-description">{product.description}</p>
+            <p className="products-price">$ {product.price}</p>
+            {product.inStock ? null : <p className="products-stock">Sold Out</p>}
             <img className="small" 
                 src={product.image_url} 
                 alt={product.name}/>
