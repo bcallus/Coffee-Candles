@@ -151,7 +151,7 @@ async function createInitialProducts() {
       },
       {
         name: "Lemon Ginger Tea",
-        description: "lemon and ginger paired together",
+        description: "An herbal infusion of fresh lemon and ginger.",
         price: 25.00,
         inStock: true,
         categoryId: 2,

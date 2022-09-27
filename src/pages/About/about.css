@@ -1,15 +1,11 @@
 .about{
-    display: flex;
-    justify-content: center; 
     height: 90vh;
-    align-items: center; 
-    flex-direction: row;
-    font-size: 3vh;
+    font-size: 20px;
     padding: 50px;
+    text-align: center;
 }
 
-.h2about {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
 }
