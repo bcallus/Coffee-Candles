@@ -8,7 +8,7 @@ const Products = ({ productsList }) => {
     return (
         <div>
             <Featured />
-            <h1>All Products</h1>
+            <h1 className="products-page-title">All Products</h1>
             <div className='products-container'>
                 {productsList.length && productsList.map(product => (
                     <Product
