@@ -1,20 +1,22 @@
 const client = require("./client");
-const { createUser } = require("./users");
+const { createUser, getUserByEmail } = require("./users");
 const {
      attachProductsToCarts //add other functions here
   } = require("./products");
 //CARTS ARE SIMILAR TO ROUTINES ON FITNESS TRACKER
 
 //default for isPurchased is false, has to be updated to change cart to purchsed cart?
-async function createUserCart({ userId, isPurchased = false }) {
-    try {
+async function createUserCart({ email, isPurchased = false}) {
+  try {
+        const user = await getUserByEmail(email)
+        const userId = user.id
+
         const { rows: [carts] } = await client.query(`
             INSERT INTO carts("userId", "isPurchased")
             VALUES ($1, $2) 
             RETURNING *;
             `, [userId, isPurchased]
         );
-  
         return carts;
     } catch (error) {
       console.error("Failed to create cart!");
@@ -22,6 +24,7 @@ async function createUserCart({ userId, isPurchased = false }) {
     }
 }
 
+//do we need this? (guest cart is stored in local storage)
 async function createGuestCart({ session_id, order_status }){
   try {
     const { rows: [ cart ]} = await client.query(`
