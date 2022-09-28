@@ -30,7 +30,6 @@ async function getAllProducts() {
         const { rows } = await client.query(`
             SELECT * FROM products;
         `)
-        // console.log("rows from getAllProducts-->", rows)
         return rows;
     }
     catch (error) {

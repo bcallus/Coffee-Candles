@@ -34,11 +34,12 @@ productsRouter.get("/:productId", async (req, res, next) => {
 //for when add to cart is clicked
 productsRouter.post("/:productId", async (req, res, next) => {
   try {
-    const { productId } = req.body
-    console.log({ productId, line: 37 })
+    const { cartId, productId } = req.body
+    console.log({ productId, line: 38 })
+    console.log({ cartId, line: 39 })
     // const product = await getProductById(productId)
     // console.log({ product, line:39 })
-    const newOrder = await addProductToCart({ productId });
+    const newOrder = await addProductToCart({ cartId, productId });
     console.log({newOrder, line:41})
     res.send(newOrder);
   } catch (error) {

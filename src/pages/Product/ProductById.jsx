@@ -3,10 +3,9 @@ import './productById.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createNewOrder } from '../../api';
 
-const ProductById = ({ productsList, token }) => {
+const ProductById = ({ productsList, token, cartId}) => {
   const { productId } = useParams();
   const id = parseInt(productId);
-  console.log({ productId, line: 9 });
 
   const Navigate = useNavigate();
 
@@ -14,12 +13,14 @@ const ProductById = ({ productsList, token }) => {
     Navigate('/products');
   };
 
-  const addToCart = async () => {
+    const addToCart = async (event) => {
+      event.preventDefault();
       console.log('CLICK');
       console.log({token, line:19});
       console.log({ productId, line: 20 });
-      const newOrder = await createNewOrder(token, productId)
-      console.log({newOrder, line:22})
+      console.log({ cartId, line: 21 });
+      const newOrder = await createNewOrder(token, cartId, productId)
+      console.log({newOrder, line:23})
   };
 
     return (

@@ -42,7 +42,7 @@ export async function createNewCart({ token, email, isPurchased = false }) {
 
 //this is where you send data to the server in request body 
 
-export async function createNewOrder(token, productId) {
+export async function createNewOrder(token, cartId, productId) {
     try {
         return fetch(`${APIURL}/products/${productId}`,  {
             method: "POST",
@@ -52,11 +52,12 @@ export async function createNewOrder(token, productId) {
             },
             body: JSON.stringify({
 				productId: productId,
+				cartId: cartId,
             }),
           })
             .then((response) => response.json())
 			.then((result) => {
-			console.log({result, line:59})
+			console.log({result, line:60})
             return result;
             });
     }

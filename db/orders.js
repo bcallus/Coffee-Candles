@@ -45,13 +45,19 @@ async function createOrder({
   }
 
   //addProductToCart | like addActivityToRoutine({routineId,activityId,count,duration}), actually inserting into orders table
-async function addProductToCart({ productId }) {
+async function addProductToCart({ cartId, productId }) {
     try {
       console.log({ productId, line: 47 })
       const product = await getProductById(productId)
       console.log({ product, line: 49 })
+      const quantity = 1
 
-      
+      const price = await client.query(`
+        SELECT prroducts.price FROM products
+        WHERE products.id = $1;
+      `, [productId])
+      console.log({price, line:59})
+
       
     //   const { rows: [order] } = await client.query(`
     //   INSERT INTO orders ("productId", "cartId", quantity, price)
