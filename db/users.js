@@ -53,6 +53,7 @@ async function getUserByEmail(email) {
 			[email]
 		);
 		const returnedUser = user.rows[0];
+		// console.log({ returnedUser, line:56 })
 		return returnedUser;
 	} catch (error) {
 		throw error;

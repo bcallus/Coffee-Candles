@@ -8,7 +8,8 @@ const {
   getUserByEmail,
 	getUserById,
 	getCartByUser,
-	updateUser
+	updateUser,
+	createUserCart
 } = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -166,6 +167,18 @@ usersRouter.get("/:id/carts", async (req, res, next) => {
 		res.status(401).send(error);
 	}
 });
+
+//usersRouter.post('/', to create a cart for a user (registered?), uses createCart
+usersRouter.post("/", async (req, res, next) => {
+	try {
+	  const { email } = req.body;
+	  const newCart = await createUserCart({ email });
+	  console.log({newCart, line:176})
+	  res.send(newCart);
+	} catch (error) {
+	  next(error);
+	}
+  });
 
 
 //are there any other endpoints specific to a user?

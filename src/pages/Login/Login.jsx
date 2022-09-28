@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "./login.css"
+import { createNewCart } from '../../api';
 
 const APIURL = `/api`;
 
@@ -40,6 +41,12 @@ export default function Login({ setToken }) {
     const token = data.token;
     localStorage.setItem('token', token);
     setToken(token);
+
+    if (token) {
+      const newCart = await createNewCart({ token, email})
+      console.log({newCart, line: 47})
+    }
+
     if (!token){
       setLoginError(data.message);
       return
