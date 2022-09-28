@@ -34,13 +34,30 @@
 }
 
 .add-to-cart {
-    padding: .5rem;
-    width: 100%;
+        background-image: linear-gradient(
+          45deg,
+          rgb(103, 116, 115) 0%,
+          rgb(6, 6, 6) 100%
+        );
+        border: 1px solid;
+        color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
 }
 
 .back-to-products {
-    padding: .3rem;
     font-size: 12px;
     margin-left: 1rem;
+        background-image: linear-gradient(
+          45deg,
+          rgb(103, 116, 115) 0%,
+          rgb(6, 6, 6) 100%
+        );
+        border: 1px solid;
+        color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
 }
 
