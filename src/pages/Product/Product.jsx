@@ -24,8 +24,6 @@ const Product = ({ product }) => {
             <br />
             <button className="btn" 
                 onClick={handleClick}>View Product</button>
-            {/* <button className="btn" 
-                onClick={handleClick}>Add to cart</button> */}
             </div>
         </div>
     )

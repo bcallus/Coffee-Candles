@@ -8,9 +8,13 @@ const Footer = () => {
     <div className='footer'>
       <div className="social">
         <p>Connect with us!</p>
-        <IoLogoSnapchat className='icon' />
-        <AiOutlineFacebook className='icon' />
-        <IoLogoInstagram className='icon' />
+        <a href='http://snapchat.com/coffee_tea'>
+        <IoLogoSnapchat className='icon' /></a>
+        <a href='http://facebook.com/coffee_tea'>
+        <AiOutlineFacebook className='icon' /></a>
+        <a href='http://instagram.com/coffee_tea'>
+        <IoLogoInstagram className='icon' /></a>
+        <p>© 2022 Coffee + Candles LLC</p>
       </div>     
     </div>
   )
