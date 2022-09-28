@@ -33,13 +33,42 @@ function App() {
       <Navbar />
       <Hero />
       <Routes>
-      <Route path='/' element={<Home />}></Route>
-        <Route path='/products' element={<Products productsList={productsList} />}></Route>
-        <Route path='/products/:productId' element={<ProductById productsList={productsList}/>}></Route>
-        <Route path='/about' element={<About />}></Route>
-        <Route path='/login' element={<Login token={token} setToken={setToken} />}></Route>
-        <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
-        <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />}></Route>
+         <Route path='/' element={<Home />}></Route>
+         
+         <Route path='/products' element={
+           <Products
+             productsList={productsList} 
+           />
+         }></Route>
+         
+         <Route path='/products/:productId' element={
+           <ProductById
+             productsList={productsList}
+             token={token}
+           />
+         }></Route>
+         
+         <Route path='/about' element={<About />}></Route>
+         
+         <Route path='/login' element={
+           <Login token={token}
+             setToken={setToken} 
+           />
+         }></Route>
+         
+         <Route path='/register' element={
+           <Register
+             token={token}
+             setToken={setToken} 
+           />
+         }></Route>
+         
+         <Route path='/cart' element={
+           <Cart
+             cart={cart}
+             setCart={setCart} 
+           />
+         }></Route>
       </Routes>
       <Footer />
     </Router>

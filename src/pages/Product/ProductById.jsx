@@ -1,11 +1,12 @@
 import React from 'react';
 import './productById.css';
 import { useParams, useNavigate } from 'react-router-dom';
+import { createNewOrder } from '../../api';
 
-const ProductById = ({ productsList }) => {
+const ProductById = ({ productsList, token }) => {
   const { productId } = useParams();
   const id = parseInt(productId);
-  console.log({ productId, line: 8 });
+  console.log({ productId, line: 9 });
 
   const Navigate = useNavigate();
 
@@ -13,8 +14,12 @@ const ProductById = ({ productsList }) => {
     Navigate('/products');
   };
 
-  const handleClick = () => {
-    console.log('CLICK');
+  const addToCart = async () => {
+      console.log('CLICK');
+      console.log({token, line:19});
+      console.log({ productId, line: 20 });
+      const newOrder = await createNewOrder(token, productId)
+      console.log({newOrder, line:22})
   };
 
     return (
@@ -33,7 +38,7 @@ const ProductById = ({ productsList }) => {
                     {product.inStock ? <p className="stock">In Stock</p> : <p className="stock">Sold Out</p>}
                     <p className="product-description">{product.description}</p>
                     <br />
-                    <button className="add-to-cart" onClick={handleClick}>add to cart</button>  
+                    <button className="add-to-cart" onClick={addToCart}>add to cart</button>  
                   
             </div>
           ))}

@@ -2,7 +2,8 @@ const express = require("express");
 const productsRouter = express.Router();
 const {
   getAllProducts,
-  getProductById
+  getProductById,
+  addProductToCart
     //add other functions here
 } = require("../db");
 const { requireAdmin } = require("./utils")
@@ -19,14 +20,27 @@ productsRouter.get("/", async (req, res, next) => {
     }
 });
 
-// /:productsId endpoints here
 //getting product by Id for when a user clicks on a specific product, rerouting them to /products/:productId
 productsRouter.get("/:productId", async (req, res, next) => {
   try {
     const { productId } = req.params
-    console.log({productId,line:27})
     const product = await getProductById(productId);
     res.send(product);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//for when add to cart is clicked
+productsRouter.post("/:productId", async (req, res, next) => {
+  try {
+    const { productId } = req.body
+    console.log({ productId, line: 37 })
+    // const product = await getProductById(productId)
+    // console.log({ product, line:39 })
+    const newOrder = await addProductToCart({ productId });
+    console.log({newOrder, line:41})
+    res.send(newOrder);
   } catch (error) {
     next(error);
   }
