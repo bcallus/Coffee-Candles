@@ -48,12 +48,12 @@ export default function Login({ setToken, token, cartId }) {
     navigate('/', { replace: true });
   };
 
-  useEffect(() => {
-    if (token) {
-      const newCart = createNewCart({ token, cartId })
-      console.log({newCart, line:54})
-    }
-  })
+  // useEffect(() => {
+  //   if (token) {
+  //     const newCart = createNewCart({ token, cartId })
+  //     console.log({newCart, line:54})
+  //   }
+  // })
 
   return (
     <div className='login'>

@@ -2,7 +2,8 @@ const express = require("express");
 const productsRouter = express.Router();
 const {
   getAllProducts,
-  getProductById
+  getProductById,
+  createCart
     //add other functions here
 } = require("../db");
 const { createNewCart } = require("../src/api");

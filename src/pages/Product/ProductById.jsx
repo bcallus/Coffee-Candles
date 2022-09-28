@@ -1,4 +1,5 @@
 import React from "react";
+import { GiControlTower } from "react-icons/gi";
 import { useParams } from 'react-router-dom'
 // import { createNewOrder } from "../../api";
 
@@ -9,6 +10,7 @@ const ProductById = ({productsList}) => {
     const id = parseInt(productId);
 
     const handleAddToCart = () => {
+        console.log("click")
 
     }
 
