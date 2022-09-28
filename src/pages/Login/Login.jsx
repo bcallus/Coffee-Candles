@@ -22,8 +22,7 @@ async function loginUser({ email, password }) {
     })
     .catch(console.error);
 }
-export default function Login({ setToken }) {
-  const [email, setEmail] = useState('');
+export default function Login({ setToken, email, setEmail }) {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();

@@ -56,6 +56,7 @@ async function getProductById(id) {
 
 //attachProductsToCarts(carts) | like  attachActivitiesToRoutines(routines) 
 //probably have to fix what this is selecting?
+//do we even need this?
 async function attachProductsToCarts(carts) {
   try {
     const cartId = carts.map(cart => cart.id)

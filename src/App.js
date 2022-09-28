@@ -15,6 +15,7 @@ import Cart from './pages/Cart/Cart.jsx';
 
 function App() {
   const [token, setToken] = useState("");
+  const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
   const [cart, setCart] = useState([{}]);
 
@@ -53,6 +54,8 @@ function App() {
          <Route path='/login' element={
            <Login token={token}
              setToken={setToken} 
+             email={email}
+             setEmail={setEmail}
            />
          }></Route>
          
@@ -60,6 +63,8 @@ function App() {
            <Register
              token={token}
              setToken={setToken} 
+             email={email}
+             setEmail={setEmail}
            />
          }></Route>
          
