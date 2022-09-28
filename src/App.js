@@ -17,20 +17,6 @@ import Cart from './components/Cart/Cart.jsx';
 function App() {
   const [token, setToken] = useState("");
   const [productsList, setProductsList] = useState([{}]);
-  const [cartItems, setCartItems] = useState([]); //useLocalStorage?
-
-  const onAdd = (product) => {
-    const exist = cartItems.find(item => item.id === product.id);
-    if (exist) {
-      setCartItems(
-        cartItems.map(item =>
-          item.id === product.id ? { ...exist, qty: exist.qty + 1 } : item
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...product, qty: 1 }]);
-    }
-   }
 
   useEffect(() => {
     fetchAllProducts().then((results) => {
@@ -61,8 +47,6 @@ function App() {
            element={
              <ProductById
                productsList={productsList} 
-               onAdd={onAdd}
-               cartItems={cartItems}
              />
            }></Route>
          
@@ -84,13 +68,7 @@ function App() {
              />
            }></Route>
          
-         <Route path='/cart'
-           element={
-             <Cart
-               cartItems={cartItems}
-               onAdd={onAdd}
-             />
-           }></Route>
+         <Route path='/cart' element={<Cart />}></Route>
       </Routes>
        
       <Footer />

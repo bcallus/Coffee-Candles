@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { createNewCart } from '../../api';
 import "./login.css"
 
 const APIURL = `/api`;
@@ -21,7 +22,7 @@ async function loginUser({ email, password }) {
     })
     .catch(console.error);
 }
-export default function Login({ setToken }) {
+export default function Login({ setToken, token, cartId }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
@@ -46,6 +47,13 @@ export default function Login({ setToken }) {
     }
     navigate('/', { replace: true });
   };
+
+  useEffect(() => {
+    if (token) {
+      const newCart = createNewCart({ token, cartId })
+      console.log({newCart, line:54})
+    }
+  })
 
   return (
     <div className='login'>

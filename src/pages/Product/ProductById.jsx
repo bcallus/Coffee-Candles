@@ -4,10 +4,13 @@ import { useParams } from 'react-router-dom'
 
 
 
-const ProductById = ({productsList, onAdd, cartItems}) => {
+const ProductById = ({productsList}) => {
     const {productId} = useParams();
     const id = parseInt(productId);
-    // const [product, setProduct] = useState();
+
+    const handleAddToCart = () => {
+
+    }
 
     return (
         <div>
@@ -20,7 +23,7 @@ const ProductById = ({productsList, onAdd, cartItems}) => {
                         {product.inStock ? null : <p>Sold Out</p>}
                         <img src={product.image_url} alt={product.name}/>
                         <br />
-                        <button onClick={() => onAdd(product)}>add to cart</button>
+                        <button onClick={handleAddToCart}>add to cart</button>
                     </div> 
                 ))
              }

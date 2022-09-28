@@ -39,8 +39,6 @@ cartsRouter.get("/:userId", async (req, res, next) => {
 
 //cartsRouter.post("/:userId", to createCart for a specific userId /carts/:userId
 
-//cartsRouter.post('/', to create a cart for a user (registered?), uses createCart
-
 //cartsRouter.patch('/:cartId', for a user to update their cart, uses getCartById
 cartsRouter.patch('/:cartId', requireUser, async (req, res, next) => {
 //this needs to be editited, half of this is still from fitness traxker

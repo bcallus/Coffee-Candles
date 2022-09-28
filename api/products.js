@@ -5,6 +5,7 @@ const {
   getProductById
     //add other functions here
 } = require("../db");
+const { createNewCart } = require("../src/api");
 const { requireAdmin } = require("./utils")
 
 //products related api endpoints below
@@ -34,7 +35,7 @@ productsRouter.get("/:productId", async (req, res, next) => {
 //for when add to cart is clicked
 productsRouter.post("/:productId", async (req, res, next) => {
   try {
-    const { productId, cartId, quantity, price } = req.params
+    const { productId, cartId, quantity, price } = req.body
     console.log({cartId, line:39})
     const newOrder = await addProductToCart({
       productId,
@@ -42,6 +43,7 @@ productsRouter.post("/:productId", async (req, res, next) => {
       quantity,
       price
     });
+    console.log({newOrder, line:45})
     res.send(newOrder);
   } catch (error) {
     next(error);
@@ -63,6 +65,17 @@ productsRouter.post("/", requireAdmin, async (req, res, next) => {
 } catch ({ name, message }) {
   next({ name, message, status:401 });
 }
+});
+
+//productsRouter.post('/', to create a cart for a user (registered?), uses createCart
+productsRouter.post("/", async (req, res, next) => {
+  try {
+    const newCart = await createCart({ userId });
+    console.log({newCart, line:74})
+    res.send(newCart);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = productsRouter;
