@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import './navbar.css';
 import {
   AiOutlineMenu,
@@ -19,11 +20,11 @@ const Navbar = () => {
       <div className="container">
         <h1><span><GiCoffeeBeans /> Coffee </span>+ Tea</h1>
         <ul className={click ? 'nav-menu active' : 'nav-menu'} >
-            <li><a href='/'>Home</a></li>
-            <li><a href='/products'>Products</a></li>
-            <li><a href='/about'>About</a></li>
-            <li><a href='/cart'><AiOutlineShoppingCart /></a></li>
-            <li><a href='/login'><AiOutlineUser /></a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/products">Products</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/carts"><AiOutlineShoppingCart /></Link></li>
+            <li><Link to="/login"><AiOutlineUser /></Link></li>
         </ul>
         <div className="ham" onClick={handleClick}>
           {click ? (<AiOutlineClose className='icon' />) : (<AiOutlineMenu className='icon' />)} 
