@@ -5,7 +5,8 @@ import { createNewOrder } from '../../api';
 
 const ProductById = ({ productsList, token, cartId}) => {
   const { productId } = useParams();
-  const id = parseInt(productId);
+    const id = parseInt(productId);
+    console.log({ cartId, line: 9 })
 
   const Navigate = useNavigate();
 
@@ -20,7 +21,11 @@ const ProductById = ({ productsList, token, cartId}) => {
       console.log({ productId, line: 20 });
       console.log({ cartId, line: 21 });
       const newOrder = await createNewOrder(token, cartId, productId)
-      console.log({newOrder, line:23})
+        console.log({ newOrder, line: 23 })
+        //this alert only alerts people that are logged in, we still have to build guest cart capability
+        if (newOrder && cartId) {
+        alert("This item has been added to your cart!")
+    }
   };
 
     return (

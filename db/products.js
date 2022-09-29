@@ -54,8 +54,6 @@ async function getProductById(id) {
 //getProductByName | like getActivityByName(name), not sure we need this
 
 //attachProductsToCarts(carts) | like  attachActivitiesToRoutines(routines) 
-//probably have to fix what this is selecting?
-//do we even need this?
 async function attachProductsToCarts(cartId) {
   try {
     const {rows} = await client.query(`
@@ -64,8 +62,6 @@ async function attachProductsToCarts(cartId) {
       JOIN orders ON products.id = orders."productId"
       WHERE orders."cartId" = $1
     `, [cartId]);
-
-      console.log({rows, line:68})
       return rows;
     }
   catch (error) {

@@ -3,12 +3,8 @@ const usersRouter = express.Router();
 const { requireUser, requireAdmin } = require("./utils");
 const {
   createUser,
-	getUser,
-	getAllUsers,
   getUserByEmail,
 	getUserById,
-	getCartByUser,
-	updateUser,
 	createUserCart
 } = require("../db");
 const jwt = require("jsonwebtoken");
@@ -147,27 +143,6 @@ usersRouter.get("/me", async (req, res, next) => {
 	}
 });
 
-//look at usersRouter.get("/:username/routines", in fitness tracker
-//right now req.params only contains email...
-//this needs work
-usersRouter.get("/:id/carts", async (req, res, next) => {
-	try {
-		const email = req.params;
-		// console.log("req.user", req.user)
-		console.log("req.params", req.params)
-		console.log("email.email", email.email)
-	
-	//if isPurchased is false, return their current cart
-		const response = await getCartByUser(email.email);
-		res.send(response);
-		
-	//if is Purchased is true, maybe it can return their order history
-		
-	} catch (error) {
-		res.status(401).send(error);
-	}
-});
-
 //usersRouter.post('/', to create a cart for a user (registered?), uses createCart
 usersRouter.post("/", async (req, res, next) => {
 	try {
@@ -182,9 +157,6 @@ usersRouter.post("/", async (req, res, next) => {
 
 
 //are there any other endpoints specific to a user?
-//maybe usersRouter.get("/:userId/mycart" or "/:userId/orderhistory" something like this 
-//will figure this part out
-
 
 //usersRouter.patch for /me/:userId for profile
 //usersRouter.get "/all" for admin profile
