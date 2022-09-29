@@ -56,28 +56,18 @@ async function getProductById(id) {
 //attachProductsToCarts(carts) | like  attachActivitiesToRoutines(routines) 
 //probably have to fix what this is selecting?
 //do we even need this?
-async function attachProductsToCarts(carts) {
+async function attachProductsToCarts(cartId) {
   try {
-    const cartId = carts.map(cart => cart.id)
-
-    if (!cartId?.length) return
-
     const {rows} = await client.query(`
       SELECT products.*, orders.quantity, orders."cartId", orders.price, orders.id AS "orderId"
       FROM products
       JOIN orders ON products.id = orders."productId"
-      WHERE orders."cartId" IN (${cartId.join(",")})
-    `);
+      WHERE orders."cartId" = $1
+    `, [cartId]);
 
-    const data = carts.map(cart => {
-      orders = rows.filter(row => {
-        return row.cartId === cart.id;
-      })
-      return cart;
-    })
-
-    return data;
-  }
+      console.log({rows, line:68})
+      return rows;
+    }
   catch (error) {
     console.error(error)
     throw error;

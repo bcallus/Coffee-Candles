@@ -11,6 +11,16 @@ async function createUserCart({ email, isPurchased = false}) {
         const user = await getUserByEmail(email)
         const userId = user.id
 
+        const { rows: [existingCart] } = await client.query(`
+            SELECT * FROM carts
+            WHERE carts."userId" = $1
+            AND "isPurchased" = false
+        `, [userId])
+    
+        if (existingCart) {
+            return existingCart
+        }
+    
         const { rows: [carts] } = await client.query(`
             INSERT INTO carts("userId", "isPurchased")
             VALUES ($1, $2) 
@@ -53,6 +63,9 @@ async function getCartById(id) {
       `,
        [id]
       );
+
+      //attachCProductsToCart
+      cart.products = await attachProductsToCarts(id)
       return cart;
     } catch (error) {
       throw error;

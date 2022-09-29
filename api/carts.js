@@ -6,6 +6,7 @@ const {
     destroyOrder,
     getCartsWithoutProducts,
     getCartByUser,
+    getCartById,
     //add other functions here
 } = require("../db");
 
@@ -24,18 +25,29 @@ cartsRouter.get("/", async (req, res, next) => {
 //cart component needs to know if the user is authenticated or not
 //if the user is authenticated, we need to get the userId from the user (to pass in request)
 //if they are not authenticated, we need to deal with local storage
-cartsRouter.get("/:userId", async (req, res, next) => {
-    try {
-      const { userId } = req.params;
-      const cart = await getCartByUser(userId);
-      console.log("cart from cartsRouter.get by userI-->", cart)
-      res.send(cart);
-    } catch (error) {
-      next(error);
-    }
-});
+
+//dont think we need this, conflicts with cartsRouter.get("/:cartId", take out if not needed
+// cartsRouter.get("/:userId", async (req, res, next) => {
+//     try {
+//       const { userId } = req.params;
+//       const cart = await getCartByUser(userId);
+//       console.log("cart from cartsRouter.get by userI-->", cart)
+//       res.send(cart);
+//     } catch (error) {
+//       next(error);
+//     }
+// });
 
 //cartsRouter.get("/:userId", to getCartById for specific userId /carts/:userId
+cartsRouter.get("/:cartId", async (req, res, next) => {
+  try {
+    const { cartId } = req.params;
+    const cartWithProducts = await getCartById(cartId)
+    res.send(cartWithProducts);
+  } catch (error) {
+    next(error);
+  }
+});
 
 //cartsRouter.post("/:userId", to createCart for a specific userId /carts/:userId
 
