@@ -74,8 +74,8 @@ function App() {
          
          <Route path='/carts' element={
            <Cart
-             cart={cart}
-             setCart={setCart} 
+             token={token}
+             cartId={cartId}
            />
          }></Route>
       </Routes>
