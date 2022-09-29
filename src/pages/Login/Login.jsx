@@ -45,7 +45,7 @@ export default function Login({ setToken, email, setEmail, setCartId, cartId}) {
       const newCart = await createNewCart({ token, email })
       const newCartId = newCart.id
       setCartId(newCartId)
-      console.log({ newCartId, line:48 })
+      console.log({ cartId, line:48 })
       console.log({newCart, line: 49})
     }
     console.log({ cartId, line:51 })

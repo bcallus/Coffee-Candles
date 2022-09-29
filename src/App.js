@@ -17,7 +17,7 @@ function App() {
   const [token, setToken] = useState("");
   const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
-  const [cartId, setCartId] = useState(0);
+  const [cartId, setCartId] = useState();
   const [cart, setCart] = useState([{}]);
 
   useEffect(() => {
