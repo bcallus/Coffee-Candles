@@ -72,7 +72,7 @@ function App() {
            />
          }></Route>
          
-         <Route path='/cart' element={
+         <Route path='/carts' element={
            <Cart
              cart={cart}
              setCart={setCart} 
