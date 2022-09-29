@@ -68,7 +68,7 @@ export async function createNewOrder(token, cartId, productId) {
 
 export async function fetchUserCart(token, cartId) {
 	try {
-		return await fetch(`${APIURL}/carts/${cartId}`, {
+		return await fetch(`${APIURL}/carts`, {
 			headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
