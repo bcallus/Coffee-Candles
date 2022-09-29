@@ -30,7 +30,6 @@ async function getAllProducts() {
         const { rows } = await client.query(`
             SELECT * FROM products;
         `)
-        // console.log("rows from getAllProducts-->", rows)
         return rows;
     }
     catch (error) {
@@ -39,7 +38,6 @@ async function getAllProducts() {
 }
 
 async function getProductById(id) {
-  console.log({id, line:42})
   try {
     const { rows: [product] } = await client.query(`
       SELECT * FROM products
@@ -56,29 +54,16 @@ async function getProductById(id) {
 //getProductByName | like getActivityByName(name), not sure we need this
 
 //attachProductsToCarts(carts) | like  attachActivitiesToRoutines(routines) 
-//probably have to fix what this is selecting?
-async function attachProductsToCarts(carts) {
+async function attachProductsToCarts(cartId) {
   try {
-    const cartId = carts.map(cart => cart.id)
-
-    if (!cartId?.length) return
-
     const {rows} = await client.query(`
       SELECT products.*, orders.quantity, orders."cartId", orders.price, orders.id AS "orderId"
       FROM products
       JOIN orders ON products.id = orders."productId"
-      WHERE orders."cartId" IN (${cartId.join(",")})
-    `);
-
-    const data = carts.map(cart => {
-      orders = rows.filter(row => {
-        return row.cartId === cart.id;
-      })
-      return cart;
-    })
-
-    return data;
-  }
+      WHERE orders."cartId" = $1
+    `, [cartId]);
+      return rows;
+    }
   catch (error) {
     console.error(error)
     throw error;

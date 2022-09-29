@@ -17,8 +17,6 @@ export async function fetchAllProducts() {
 	}
 }
 
-//this is where you send data to the server in request body 
-
 export async function createNewCart({ token, email, isPurchased = false }) {
 	try {
         return fetch(`${APIURL}/users`, {
@@ -34,6 +32,32 @@ export async function createNewCart({ token, email, isPurchased = false }) {
           })
             .then((response) => response.json())
             .then((result) => {
+            return result;
+            });
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
+//this is where you send data to the server in request body 
+
+export async function createNewOrder(token, cartId, productId) {
+    try {
+        return fetch(`${APIURL}/products/${productId}`,  {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+				productId: productId,
+				cartId: cartId,
+            }),
+          })
+            .then((response) => response.json())
+			.then((result) => {
+			console.log({result, line:60})
             return result;
             });
     }

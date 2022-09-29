@@ -15,7 +15,9 @@ import Cart from './pages/Cart/Cart.jsx';
 
 function App() {
   const [token, setToken] = useState("");
+  const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
+  const [cartId, setCartId] = useState(0);
   const [cart, setCart] = useState([{}]);
 
   useEffect(() => {
@@ -33,13 +35,49 @@ function App() {
       <Navbar />
       <Hero />
       <Routes>
-      <Route path='/' element={<Home />}></Route>
-        <Route path='/products' element={<Products productsList={productsList} />}></Route>
-        <Route path='/products/:productId' element={<ProductById productsList={productsList}/>}></Route>
-        <Route path='/about' element={<About />}></Route>
-        <Route path='/login' element={<Login token={token} setToken={setToken} />}></Route>
-        <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
-        <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />}></Route>
+         <Route path='/' element={<Home />}></Route>
+         
+         <Route path='/products' element={
+           <Products
+             productsList={productsList} 
+           />
+         }></Route>
+         
+         <Route path='/products/:productId' element={
+           <ProductById
+             productsList={productsList}
+             token={token}
+             cartId={cartId}
+           />
+         }></Route>
+         
+         <Route path='/about' element={<About />}></Route>
+         
+         <Route path='/login' element={
+           <Login token={token}
+             setToken={setToken} 
+             email={email}
+             setEmail={setEmail}
+             setCartId={setCartId}
+             cartId={cartId}
+           />
+         }></Route>
+         
+         <Route path='/register' element={
+           <Register
+             token={token}
+             setToken={setToken} 
+             email={email}
+             setEmail={setEmail}
+           />
+         }></Route>
+         
+         <Route path='/cart' element={
+           <Cart
+             cart={cart}
+             setCart={setCart} 
+           />
+         }></Route>
       </Routes>
       <Footer />
     </Router>
