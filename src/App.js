@@ -18,7 +18,6 @@ function App() {
   const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
   const [cartId, setCartId] = useState(0);
-  const [cart, setCart] = useState([{}]);
 
   useEffect(() => {
     fetchAllProducts().then((results) => {
