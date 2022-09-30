@@ -17,10 +17,10 @@ const Cart = ({token, cartId}) => {
   
   return (
     <div>
-      <h1>Shopping Cart</h1>
+      <h1 className="title">Shopping Cart</h1>
           <div>
         {ordersList.products ? ordersList.products.map((product) => (
-              <div>
+              <div className="order-container">
                 <img className="thumbnail" 
                   src={product.image_url} 
                   alt={product.name}/>
@@ -28,7 +28,7 @@ const Cart = ({token, cartId}) => {
                 <p>{product.quantity}</p>
                 <p>{product.price}</p>
               </div>
-            )) : <p>Your shopping cart is empty.</p>}
+            )) : <p className="cart-empty">Your shopping cart is empty.</p>}
           </div>
     </div>
   
