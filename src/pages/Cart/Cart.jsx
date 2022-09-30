@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./cart.css";
 import { fetchUserCart } from "../../api";
+import Order from "./Order";
 
 const Cart = ({token, cartId}) => {
   const [ordersList, setOrdersList] = useState([])
@@ -11,12 +12,17 @@ const Cart = ({token, cartId}) => {
     }).catch(console.error)
   }, [])
   
-  // console.log({ordersList, line:14})
+  console.log({ordersList, line:14})
   
   
   return (
     <div>
-      <p>carts page</p>
+      <h1>Shopping Cart</h1>
+          <div>
+            {ordersList.id ? ordersList.products.map((product) => (
+                   <p>product.id</p>
+            )) : <p>Your shopping cart is empty.</p>}
+          </div>
     </div>
   
 )
