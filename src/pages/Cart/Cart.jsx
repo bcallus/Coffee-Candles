@@ -11,8 +11,18 @@ const Cart = ({token, cartId}) => {
     }).catch(console.error)
   }, [])
   
-  console.log({ordersList, line:14})
+  console.log({ ordersList, line: 14 })
   
+  const calcTotalPrice = () => {
+    const productsList = ordersList.products
+    
+    if (productsList) {
+      let totalPrice = productsList.reduce(function (totalPrice, product) {
+        return (Math.ceil((Number(totalPrice) + Number(product. price))*100)/100).toFixed(2);
+      }, 0);
+    return totalPrice
+   }
+}
   
   return (
     <div>
@@ -36,7 +46,8 @@ const Cart = ({token, cartId}) => {
                 </div>
             </div>
             )) : <p className="cart-empty">Your shopping cart is empty.</p>}
-          </div>
+      </div>
+      <p className="title-total">Total: ${calcTotalPrice()}</p>
     </div>
   
 )
