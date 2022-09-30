@@ -6,6 +6,7 @@
 
   .order {
     display: flex;
+    border: gray 1px, solid;
   }
 
   .title {
@@ -14,26 +15,43 @@
     padding-bottom: 2rem;
   }
 
+  .title-price {
+    border-top: gray .2px solid;
+    padding-top: 1rem;
+    text-align: end;
+    padding-right: 8rem;
+    font-weight: bolder;
+  }
+
   .cart-empty {
     margin-top: 3rem;
     margin-left: 5rem;
     padding-bottom: 15rem;
   }
 
+  .item-info-price {
+    justify-content: end;
+    align-items: center;
+    padding-right: 5rem;
+  }
+
   .item-info, .thumbnail, .delete-order-button {
     display: flex;
-    margin-left: 2rem;
+    margin-right: 2rem;
     align-items: center;
   }
 
   .edit-delete-order-buttons {
    display: flex;
-   margin-left: 9rem;
+   justify-content: end;
+   margin-bottom: 1rem;
   }
 
   .order-container {
     margin-left: 2rem;
     margin-bottom: 3rem;
+    margin-right: 2rem;
+    border-bottom: solid .5px gray;
   }
 
  
