@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./cart.css";
 import { fetchUserCart } from "../../api";
-import Order from "./Order";
 
 const Cart = ({token, cartId}) => {
   const [ordersList, setOrdersList] = useState([])
@@ -20,14 +19,20 @@ const Cart = ({token, cartId}) => {
       <h1 className="title">Shopping Cart</h1>
           <div>
         {ordersList.products ? ordersList.products.map((product) => (
-              <div className="order-container">
+          <div className="order-container">
+              <div className="order">
                 <img className="thumbnail" 
                   src={product.image_url} 
                   alt={product.name}/>
-                <p>{product.name}</p>
-                <p>{product.quantity}</p>
-                <p>{product.price}</p>
-              </div>
+                  <p className="item-info">{product.name}</p>
+                  <p className="item-info">Qty: {product.quantity}</p>
+                  <p className="item-info">${product.price}</p>
+            </div>
+                <div className="edit-delete-order-buttons">
+                  <button className="delete-order-button">delete item</button>
+                  <button className="delete-order-button">add another to cart</button>
+                </div>
+            </div>
             )) : <p className="cart-empty">Your shopping cart is empty.</p>}
           </div>
     </div>
