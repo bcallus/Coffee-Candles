@@ -15,9 +15,11 @@ import Cart from './pages/Cart/Cart.jsx';
 
 function App() {
   const [token, setToken] = useState("");
+  const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
-  const [cart, setCart] = useState([{}]);
+  const [cartId, setCartId] = useState();
   const [admin, setAdmin] = useState();
+
   useEffect(() => {
     fetchAllProducts().then((results) => {
       setProductsList(results);
@@ -30,16 +32,56 @@ function App() {
    return (
     
     <Router>
-      <Navbar />
+      <Navbar cartId={cartId}/>
       <Hero />
       <Routes>
-      <Route path='/' element={<Home />}></Route>
-        <Route path='/products' element={<Products productsList={productsList} admin={admin} />}></Route>
-        <Route path='/products/:productId' element={<ProductById productsList={productsList} admin={admin}/>}></Route>
-        <Route path='/about' element={<About />}></Route>
-        <Route path='/login' element={<Login token={token} setToken={setToken} admin={admin} setAdmin={setAdmin} />}></Route>
-        <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
-        <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />}></Route>
+         <Route path='/' element={<Home />}></Route>
+         
+         <Route path='/products' element={
+           <Products
+             productsList={productsList} 
+             admin={admin}
+           />
+         }></Route>
+         
+         <Route path='/products/:productId' element={
+           <ProductById
+             productsList={productsList}
+             token={token}
+             cartId={cartId}
+             admin={admin}
+           />
+         }></Route>
+         
+         <Route path='/about' element={<About />}></Route>
+         
+         <Route path='/login' element={
+           <Login token={token}
+             setToken={setToken} 
+             email={email}
+             setEmail={setEmail}
+             setCartId={setCartId}
+             cartId={cartId}
+             admin={admin} 
+             setAdmin={setAdmin}
+           />
+         }></Route>
+         
+         <Route path='/register' element={
+           <Register
+             token={token}
+             setToken={setToken} 
+             email={email}
+             setEmail={setEmail}
+           />
+         }></Route>
+         
+         <Route path='/carts/:cartId' element={
+           <Cart
+             token={token}
+             cartId={cartId}
+           />
+         }></Route>
       </Routes>
       <Footer />
     </Router>

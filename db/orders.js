@@ -1,27 +1,11 @@
 const client = require("./client");
+const {
+  getProductById //add other functions here
+} = require("./products");
 //ORDERS ARE SIMILER TO ROUTINE_ACTIVITES ON FITNESS TRACKER (also they are like "cart items", or carts with products in them)
 
-async function createOrder({
-    productId,
-    cartId,
-    quantity,
-    price
-  }) {
-    try {
-      const { rows: [order] } = await client.query(`
-      INSERT INTO orders ("productId", "cartId", quantity, price)
-      VALUES ($1, $2, $3, $4)
-      RETURNING *;
-    `, [productId, cartId, quantity, price]);
-  
-      return order;
-    }
-    catch (error) {
-      throw error;
-    }
-  }
-
   //getOrderItemById | like getRoutineActivityById(id)
+  //take out if not used
   async function getOrderItemById(id) {
     try {
       const {
@@ -41,24 +25,17 @@ async function createOrder({
     }
   }
 
-
-
-
-  //addProductToCart | like addActivityToRoutine({routineId,activityId,count,duration}), actually inserting into orders table
-  async function addProductToCart({
-    productId,
-    cartId,
-    quantity,
-    price
-  }) {
+  //addProductToCart creates an order- keep this
+async function addProductToCart({ cartId, productId }) {
     try {
+      const product = await getProductById(productId)
+      const quantity = 1
+
       const { rows: [order] } = await client.query(`
       INSERT INTO orders ("productId", "cartId", quantity, price)
       VALUES ($1, $2, $3, $4)
       RETURNING *;
-    `, [productId, cartId, quantity, price]);
-  
-      console.log("order from addProductToCart-->", order)
+    `, [productId, cartId, quantity, product.price]);
       return order;
     } catch (error) {
       throw error;
@@ -101,7 +78,6 @@ async function destroyOrder(id) {
   //canEditOrders | like  canEditRoutineActivity(routineActivityId, userId), maybe this verifys that a user/guest can edit their own cart?
 
 module.exports = {
-  createOrder,
   addProductToCart,
   updateOrder,
   destroyOrder

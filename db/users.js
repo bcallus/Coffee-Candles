@@ -22,8 +22,6 @@ async function createUser({ email, password, isAdmin}) {
 	}
 }
 
-//getUser ?? do we need this
-
 //getUserById
 async function getUserById(userId) {
 	try {
