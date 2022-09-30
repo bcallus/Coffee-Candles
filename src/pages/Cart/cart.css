@@ -15,7 +15,7 @@
     padding-bottom: 2rem;
   }
 
-  .title-price {
+  .title-price, .title-total {
     border-top: gray .2px solid;
     padding-top: 1rem;
     text-align: end;
