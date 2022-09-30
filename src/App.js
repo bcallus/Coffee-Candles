@@ -17,7 +17,7 @@ function App() {
   const [token, setToken] = useState("");
   const [productsList, setProductsList] = useState([{}]);
   const [cart, setCart] = useState([{}]);
-
+  const [admin, setAdmin] = useState();
   useEffect(() => {
     fetchAllProducts().then((results) => {
       setProductsList(results);
@@ -34,10 +34,10 @@ function App() {
       <Hero />
       <Routes>
       <Route path='/' element={<Home />}></Route>
-        <Route path='/products' element={<Products productsList={productsList} />}></Route>
-        <Route path='/products/:productId' element={<ProductById productsList={productsList}/>}></Route>
+        <Route path='/products' element={<Products productsList={productsList} admin={admin} />}></Route>
+        <Route path='/products/:productId' element={<ProductById productsList={productsList} admin={admin}/>}></Route>
         <Route path='/about' element={<About />}></Route>
-        <Route path='/login' element={<Login token={token} setToken={setToken} />}></Route>
+        <Route path='/login' element={<Login token={token} setToken={setToken} admin={admin} setAdmin={setAdmin} />}></Route>
         <Route path='/register' element={<Register token={token} setToken={setToken}/>}></Route>
         <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />}></Route>
       </Routes>

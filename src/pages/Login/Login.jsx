@@ -18,15 +18,17 @@ async function loginUser({ email, password }) {
   })
     .then((response) => response.json())
     .then((result) => {
+      console.log({result, line:21})
       return result;
     })
     .catch(console.error);
 }
-export default function Login({ setToken }) {
+export default function Login({ setToken, admin, setAdmin}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +43,8 @@ export default function Login({ setToken }) {
     const token = data.token;
     localStorage.setItem('token', token);
     setToken(token);
-
+    const isAdmin = data.user.isAdmin
+    setAdmin(isAdmin)
     if (token) {
       const newCart = await createNewCart({ token, email})
       console.log({newCart, line: 47})
