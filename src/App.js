@@ -17,7 +17,7 @@ function App() {
   const [token, setToken] = useState("");
   const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
-  const [cartId, setCartId] = useState(0);
+  const [cartId, setCartId] = useState();
 
   useEffect(() => {
     fetchAllProducts().then((results) => {
@@ -31,7 +31,7 @@ function App() {
    return (
     
     <Router>
-      <Navbar />
+      <Navbar cartId={cartId}/>
       <Hero />
       <Routes>
          <Route path='/' element={<Home />}></Route>
@@ -71,7 +71,7 @@ function App() {
            />
          }></Route>
          
-         <Route path='/carts' element={
+         <Route path='/carts/:cartId' element={
            <Cart
              token={token}
              cartId={cartId}
