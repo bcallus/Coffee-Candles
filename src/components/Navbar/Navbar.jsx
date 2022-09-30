@@ -10,7 +10,7 @@ import {
 
 import { GiCoffeeBeans } from 'react-icons/gi'
 
-const Navbar = () => {
+const Navbar = ({cartId}) => {
     const [click, setClick] = useState(false)
     const handleClick = () => { setClick(!click) }
 
@@ -23,7 +23,7 @@ const Navbar = () => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/about">About</Link></li>
-            <li><Link to="/carts"><AiOutlineShoppingCart /></Link></li>
+          <li><Link to={`/carts/${cartId}`}><AiOutlineShoppingCart /></Link></li>
             <li><Link to="/login"><AiOutlineUser /></Link></li>
         </ul>
         <div className="ham" onClick={handleClick}>

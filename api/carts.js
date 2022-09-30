@@ -14,14 +14,13 @@ const {
 cartsRouter.get("/", async (req, res, next) => {
     try {
       const carts = await getCartsWithoutProducts();
-      console.log("carts from cartsRouter.get-->", carts)
       res.send(carts);
     } catch (error) {
       next(error);
     }
 });
 
-//cartsRouter.get("/:userId", to getCartById for specific userId /carts/:userId
+//cartsRouter.get("/:cartId", to getCartById for specific userId /carts/:userId
 cartsRouter.get("/:cartId", async (req, res, next) => {
   try {
     const { cartId } = req.params;

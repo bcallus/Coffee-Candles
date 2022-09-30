@@ -1,0 +1,39 @@
+.thumbnail {
+    max-height: 5rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+  }
+
+  .order {
+    display: flex;
+  }
+
+  .title {
+    margin-left: 5rem;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+
+  .cart-empty {
+    margin-top: 3rem;
+    margin-left: 5rem;
+    padding-bottom: 15rem;
+  }
+
+  .item-info, .thumbnail, .delete-order-button {
+    display: flex;
+    margin-left: 2rem;
+    align-items: center;
+  }
+
+  .edit-delete-order-buttons {
+   display: flex;
+   margin-left: 9rem;
+  }
+
+  .order-container {
+    margin-left: 2rem;
+    margin-bottom: 3rem;
+  }
+
+ 

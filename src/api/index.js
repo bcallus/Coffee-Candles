@@ -65,3 +65,21 @@ export async function createNewOrder(token, cartId, productId) {
         console.error(error)
     }
 }
+
+export async function fetchUserCart(token, cartId) {
+	try {
+		return await fetch(`${APIURL}/carts/${cartId}`, {
+			headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+			},
+		})
+			.then((response) => response.json())
+            .then((result) => {
+            console.log({result, line:79})
+			return result;
+			});
+	} catch (error) {
+		console.error(error);
+	}
+}

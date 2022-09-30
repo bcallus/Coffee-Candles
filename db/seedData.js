@@ -202,7 +202,7 @@ async function createInitialProducts() {
   }
 }
 
-async function createInitalCarts() {
+async function createInitialCarts() {
   try {
     console.log("Starting to create carts!")
     const cartToCreate = [
@@ -322,7 +322,7 @@ async function rebuildDB() {
       await createInitialUsers()
       await createInitialCategories()
       await createInitialProducts()
-      await createInitalCarts()
+      await createInitialCarts()
       await createInitialOrders()
     } catch (error) {
       console.log("Error during rebuildDB")
