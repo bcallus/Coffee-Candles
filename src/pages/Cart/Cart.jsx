@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./cart.css";
 import { fetchUserCart } from "../../api";
 
-const Cart = ({token, cartId}) => {
-  const [ordersList, setOrdersList] = useState([])
+const Cart = ({token, cartId, ordersList, setOrdersList}) => {
+  //lifted ordersList state up, remove once you know it works
+  // const [ordersList, setOrdersList] = useState([])
 
   useEffect(() => {
     fetchUserCart(token, cartId).then((results) => {

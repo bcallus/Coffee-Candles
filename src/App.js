@@ -12,12 +12,14 @@ import Footer from "./components/Footer/Footer.jsx";
 import Products from './pages/Product/Products.jsx';
 import ProductById from './pages/Product/ProductById.jsx';
 import Cart from './pages/Cart/Cart.jsx';
+import GuestCart from './pages/Cart/GuestCart';
 
 function App() {
   const [token, setToken] = useState("");
   const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
   const [cartId, setCartId] = useState();
+  const [ordersList, setOrdersList] = useState([])
   const [guestCart, setGuestCart] = useState([])
 
   useEffect(() => {
@@ -82,6 +84,14 @@ function App() {
            <Cart
              token={token}
              cartId={cartId}
+             ordersList={ordersList}
+             setOrdersList={setOrdersList}
+           />
+         }></Route>
+
+         <Route path="/carts/guest" element={
+           <GuestCart 
+             guestCart={guestCart}
            />
          }></Route>
       </Routes>
