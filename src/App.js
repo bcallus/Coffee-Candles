@@ -28,7 +28,7 @@ function App() {
     const myToken = localStorage.getItem("token")
     setToken(myToken)
 
-    let localCart = localStorage.getItem("cart");
+    let localCart = localStorage.getItem("guestCart");
     localCart = JSON.parse(localCart);
     if (localCart) setGuestCart(localCart);
    }, [])

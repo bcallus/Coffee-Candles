@@ -18,15 +18,15 @@ const ProductById = ({ productsList, token, cartId, guestCart, setGuestCart}) =>
       event.preventDefault();
       if (!cartId) {
         productsList.filter((product) => product.id === id)
-        .map(product =>  setProduct(product))
-        console.log({product, line:22})
-        const guestCartCopy = [...guestCart];
-        const existingItem = guestCartCopy.find(product => product.id == productId);
-        if (existingItem) {
-          existingItem.quantity += product.quantity
-        } else {
+        .map(async product =>  await setProduct(product))
+          console.log({product, line:22})
+          const guestCartCopy = [...guestCart];
           guestCartCopy.push(product)
-        }
+          console.log({ guestCartCopy, line: 25 })
+          setGuestCart(guestCartCopy)
+          console.log({ guestCart, line: 27 })
+          let stringCart = JSON.stringify(guestCartCopy);
+          localStorage.setItem("guestCart", stringCart)
       }
       if (token) {
         const newOrder = await createNewOrder(token, cartId, productId)
