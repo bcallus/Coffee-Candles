@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './productById.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createNewOrder } from '../../api';
 
-const ProductById = ({ productsList, token, cartId}) => {
+const ProductById = ({ productsList, token, cartId, guestCart, setGuestCart}) => {
   const { productId } = useParams();
-    const id = parseInt(productId);
-    console.log({ cartId, line: 9 })
+  const id = parseInt(productId);
+  const[product, setProduct] = useState({})
 
   const Navigate = useNavigate();
 
@@ -16,12 +16,25 @@ const ProductById = ({ productsList, token, cartId}) => {
 
     const addToCart = async (event) => {
       event.preventDefault();
-      const newOrder = await createNewOrder(token, cartId, productId)
-      console.log({ newOrder, line: 23 })
-        //this alert only alerts people that are logged in, we still have to build guest cart capability
-      if (newOrder && cartId) {
-        alert("This item has been added to your cart!")
-    }
+      if (!cartId) {
+        productsList.filter((product) => product.id === id)
+        .map(product =>  setProduct(product))
+        console.log({product, line:22})
+        const guestCartCopy = [...guestCart];
+        const existingItem = guestCartCopy.find(product => product.id == productId);
+        if (existingItem) {
+          existingItem.quantity += product.quantity
+        } else {
+          guestCartCopy.push(product)
+        }
+      }
+      if (token) {
+        const newOrder = await createNewOrder(token, cartId, productId)
+        console.log({ newOrder, line: 23 })
+        if (newOrder && cartId) {
+          alert("This item has been added to your cart!")
+        }
+      }
   };
 
     return (

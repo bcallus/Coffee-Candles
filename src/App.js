@@ -18,6 +18,7 @@ function App() {
   const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
   const [cartId, setCartId] = useState();
+  const [guestCart, setGuestCart] = useState([])
 
   useEffect(() => {
     fetchAllProducts().then((results) => {
@@ -26,6 +27,10 @@ function App() {
     
     const myToken = localStorage.getItem("token")
     setToken(myToken)
+
+    let localCart = localStorage.getItem("cart");
+    localCart = JSON.parse(localCart);
+    if (localCart) setGuestCart(localCart);
    }, [])
   
    return (
@@ -47,6 +52,8 @@ function App() {
              productsList={productsList}
              token={token}
              cartId={cartId}
+             guestCart={guestCart}
+             setGuestCart={setGuestCart}
            />
          }></Route>
          
