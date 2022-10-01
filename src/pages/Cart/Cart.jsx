@@ -47,7 +47,11 @@ const Cart = ({token, cartId}) => {
             </div>
             )) : <p className="cart-empty">Your shopping cart is empty.</p>}
       </div>
+      <div className="checkout-section">
       <p className="title-total">Total: ${calcTotalPrice()}</p>
+      
+      <button className="checkout-button">checkout order</button>
+      </div>
     </div>
   
 )
