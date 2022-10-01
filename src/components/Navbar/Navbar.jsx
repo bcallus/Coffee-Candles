@@ -22,8 +22,8 @@ const Navbar = ({cartId}) => {
         <ul className={click ? 'nav-menu active' : 'nav-menu'} >
             <li><Link to="/">Home</Link></li>
             <li><Link to="/products">Products</Link></li>
-            <li><Link to="/about">About</Link></li>
-          <li><Link to={`/carts/${cartId}`}><AiOutlineShoppingCart /></Link></li>
+          <li><Link to="/about">About</Link></li>
+          { cartId ?  <li><Link to={`/carts/${cartId}`}><AiOutlineShoppingCart /></Link></li> : <li><Link to="/carts/guest"><AiOutlineShoppingCart /></Link></li>}
             <li><Link to="/login"><AiOutlineUser /></Link></li>
         </ul>
         <div className="ham" onClick={handleClick}>
