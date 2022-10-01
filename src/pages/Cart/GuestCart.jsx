@@ -2,6 +2,8 @@ import React from "react";
 
 const GuestCart = ({ guestCart }) => {
 
+    //if user checks out cart youu can call localStorage.removeItem(“guestCart”) to remove the local storage
+
     const calcTotalPrice = () => {
         if (guestCart) {
           let totalPrice = guestCart.reduce(function (totalPrice, product) {
