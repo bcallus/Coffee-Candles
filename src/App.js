@@ -18,6 +18,7 @@ function App() {
   const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
   const [cartId, setCartId] = useState();
+  const [admin, setAdmin] = useState();
 
   useEffect(() => {
     fetchAllProducts().then((results) => {
@@ -39,6 +40,7 @@ function App() {
          <Route path='/products' element={
            <Products
              productsList={productsList} 
+             admin={admin}
            />
          }></Route>
          
@@ -47,6 +49,7 @@ function App() {
              productsList={productsList}
              token={token}
              cartId={cartId}
+             admin={admin}
            />
          }></Route>
          
@@ -59,6 +62,7 @@ function App() {
              setEmail={setEmail}
              setCartId={setCartId}
              cartId={cartId}
+             admin={admin} setAdmin={setAdmin}
            />
          }></Route>
          
