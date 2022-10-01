@@ -54,4 +54,19 @@
     border-bottom: solid .5px gray;
   }
 
+.checkout-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-button {
+    margin-top: 1rem;
+    margin-right: 3rem;
+    padding: .5rem;
+    background-color: rgb(17, 72, 17);
+    color: white;
+    border-radius: 10px;
+    width: 15vw;
+    align-self: end;
+}  
  
