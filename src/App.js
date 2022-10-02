@@ -62,7 +62,8 @@ function App() {
              setEmail={setEmail}
              setCartId={setCartId}
              cartId={cartId}
-             admin={admin} setAdmin={setAdmin}
+             admin={admin} 
+             setAdmin={setAdmin}
            />
          }></Route>
          
