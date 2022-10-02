@@ -7,7 +7,7 @@ const Logout = ({ setIsLoggedIn, setToken }) => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setToken();
+    setToken("");
     alert("You have successfully been logged out.");
     navigate("/");
   };

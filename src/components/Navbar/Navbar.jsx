@@ -24,7 +24,7 @@ const Navbar = ({cartId, isLoggedIn}) => {
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/about">About</Link></li>
           
-            {cartId ? <li>
+            {isLoggedIn ? <li>
             <Link to={`/carts/${cartId}`}>
               <AiOutlineShoppingCart />
             </Link>
