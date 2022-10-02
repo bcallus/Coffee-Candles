@@ -23,7 +23,7 @@ const Cart = ({token, cartId, ordersList, setOrdersList}) => {
       }, 0);
     return totalPrice
    }
-}
+  }
   
   return (
     <div>
@@ -38,7 +38,6 @@ const Cart = ({token, cartId, ordersList, setOrdersList}) => {
                   alt={product.name}/>
                   <p className="item-info">{product.name}</p>
                   <p className="item-info">Qty: {product.quantity}</p>
-                  {/* <p className="item-info-price">${product.price}</p> */}
             </div>
             <div className="edit-delete-order-buttons">
                   <button className="delete-order-button">delete item</button>
