@@ -25,7 +25,7 @@ const GuestCart = ({ guestCart }) => {
                       src={product.image_url} 
                       alt={product.name}/>
                       <p className="item-info">{product.name}</p>
-                      <p className="item-info">Qty: {product.quantity}</p>
+                      <p className="item-info">Qty: 1</p>
                       {/* <p className="item-info-price">${product.price}</p> */}
                 </div>
                 <div className="edit-delete-order-buttons">

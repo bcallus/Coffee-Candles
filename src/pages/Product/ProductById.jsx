@@ -18,20 +18,15 @@ const ProductById = ({ productsList, token, cartId, guestCart, setGuestCart}) =>
       event.preventDefault();
       if (!cartId) {
         const filteredProduct = productsList.filter((product) => product.id === id)
-        console.log({filteredProduct, line:21})
-        // setProduct((filteredProduct) => filteredProduct[0])
-          // console.log({product, line:24})
-          const guestCartCopy = [...guestCart];
-          guestCartCopy.push(filteredProduct[0])
-        console.log({ guestCartCopy, line: 25 })
-          setGuestCart(guestCartCopy)
-          console.log({ guestCart, line: 27 })
-          let stringCart = JSON.stringify(guestCartCopy);
-          localStorage.setItem("guestCart", stringCart)
+        const guestCartCopy = [...guestCart];
+        guestCartCopy.push(filteredProduct[0])
+        setGuestCart(guestCartCopy)
+        alert("This item has been added to your cart!")
+        let stringCart = JSON.stringify(guestCartCopy);
+        localStorage.setItem("guestCart", stringCart)
       }
       if (token) {
         const newOrder = await createNewOrder(token, cartId, productId)
-        console.log({ newOrder, line: 23 })
         if (newOrder && cartId) {
           alert("This item has been added to your cart!")
         }
