@@ -17,12 +17,13 @@ const ProductById = ({ productsList, token, cartId, guestCart, setGuestCart}) =>
     const addToCart = async (event) => {
       event.preventDefault();
       if (!cartId) {
-        productsList.filter((product) => product.id === id)
-        .map(async product =>  await setProduct(product))
-          console.log({product, line:22})
+        const filteredProduct = productsList.filter((product) => product.id === id)
+        console.log({filteredProduct, line:21})
+        // setProduct((filteredProduct) => filteredProduct[0])
+          // console.log({product, line:24})
           const guestCartCopy = [...guestCart];
-          guestCartCopy.push(product)
-          console.log({ guestCartCopy, line: 25 })
+          guestCartCopy.push(filteredProduct[0])
+        console.log({ guestCartCopy, line: 25 })
           setGuestCart(guestCartCopy)
           console.log({ guestCart, line: 27 })
           let stringCart = JSON.stringify(guestCartCopy);
