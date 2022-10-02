@@ -43,6 +43,7 @@ export default function Login({ setToken, email, setEmail, setCartId, cartId, ad
     localStorage.setItem('token', token);
     setToken(token);
     const isAdmin = data.user.isAdmin
+    localStorage.setItem('admin', isAdmin);
     setAdmin(isAdmin)
     if (token) {
       const newCart = await createNewCart({ token, email })
