@@ -75,7 +75,7 @@ export default function Login({ setToken, email, setEmail, setCartId, setIsLogge
               onChange={(e) => setPassword(e.target.value)}/>
           </label>
         </div>
-        {loginError && <p>{loginError}</p>}
+        {loginError && <p className="loginError" >{loginError}</p>}
 
         <div>
           <button className='loginbtn' type='login'>Log In</button>

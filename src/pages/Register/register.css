@@ -10,7 +10,7 @@
 }
 
 .register a:hover {
-  color: white;
+  color: green;
 }
 
 .register input {
@@ -57,6 +57,10 @@
 
 .regbtn:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+.registerError {
+  color: rgb(90, 19, 19);
 }
 
 
