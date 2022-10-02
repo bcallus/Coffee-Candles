@@ -19,7 +19,7 @@ const Cart = ({token, cartId, ordersList, setOrdersList}) => {
     
     if (productsList) {
       let totalPrice = productsList.reduce(function (totalPrice, product) {
-        return (Math.ceil((Number(totalPrice) + Number(product. price))*100)/100).toFixed(2);
+        return (Math.ceil((Number(totalPrice) + Number(product.price))*100)/100).toFixed(2);
       }, 0);
     return totalPrice
    }

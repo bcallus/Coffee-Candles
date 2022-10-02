@@ -2,12 +2,10 @@ import React from "react";
 
 const GuestCart = ({ guestCart }) => {
 
-    //if user checks out cart youu can call localStorage.removeItem(“guestCart”) to remove the local storage
-
     const calcTotalPrice = () => {
         if (guestCart) {
           let totalPrice = guestCart.reduce(function (totalPrice, product) {
-            return (Math.ceil((Number(totalPrice) + Number(product. price))*100)/100).toFixed(2);
+            return (Math.ceil((Number(totalPrice) + Number(product.price))*100)/100).toFixed(2);
           }, 0);
         return totalPrice
        }
@@ -18,15 +16,14 @@ const GuestCart = ({ guestCart }) => {
           <h1 className="title">Shopping Cart</h1>
           <p className="title-price">Price</p>
               <div>
-            {guestCart ? guestCart.map((product) => (
-              <div className="order-container">
+            {guestCart ? guestCart.map((product, index) => (
+              <div className="order-container" key={index}>
                   <div className="order">
                     <img className="thumbnail" 
                       src={product.image_url} 
                       alt={product.name}/>
                       <p className="item-info">{product.name}</p>
                       <p className="item-info">Qty: 1</p>
-                      {/* <p className="item-info-price">${product.price}</p> */}
                 </div>
                 <div className="edit-delete-order-buttons">
                       <button className="delete-order-button">delete item</button>
@@ -44,8 +41,6 @@ const GuestCart = ({ guestCart }) => {
         </div>
       
     )
-    
-
 }
 
 export default GuestCart;

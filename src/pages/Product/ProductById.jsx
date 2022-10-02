@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './productById.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createNewOrder } from '../../api';
@@ -6,7 +6,6 @@ import { createNewOrder } from '../../api';
 const ProductById = ({ productsList, token, cartId, guestCart, setGuestCart}) => {
   const { productId } = useParams();
   const id = parseInt(productId);
-  const[product, setProduct] = useState({})
 
   const Navigate = useNavigate();
 
