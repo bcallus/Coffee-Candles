@@ -12,6 +12,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import Products from './pages/Product/Products.jsx';
 import ProductById from './pages/Product/ProductById.jsx';
 import Cart from './pages/Cart/Cart.jsx';
+import GuestCart from './pages/Cart/GuestCart';
 
 function App() {
   const [token, setToken] = useState("");
@@ -19,6 +20,8 @@ function App() {
   const [productsList, setProductsList] = useState([{}]);
   const [cartId, setCartId] = useState();
   const [admin, setAdmin] = useState();
+  const [ordersList, setOrdersList] = useState([])
+  const [guestCart, setGuestCart] = useState([])
 
   useEffect(() => {
     fetchAllProducts().then((results) => {
@@ -27,6 +30,10 @@ function App() {
     
     const myToken = localStorage.getItem("token")
     setToken(myToken)
+
+    let localCart = localStorage.getItem("guestCart");
+    localCart = JSON.parse(localCart);
+    if (localCart) setGuestCart(localCart);
    }, [])
   
    return (
@@ -50,6 +57,8 @@ function App() {
              token={token}
              cartId={cartId}
              admin={admin}
+             guestCart={guestCart}
+             setGuestCart={setGuestCart}
            />
          }></Route>
          
@@ -80,6 +89,14 @@ function App() {
            <Cart
              token={token}
              cartId={cartId}
+             ordersList={ordersList}
+             setOrdersList={setOrdersList}
+           />
+         }></Route>
+
+         <Route path="/carts/guest" element={
+           <GuestCart 
+             guestCart={guestCart}
            />
          }></Route>
       </Routes>
