@@ -22,7 +22,7 @@ async function loginUser({ email, password }) {
     })
     .catch(console.error);
 }
-export default function Login({ setToken, email, setEmail, setCartId, cartId}) {
+export default function Login({ setToken, email, setEmail, setCartId, setIsLoggedIn}) {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
@@ -45,8 +45,7 @@ export default function Login({ setToken, email, setEmail, setCartId, cartId}) {
       const newCart = await createNewCart({ token, email })
       const newCartId = newCart.id
       setCartId(newCartId)
-      console.log({ newCartId, line:49 })
-      console.log({newCart, line: 50})
+      setIsLoggedIn(true);
     }
 
     if (!token){

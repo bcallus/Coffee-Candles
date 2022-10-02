@@ -1,6 +1,6 @@
 import React from "react";
 
-const GuestCart = ({ guestCart }) => {
+const GuestCart = ({ guestCart, productsList }) => {
 
     const calcTotalPrice = () => {
         if (guestCart) {
@@ -10,6 +10,19 @@ const GuestCart = ({ guestCart }) => {
         return totalPrice
        }
     }
+  
+  const editGuestCart = (event) => {
+    console.log({ guestCart, line: 15 })
+    const filteredProduct = guestCart.filter((product) => product.index)
+    console.log({ filteredProduct, line: 17 })
+    console.log({event, line:17})
+      
+  }
+  
+  // const deleteGuestCart = (event) => {
+
+  // }
+  
     
     return (
         <div>
@@ -27,7 +40,7 @@ const GuestCart = ({ guestCart }) => {
                 </div>
                 <div className="edit-delete-order-buttons">
                       <button className="delete-order-button">delete item</button>
-                      <button className="delete-order-button">add another to cart</button>
+                      <button className="edit-order-button" onClick={editGuestCart}>add another to cart</button>
                       <p className="item-info-price">${product.price}</p>
                     </div>
                 </div>
