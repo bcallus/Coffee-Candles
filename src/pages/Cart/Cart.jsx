@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./cart.css";
 import { fetchUserCart } from "../../api";
 
-const Cart = ({token, cartId}) => {
-  const [ordersList, setOrdersList] = useState([])
+const Cart = ({token, cartId, ordersList, setOrdersList}) => {
+  //lifted ordersList state up, remove once you know it works
+  // const [ordersList, setOrdersList] = useState([])
 
   useEffect(() => {
     fetchUserCart(token, cartId).then((results) => {
@@ -18,11 +19,11 @@ const Cart = ({token, cartId}) => {
     
     if (productsList) {
       let totalPrice = productsList.reduce(function (totalPrice, product) {
-        return (Math.ceil((Number(totalPrice) + Number(product. price))*100)/100).toFixed(2);
+        return (Math.ceil((Number(totalPrice) + Number(product.price))*100)/100).toFixed(2);
       }, 0);
     return totalPrice
    }
-}
+  }
   
   return (
     <div>
@@ -37,7 +38,6 @@ const Cart = ({token, cartId}) => {
                   alt={product.name}/>
                   <p className="item-info">{product.name}</p>
                   <p className="item-info">Qty: {product.quantity}</p>
-                  {/* <p className="item-info-price">${product.price}</p> */}
             </div>
             <div className="edit-delete-order-buttons">
                   <button className="delete-order-button">delete item</button>

@@ -10,7 +10,7 @@ import {
 
 import { GiCoffeeBeans } from 'react-icons/gi'
 
-const Navbar = ({cartId}) => {
+const Navbar = ({cartId, isLoggedIn}) => {
     const [click, setClick] = useState(false)
     const handleClick = () => { setClick(!click) }
     const hideNavbar =()=>{
@@ -25,8 +25,21 @@ const Navbar = ({cartId}) => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/about">About</Link></li>
-          <li><Link to={`/carts/${cartId}`}><AiOutlineShoppingCart /></Link></li>
-            <li><Link to="/login"><AiOutlineUser /></Link></li>
+          
+            {isLoggedIn ? <li>
+            <Link to={`/carts/${cartId}`}>
+              <AiOutlineShoppingCart />
+            </Link>
+            </li>
+            : <li>
+              <Link to="/carts/guest">
+                <AiOutlineShoppingCart />
+              </Link>
+            </li>}
+          
+          <li><Link to="/login"><AiOutlineUser /></Link></li>
+    
+          {isLoggedIn ? <li><Link to="/logout">Log Out</Link></li> : null}
         </ul>
         <div className="ham" onClick={handleClick}>
           {click ? (<AiOutlineClose className='icon' />) : (<AiOutlineMenu className='icon' />)} 

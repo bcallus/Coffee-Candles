@@ -1,25 +1,10 @@
-.login {
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.title {
+    text-align: center;
+    margin-bottom: 5rem;
 }
 
-.login a {
-  color: black
-}
-
-.login a:hover {
-  color: green;
-}
-
-.login input {
-  width: 300px;
-  font-size: 1.2rem;
-}
-
-
-.loginbtn{
+.logout-button {
+  margin-top: 5rem;
   align-self: center;
   background-color: #fff;
   background-image: none;
@@ -48,32 +33,4 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-}
-
-.loginbtn:hover {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-  transform: translate3d(0, 2px, 0);
-}
-
-.loginbtn:focus {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-}
-
-.loginError {
-  color: rgb(90, 19, 19);
-}
-
-
-@media screen and (max-width: 940px) {
-  .login {
-    height: 70vh;
-  }
-
-  .login h1 {
-    font-size:2.5rem;
-  }
-
-  .login input[type=text] {
-    width: 100%;
-  }
 }

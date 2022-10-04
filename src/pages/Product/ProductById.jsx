@@ -3,10 +3,9 @@ import './productById.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createNewOrder } from '../../api';
 
-const ProductById = ({ productsList, token, cartId}) => {
+const ProductById = ({ productsList, token, cartId, guestCart, setGuestCart}) => {
   const { productId } = useParams();
-    const id = parseInt(productId);
-    console.log({ cartId, line: 9 })
+  const id = parseInt(productId);
 
   const Navigate = useNavigate();
 
@@ -16,16 +15,21 @@ const ProductById = ({ productsList, token, cartId}) => {
 
     const addToCart = async (event) => {
       event.preventDefault();
-      console.log('CLICK');
-      console.log({token, line:19});
-      console.log({ productId, line: 20 });
-      console.log({ cartId, line: 21 });
-      const newOrder = await createNewOrder(token, cartId, productId)
-        console.log({ newOrder, line: 23 })
-        //this alert only alerts people that are logged in, we still have to build guest cart capability
-        if (newOrder && cartId) {
+      if (!cartId) {
+        const filteredProduct = productsList.filter((product) => product.id === id)
+        const guestCartCopy = [...guestCart];
+        guestCartCopy.push(filteredProduct[0])
+        setGuestCart(guestCartCopy)
         alert("This item has been added to your cart!")
-    }
+        let stringCart = JSON.stringify(guestCartCopy);
+        localStorage.setItem("guestCart", stringCart)
+      }
+      if (token) {
+        const newOrder = await createNewOrder(token, cartId, productId)
+        if (newOrder && cartId) {
+          alert("This item has been added to your cart!")
+        }
+      }
   };
 
     return (
@@ -41,11 +45,10 @@ const ProductById = ({ productsList, token, cartId}) => {
                     <b>{product.name}</b>
                     </p>
                     <p className="product-price"><b>$ {product.price}</b></p>
-                    {product.inStock ? <p className="stock">In Stock</p> : <p className="stock">Sold Out</p>}
+              {product.inStock ? <p className="stock">In Stock</p> : <p className="stock">This item is SOLD OUT. Please check back later!</p>}
                     <p className="product-description">{product.description}</p>
-                    <br />
-                    <button className="add-to-cart" onClick={addToCart}>add to cart</button>  
-                  
+              <br />
+                    {product.inStock ? <button className="add-to-cart" onClick={addToCart}>add to cart</button> : null }
             </div>
           ))}
         </div>

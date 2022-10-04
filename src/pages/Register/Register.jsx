@@ -48,7 +48,7 @@ export default function Register({ setToken, email, setEmail }) {
       setRegisterError(data.message);
       return
     }
-    navigate('/', { replace: true });
+    navigate('/login', { replace: true });
   };
 
   return (
@@ -84,7 +84,7 @@ export default function Register({ setToken, email, setEmail }) {
             />
           </label>
         </div>
-        {registerError && <p>{registerError}</p>}
+        {registerError && <p className='registerError'>{registerError}</p>}
         <div>
           <button className='regbtn' type='submit'>Submit</button>
         </div>
