@@ -14,7 +14,7 @@ const Logout = ({ setIsLoggedIn, setToken }) => {
 
   return (
       <div className="title">
-          <p>Thank you for visiting Coffe & Tea.</p>
+          <p>Thank you for visiting Coffee + Tea.</p>
           <p>Come back soon!</p>
       <button className="logout-button" onClick={handleLogout}>
         Click here to log out.

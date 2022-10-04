@@ -14,7 +14,7 @@ const Footer = () => {
         <AiOutlineFacebook className='icon' /></a>
         <a href='http://instagram.com/coffee_tea'>
         <IoLogoInstagram className='icon' /></a>
-        <p>© 2022 Coffee + Candles LLC</p>
+        <p>© 2022 Coffee + Tea LLC</p>
       </div>     
     </div>
   )

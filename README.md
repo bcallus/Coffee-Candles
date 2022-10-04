@@ -7,8 +7,8 @@
 
 <!-- LOGO -->
 <p align="center">
-  <a href="https://imgur.com/n3jxcay">
-    <img width="500" src="https://imgur.com/n3jxcay" alt="Logo">
+  <a href="https://ibb.co/zZJqm3L">
+    <img width="500" src="https://ibb.co/zZJqm3L" alt="Logo">
   </a>
 
   <h3 align="center">Coffee + Tea</h3>
@@ -19,8 +19,8 @@ An e-commerce website where people can purchase coffee or tea!
 
 <!-- SCREENSHOT -->
 <p align="center">
-  <a href="https://imgur.com/Z46LF0a">
-    <img width="1512" alt="screenshot of landing page" src="https://imgur.com/Z46LF0a">
+  <a href="https://ibb.co/qp9DyyZ">
+    <img width="1512" alt="screenshot of landing page" src="https://ibb.co/qp9DyyZ">
   </a>
 
 ## Deployed Site: Coffee + Tea:
