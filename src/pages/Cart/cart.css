@@ -35,7 +35,7 @@
     padding-right: 5rem;
   }
 
-  .item-info, .thumbnail, .delete-order-button {
+  .item-info, .thumbnail, .delete-order-button, .edit-order-button {
     display: flex;
     margin-right: 2rem;
     align-items: center;
@@ -43,7 +43,7 @@
 
   .edit-delete-order-buttons {
    display: flex;
-   justify-content: end;
+   justify-content: flex-end;
    margin-bottom: 1rem;
   }
 

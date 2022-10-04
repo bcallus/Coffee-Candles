@@ -13,6 +13,9 @@ import Products from './pages/Product/Products.jsx';
 import ProductById from './pages/Product/ProductById.jsx';
 import Cart from './pages/Cart/Cart.jsx';
 import Searchbar from './components/Searchbar';
+import GuestCart from './pages/Cart/GuestCart';
+import Logout from './pages/Login/Logout';
+
 
 function App() {
   const [token, setToken] = useState("");
@@ -20,6 +23,10 @@ function App() {
   const [productsList, setProductsList] = useState([{}]);
   const [cartId, setCartId] = useState();
   const {searchResults, setSearchResults} = useState([]);
+  const [ordersList, setOrdersList] = useState([])
+  const [guestCart, setGuestCart] = useState([])
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   useEffect(() => {
     fetchAllProducts().then((results, json) => {
@@ -30,13 +37,17 @@ function App() {
     
     const myToken = localStorage.getItem("token")
     setToken(myToken)
+
+    let localCart = localStorage.getItem("guestCart");
+    localCart = JSON.parse(localCart);
+    if (localCart) setGuestCart(localCart);
    }, [])
 
   
    return (
     
     <Router>
-      <Navbar cartId={cartId}/>
+       <Navbar cartId={cartId} isLoggedIn={isLoggedIn} />
       <Hero />
       {/* <Searchbar searchResults={searchResults} /> */}
       <Routes>
@@ -53,6 +64,8 @@ function App() {
              productsList={productsList}
              token={token}
              cartId={cartId}
+             guestCart={guestCart}
+             setGuestCart={setGuestCart}
            />
          }></Route>
          
@@ -65,6 +78,7 @@ function App() {
              setEmail={setEmail}
              setCartId={setCartId}
              cartId={cartId}
+             setIsLoggedIn={setIsLoggedIn}
            />
          }></Route>
          
@@ -81,7 +95,23 @@ function App() {
            <Cart
              token={token}
              cartId={cartId}
+             ordersList={ordersList}
+             setOrdersList={setOrdersList}
            />
+         }></Route>
+
+         <Route path="/carts/guest" element={
+           <GuestCart 
+             guestCart={guestCart}
+             productsList={productsList}
+           />
+         }></Route>
+
+         <Route path="/logout" element={
+           <Logout
+             setIsLoggedIn={setIsLoggedIn}
+             setToken={setToken} 
+              />
          }></Route>
       </Routes>
       <Footer />
