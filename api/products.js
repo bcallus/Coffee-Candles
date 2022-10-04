@@ -1,9 +1,12 @@
 const express = require("express");
 const productsRouter = express.Router();
+const multer = require("multer");
+const upload = multer()
 const {
   getAllProducts,
   getProductById,
-  addProductToCart
+  addProductToCart,
+  editProduct
     //add other functions here
 } = require("../db");
 const { requireAdmin } = require("./utils")
@@ -64,6 +67,17 @@ productsRouter.post("/", requireAdmin, async (req, res, next) => {
   next({ name, message, status:401 });
 }
 });
+
+productsRouter.patch("/edit", requireAdmin, upload.none(), async (req, res, next) => {
+  const { name, description, price, inStock, categoryId, imageUrl, id } = req.body;
+  console.log(name, description, price, inStock, categoryId, imageUrl)
+  try {
+    const product = await editProduct({ id, name, description, price, inStock, categoryId, imageUrl})
+    res.status(200).send(product);
+  } catch (error) {
+    res.status(500).send(error)
+  }
+})
 
 module.exports = productsRouter;
   

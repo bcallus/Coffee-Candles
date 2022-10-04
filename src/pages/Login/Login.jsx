@@ -18,14 +18,16 @@ async function loginUser({ email, password }) {
   })
     .then((response) => response.json())
     .then((result) => {
+      console.log({result, line:21})
       return result;
     })
     .catch(console.error);
 }
-export default function Login({ setToken, email, setEmail, setCartId, setIsLoggedIn}) {
+export default function Login({ setToken, email, setEmail, setCartId, cartId, admin, setAdmin, setIsLoggedIn}) {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +42,9 @@ export default function Login({ setToken, email, setEmail, setCartId, setIsLogge
     const token = data.token;
     localStorage.setItem('token', token);
     setToken(token);
-
+    const isAdmin = data.user.isAdmin
+    localStorage.setItem('admin', isAdmin);
+    setAdmin(isAdmin)
     if (token) {
       const newCart = await createNewCart({ token, email })
       const newCartId = newCart.id

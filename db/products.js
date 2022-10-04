@@ -71,6 +71,27 @@ async function attachProductsToCarts(cartId) {
 }
 
 //updateProduct | like  updateActivity({ id, ...fields }), admin can update a product
+async function editProduct({ id, name, description, price, inStock, categoryId, imageUrl}) {
+  console.log(imageUrl)
+  try {
+    const {rows: product} = await client.query(`
+    UPDATE products
+    SET name = $1,
+    description = $2,
+    price = $3,
+    "inStock" = $4,
+    "categoryId" = $5,
+    image_url = $6
+    WHERE id = $7;
+    `, [ name, description, price, inStock, categoryId, imageUrl, id]);
+    return product
+    // const selectedProduct = await getProductById(id);
+  }
+  catch(error) {
+console.error(error)
+  } 
+
+}
 
 //admin can delete a product?
 
@@ -80,5 +101,6 @@ module.exports = {
     createProduct,
     getAllProducts,
     getProductById,
-    attachProductsToCarts
+    attachProductsToCarts,
+    editProduct,
 };

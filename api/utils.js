@@ -19,6 +19,7 @@ function requireAdmin(req, res, next) {
       });
    } 
    else if (!req.user.isAdmin) {
+      console.log(req.user)
       res.status(401);
       res.send({
          error: "YouMustBeAdmin",

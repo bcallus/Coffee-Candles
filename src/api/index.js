@@ -83,3 +83,23 @@ export async function fetchUserCart(token, cartId) {
 		console.error(error);
 	}
 }
+
+
+export async function editProduct(data, token) {
+    console.log({data, token, line:89});
+    try {
+        const request= await fetch (`${APIURL}/products/edit/`, {
+            method: "PATCH",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body:data,
+        })
+        const response = await request.json();
+        return response;
+        
+    } catch (error) {
+        console.error(error)
+        
+    }
+}

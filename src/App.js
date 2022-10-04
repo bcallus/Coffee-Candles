@@ -21,6 +21,7 @@ function App() {
   const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
   const [cartId, setCartId] = useState();
+  const [admin, setAdmin] = useState();
   const [ordersList, setOrdersList] = useState([])
   const [guestCart, setGuestCart] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -53,6 +54,9 @@ function App() {
          <Route path='/products' element={
            <Products
              productsList={productsList} 
+             admin={admin}
+             token={token}
+             setProductList={setProductsList}
            />
          }></Route>
          
@@ -61,8 +65,10 @@ function App() {
              productsList={productsList}
              token={token}
              cartId={cartId}
+             admin={admin}
              guestCart={guestCart}
              setGuestCart={setGuestCart}
+            
            />
          }></Route>
          
@@ -75,6 +81,8 @@ function App() {
              setEmail={setEmail}
              setCartId={setCartId}
              cartId={cartId}
+             admin={admin} 
+             setAdmin={setAdmin}
              setIsLoggedIn={setIsLoggedIn}
            />
          }></Route>
