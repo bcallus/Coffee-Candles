@@ -49,7 +49,7 @@ function App() {
     <Router>
        <Navbar cartId={cartId} isLoggedIn={isLoggedIn} />
       <Hero />
-      <Searchbar searchResults={searchResults} />
+      {/* <Searchbar searchResults={searchResults} /> */}
       <Routes>
          <Route path='/' element={<Home />}></Route>
          

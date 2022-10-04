@@ -1,64 +1,58 @@
-
-![Logo](../assets/CoffeeTeaLogoHome.png)
-
-
-## Badges
-![Shields.io](https://img.shields.io/github/commit-activity/w/bcallus/Coffee-Candles?style=plastic)
-![Shields.io](https://img.shields.io/github/languages/code-size/bcallus/Coffee-Candles?style=social)
-## Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-
 # Coffee + Tea
 
-This project was built to show an e-commerce website using multiple technologies: Node, PostGRES, SQL, etc. 
+<!-- BADGES -->
 
+![Shields.io](https://img.shields.io/github/commit-activity/w/bcallus/Coffee-Candles?style=plastic)
+![Shields.io](https://img.shields.io/github/languages/code-size/bcallus/Coffee-Candles?style=social)
 
-## Features
+<!-- LOGO -->
+<p align="center">
+  <a href="https://imgur.com/n3jxcay">
+    <img width="500" src="https://imgur.com/n3jxcay" alt="Logo">
+  </a>
 
-- Responsive web navigation bar for mobile devices
-- Users or guests can make a purchase
-- Allows a shopping cart to be accessed from browser or phone and saves items to each guest/user
-- Search bar to easily find an item
+  <h3 align="center">Coffee + Tea</h3>
+  
+  <p align="center">
+An e-commerce website where people can purchase coffee or tea!
+    <br />
 
+<!-- SCREENSHOT -->
+<p align="center">
+  <a href="https://imgur.com/Z46LF0a">
+    <img width="1512" alt="screenshot of landing page" src="https://imgur.com/Z46LF0a">
+  </a>
+
+## Deployed Site: Coffee + Tea:
+
+Check out Coffee + Tea here!
+https://graceshopper-Coffee-Candles.herokuapp.com/
 
 ## 🛠 Skills
+
 Javascript, HTML, CSS, React, SQL, POSTgres
 
+Before you begin, ensure you have met the following requirements:
 
-## Run Locally
+- You have installed the latest version of VSCode
+- You have PostgresQL installed
+- You have created a database via PSQL called 'Coffee-Candles'
 
-Clone the project
+## Installing Coffee + Tea:
 
-```bash
-  git clone https://link-to-project
-```
+If you want to run our project locally:
 
-Go to the project directory
+- Clone this repo to your local computer
+- Open up VScode and cd into the directory
+- Type npm install in your terminal
+- Type npm run db:build to build the database
+- and type npm run start:dev to run it!
 
-```bash
-  cd my-project
-```
+## Collaborators:
 
-Install dependencies
+Thank you to the following people who have contributed to this project:
 
-```bash
-  npm install
-```
-
-Start the server
-
-```bash
-  npm run start:dev
-```
-
-
-## Authors
-
-- [@bcallus](https://github.com/bcallus)
-- [@aresamrit](https://github.com/aresamrit)
-- [@B-Lew1992](https://github.com/B-Lew1992)
-- [@kiethoang123](https://github.com/kiethoang123)
-
-
+- Brittany Callus: [@bcallus](https://github.com/bcallus)
+- Christina Trinh: [@aresamrit](https://github.com/aresamrit)
+- Bryan Lewis: [@B-Lew1992](https://github.com/B-Lew1992)
+- Kiet Hoang: [@kiethoang123](https://github.com/kiethoang123)
