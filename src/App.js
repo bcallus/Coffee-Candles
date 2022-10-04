@@ -12,21 +12,27 @@ import Footer from "./components/Footer/Footer.jsx";
 import Products from './pages/Product/Products.jsx';
 import ProductById from './pages/Product/ProductById.jsx';
 import Cart from './pages/Cart/Cart.jsx';
+import Searchbar from './components/Searchbar';
 import GuestCart from './pages/Cart/GuestCart';
 import Logout from './pages/Login/Logout';
+
 
 function App() {
   const [token, setToken] = useState("");
   const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
   const [cartId, setCartId] = useState();
+  const {searchResults, setSearchResults} = useState([]);
   const [ordersList, setOrdersList] = useState([])
   const [guestCart, setGuestCart] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+
   useEffect(() => {
-    fetchAllProducts().then((results) => {
-      setProductsList(results);
+    fetchAllProducts().then((results, json) => {
+      setProductsList(results, json)
+      setSearchResults(json)
+      return json
     }).catch(console.error)
     
     const myToken = localStorage.getItem("token")
@@ -36,12 +42,14 @@ function App() {
     localCart = JSON.parse(localCart);
     if (localCart) setGuestCart(localCart);
    }, [])
+
   
    return (
     
     <Router>
        <Navbar cartId={cartId} isLoggedIn={isLoggedIn} />
       <Hero />
+      <Searchbar searchResults={searchResults} />
       <Routes>
          <Route path='/' element={<Home />}></Route>
          
