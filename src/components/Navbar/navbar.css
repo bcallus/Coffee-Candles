@@ -38,7 +38,7 @@
   font-size: 1.5rem;
 }
 
-@media screen and (max-width: 940px) {
+@media screen and (max-width: 768px) {
   .ham {
     display: block;
   }
@@ -52,7 +52,7 @@
     right: -100%;
     height: 100%;
     width: 100%;
-    background: rgb(40, 64, 49);;
+    background: rgb(40, 64, 49);
     transition: 0.4s ease-in-out;
     z-index: 10;
   }

@@ -13,6 +13,8 @@ import Products from './pages/Product/Products.jsx';
 import ProductById from './pages/Product/ProductById.jsx';
 import Cart from './pages/Cart/Cart.jsx';
 import GuestCart from './pages/Cart/GuestCart';
+import Logout from './pages/Login/Logout';
+
 
 function App() {
   const [token, setToken] = useState("");
@@ -22,10 +24,13 @@ function App() {
   const [admin, setAdmin] = useState();
   const [ordersList, setOrdersList] = useState([])
   const [guestCart, setGuestCart] = useState([])
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   useEffect(() => {
-    fetchAllProducts().then((results) => {
-      setProductsList(results);
+    fetchAllProducts().then((results, json) => {
+      setProductsList(results, json)
+      return json
     }).catch(console.error)
     
     const myToken = localStorage.getItem("token")
@@ -35,12 +40,14 @@ function App() {
     localCart = JSON.parse(localCart);
     if (localCart) setGuestCart(localCart);
    }, [])
+
   
    return (
     
     <Router>
-      <Navbar cartId={cartId}/>
+       <Navbar cartId={cartId} isLoggedIn={isLoggedIn} />
       <Hero />
+      {/* <Searchbar searchResults={searchResults} /> */}
       <Routes>
          <Route path='/' element={<Home />}></Route>
          
@@ -76,6 +83,7 @@ function App() {
              cartId={cartId}
              admin={admin} 
              setAdmin={setAdmin}
+             setIsLoggedIn={setIsLoggedIn}
            />
          }></Route>
          
@@ -100,7 +108,15 @@ function App() {
          <Route path="/carts/guest" element={
            <GuestCart 
              guestCart={guestCart}
+             productsList={productsList}
            />
+         }></Route>
+
+         <Route path="/logout" element={
+           <Logout
+             setIsLoggedIn={setIsLoggedIn}
+             setToken={setToken} 
+              />
          }></Route>
       </Routes>
       <Footer />

@@ -23,7 +23,7 @@ async function loginUser({ email, password }) {
     })
     .catch(console.error);
 }
-export default function Login({ setToken, email, setEmail, setCartId, cartId, admin, setAdmin}) {
+export default function Login({ setToken, email, setEmail, setCartId, cartId, admin, setAdmin, setIsLoggedIn}) {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
@@ -49,8 +49,7 @@ export default function Login({ setToken, email, setEmail, setCartId, cartId, ad
       const newCart = await createNewCart({ token, email })
       const newCartId = newCart.id
       setCartId(newCartId)
-      console.log({ newCartId, line:49 })
-      console.log({newCart, line: 50})
+      setIsLoggedIn(true);
     }
 
     if (!token){
@@ -80,7 +79,7 @@ export default function Login({ setToken, email, setEmail, setCartId, cartId, ad
               onChange={(e) => setPassword(e.target.value)}/>
           </label>
         </div>
-        {loginError && <p>{loginError}</p>}
+        {loginError && <p className="loginError" >{loginError}</p>}
 
         <div>
           <button className='loginbtn' type='login'>Log In</button>
