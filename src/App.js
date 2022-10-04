@@ -48,6 +48,8 @@ function App() {
            <Products
              productsList={productsList} 
              admin={admin}
+             token={token}
+             setProductList={setProductsList}
            />
          }></Route>
          
@@ -59,6 +61,7 @@ function App() {
              admin={admin}
              guestCart={guestCart}
              setGuestCart={setGuestCart}
+            
            />
          }></Route>
          

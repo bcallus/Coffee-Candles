@@ -67,3 +67,22 @@
   color: rgb(90, 19, 19);
   font-weight: bold;
 }
+
+.add{
+  width: 10%;
+  padding: 20px 20px;
+  height: 50vh;
+  box-sizing: border-box;
+  
+  
+}
+
+input{
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid;
+  padding:10px;
+  border-radius:10px;
+
+
+}

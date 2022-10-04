@@ -71,7 +71,8 @@ async function attachProductsToCarts(cartId) {
 }
 
 //updateProduct | like  updateActivity({ id, ...fields }), admin can update a product
-async function editProduct({id, ...rest}) {
+async function editProduct({ id, name, description, price, inStock, categoryId, imageUrl}) {
+  console.log(imageUrl)
   try {
     const {rows: product} = await client.query(`
     UPDATE products
@@ -80,9 +81,9 @@ async function editProduct({id, ...rest}) {
     price = $3,
     "inStock" = $4,
     "categoryId" = $5,
-    image_url = $6;
-    WHERE id = $7
-    `, [...rest, id]);
+    image_url = $6
+    WHERE id = $7;
+    `, [ name, description, price, inStock, categoryId, imageUrl, id]);
     return product
     // const selectedProduct = await getProductById(id);
   }

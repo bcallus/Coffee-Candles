@@ -2,20 +2,76 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./product.css";
+import { editProduct } from "../../api";
 
-const Product = ({ product }) => {
+const Product = ({ product, token, updateProductList}) => {
+    console.log({inStock: product.inStock, line:8})
     const navigate = useNavigate();
     const [canEdit, setCanEdit] = useState(false);
+    const [canDelete, setCanDelete] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    // const [inStock, setInStock] = useState(product.inStock ? "yes" : "no");
+    const [form, setForm] = useState({
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        inStock: product.inStock,
+        imageUrl:product.image_url
+    });
+    
+    const handleProductEdit = (e) =>{
+        if(e.target.id === "inStock"){
+            
+            setForm({
+                ...form, 
+                [e.target.id]: e.target.checked
+            })
+        return 
+    }
+        setForm({
+            ...form, 
+            [e.target.id]: e.target.value
+        })
+    }
+   
 
-    const handleEditSubmit = (e) => {
+    const handleEditSubmit = async (e) => {
+        try {
+            e.preventDefault()
+            let formData = new FormData();
+            formData.append("id", product.id)
+        formData.append('name', form.name);
+        formData.append('price', form.price);
+        formData.append('description', form.description);
+        formData.append('inStock', form.inStock);
+        formData.append('imageUrl', form.imageUrl); 
+        await editProduct(formData, token);
+        setIsEditing(false)
+        updateProductList({id: product.id, ...form, image_url: form.imageUrl}, "edit")
+
+
+            
+        } catch (error) {
+            console.error(error);
+            setIsEditing(false);
+        
+        }
+     
+
+    }
+
+    const handleButtonClick = (e) => {
         e.preventDefault()
-        console.log("im clicked but not refreshing the page")
-    }
-
-    const handButtonClick = (e) => {
+        setIsEditing(!isEditing)
+        
 
     }
+
+    const handleDelete = (productId) => {
+        updateProductList(product, "delete")
+    }
+
+  
     
     const handleClick = () => {
         navigate(`/products/${product.id}`);
@@ -26,6 +82,7 @@ const Product = ({ product }) => {
         const admin = localStorage.getItem('admin');
         console.log({admin, line:16});
         setCanEdit(admin);
+        setCanDelete(admin);
     }, [])
     return (
         <div className="product-item">
@@ -40,17 +97,27 @@ const Product = ({ product }) => {
             <br />
             <button className="btn" 
                 onClick={handleClick}>View Product</button>
-                {canEdit && <button className="btn" onClick={handleEditSubmit}>Edit</button>}
+                {canEdit && <button className="btn" onClick={handleButtonClick}>Edit</button>}
                 {isEditing && (
-                    <form>
-                        <input type="text" name="name" />
-                        <input type="text" name="description" />
-                        <input type="text" name="price" />
-                        <input type="text" name="inStock" />
-                        <input type="text" name="imageUrl" />
+                    <form onSubmit={handleEditSubmit}>
+                        <label>Name</label>
+                        <input onChange={handleProductEdit} value={form.name} type="text" id="name" />
+                        <label>Description</label>
+                        <input onChange={handleProductEdit} value={form.description} type="text" id="description" />
+                        <label>Price</label>
+                        <input onChange={handleProductEdit} value={form.price} type="text" id="price" />
+                        <label>InStock?</label>
+                        <input onChange={handleProductEdit} ischecked={!form.inStock} type="checkbox" id="inStock" />
+                        <label>ImageUrl</label>
+                        <input onChange={handleProductEdit} value={form.imageUrl} type="text" id="imageUrl" />
+
+                        <button className="btn">submit</button>
                         
-                    </form>
+                    </form>      
                 )}
+                {canDelete && <button className="btn" onClick={handleDelete}>Remove</button> } 
+
+                
 
             </div>
         </div>

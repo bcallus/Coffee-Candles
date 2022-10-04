@@ -68,10 +68,9 @@ productsRouter.post("/", requireAdmin, async (req, res, next) => {
 }
 });
 
-productsRouter.post("/products/edit/:id", requireAdmin, upload.none(), async (req, res, next) => {
-  const { id } = req.params;
-  const { name, description, price, inStock, categoryId, imageUrl } = req.body;
-
+productsRouter.patch("/edit", requireAdmin, upload.none(), async (req, res, next) => {
+  const { name, description, price, inStock, categoryId, imageUrl, id } = req.body;
+  console.log(name, description, price, inStock, categoryId, imageUrl)
   try {
     const product = await editProduct({ id, name, description, price, inStock, categoryId, imageUrl})
     res.status(200).send(product);
