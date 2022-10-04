@@ -13,9 +13,9 @@ import { GiCoffeeBeans } from 'react-icons/gi'
 const Navbar = ({cartId}) => {
     const [click, setClick] = useState(false)
     const handleClick = () => { setClick(!click) }
-    const hideNavbar =()=>{
-      navRef.current.classList.remove("responsive_nav")
-    }
+    // const hideNavbar =()=>{
+    //   navRef.current.classList.remove("responsive_nav")
+    // }
 
   return (
     <div className='navbar'>

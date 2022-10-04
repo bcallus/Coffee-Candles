@@ -38,7 +38,7 @@ function App() {
     <Router>
       <Navbar cartId={cartId}/>
       <Hero />
-      <Searchbar searchResults={searchResults} />
+      {/* <Searchbar searchResults={searchResults} /> */}
       <Routes>
          <Route path='/' element={<Home />}></Route>
          

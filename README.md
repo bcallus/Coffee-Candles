@@ -1,13 +1,13 @@
 
-![Logo](../assets/CoffeeTeaLogoHome.png)
+![Logo](/src/assets/CoffeeTeaLogoHome.png)
 
 
-## Badges
+
 ![Shields.io](https://img.shields.io/github/commit-activity/w/bcallus/Coffee-Candles?style=plastic)
 ![Shields.io](https://img.shields.io/github/languages/code-size/bcallus/Coffee-Candles?style=social)
-## Screenshots
+## Landing Page
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](/src/assets/screenshot.png)
 
 
 # Coffee + Tea
