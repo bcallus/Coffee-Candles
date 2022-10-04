@@ -7,9 +7,7 @@
 
 <!-- LOGO -->
 <p align="center">
-  <a href="https://ibb.co/zZJqm3L">
-    <img width="500" src="https://ibb.co/zZJqm3L" alt="Logo">
-  </a>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/L15V0Tq/The-Little-Cup-Cafe-and-Restaurant-Typography-Logo-2.png" alt="The-Little-Cup-Cafe-and-Restaurant-Typography-Logo-2" border="0" /></a>
 
   <h3 align="center">Coffee + Tea</h3>
   
@@ -19,9 +17,7 @@ An e-commerce website where people can purchase coffee or tea!
 
 <!-- SCREENSHOT -->
 <p align="center">
-  <a href="https://ibb.co/qp9DyyZ">
-    <img width="1512" alt="screenshot of landing page" src="https://ibb.co/qp9DyyZ">
-  </a>
+<a href="https://ibb.co/qp9DyyZ"><img src="https://i.ibb.co/3cWTrrJ/Screen-Shot-2022-10-04-at-10-34-06-AM.png" alt="Screen-Shot-2022-10-04-at-10-34-06-AM" border="0" /></a>
 
 ## Deployed Site: Coffee + Tea:
 
@@ -44,9 +40,9 @@ If you want to run our project locally:
 
 - Clone this repo to your local computer
 - Open up VScode and cd into the directory
-- Type npm install in your terminal
-- Type npm run db:build to build the database
-- and type npm run start:dev to run it!
+- Type `npm install` in your terminal
+- Type `npm run db:build` to build the database
+- and type `npm run start:dev` to run it!
 
 ## Collaborators:
 
