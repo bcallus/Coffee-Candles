@@ -12,7 +12,6 @@ import Footer from "./components/Footer/Footer.jsx";
 import Products from './pages/Product/Products.jsx';
 import ProductById from './pages/Product/ProductById.jsx';
 import Cart from './pages/Cart/Cart.jsx';
-import Searchbar from './components/Searchbar';
 import GuestCart from './pages/Cart/GuestCart';
 import Logout from './pages/Login/Logout';
 
@@ -22,7 +21,6 @@ function App() {
   const [email, setEmail] = useState('');
   const [productsList, setProductsList] = useState([{}]);
   const [cartId, setCartId] = useState();
-  const {searchResults, setSearchResults} = useState([]);
   const [ordersList, setOrdersList] = useState([])
   const [guestCart, setGuestCart] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,7 +29,6 @@ function App() {
   useEffect(() => {
     fetchAllProducts().then((results, json) => {
       setProductsList(results, json)
-      setSearchResults(json)
       return json
     }).catch(console.error)
     

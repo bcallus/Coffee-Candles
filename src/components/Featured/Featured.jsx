@@ -8,11 +8,6 @@ const Featured = () => {
   return (
     <div className='featured'>
       <h1>Bestsellers</h1>
-      {/* <div>
-        <p><span className='bold'>All</span></p>
-        <p>Coffees</p>
-        <p>Teas</p>
-      </div> */}
       <div className='container'>
         <img src={feat1} alt='butterfly pea tea' />
         <img src={feat2} alt='golden chai latte' />

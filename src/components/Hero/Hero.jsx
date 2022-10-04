@@ -7,7 +7,7 @@ const Hero = () => {
     <div className='hero'>
       <div className="content">
         <h1>Find your perfect taste. Coffee For Every Body.</h1>
-        {/* <p className='search-text'> Search our selection of hand grown and ethically sourced coffee beans and tea leaves.</p>
+        <p className='search-text'> Search our selection of hand grown and ethically sourced coffee beans and tea leaves.</p>
         <form className='search'>
           <div>
             <input type="text"
@@ -20,7 +20,7 @@ const Hero = () => {
                         <label>Tea</label>
           <button type="submit"><AiOutlineSearch className="icon" /></button>
           </div>
-        </form> */}
+        </form>
       </div>
     </div>
   )
