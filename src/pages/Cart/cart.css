@@ -63,6 +63,7 @@
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
+  margin-right: 2rem;
 }
 
 .delete-order-button {
