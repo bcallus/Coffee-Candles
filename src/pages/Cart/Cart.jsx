@@ -41,7 +41,7 @@ const Cart = ({token, cartId, ordersList, setOrdersList}) => {
             </div>
             <div className="edit-delete-order-buttons">
                   <button className="delete-order-button">delete item</button>
-                  <button className="delete-order-button">add another to cart</button>
+                  <button className="add-order-button">add another to cart</button>
                   <p className="item-info-price">${product.price}</p>
                 </div>
             </div>
