@@ -19,11 +19,6 @@ An e-commerce website where people can purchase coffee or tea!
 <p align="center">
 <a href="https://ibb.co/qp9DyyZ"><img src="https://i.ibb.co/3cWTrrJ/Screen-Shot-2022-10-04-at-10-34-06-AM.png" alt="Screen-Shot-2022-10-04-at-10-34-06-AM" border="0" /></a>
 
-## Deployed Site: Coffee + Tea:
-
-Check out Coffee + Tea here!
-https://graceshopper-Coffee-Candles.herokuapp.com/
-
 ## 🛠 Skills
 
 Javascript, HTML, CSS, React, SQL, POSTgres
